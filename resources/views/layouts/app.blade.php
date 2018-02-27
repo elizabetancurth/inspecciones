@@ -77,17 +77,95 @@
                                         Menú
                                     </div>    
                                     <div class="card">
-                                        <nav class="navbar navbar-default">
-                                            <div class="container-fluid">
-                                                <ul class="nav nav-pills nav-stacked">
-                                                    <li><a href="#">Getión de insumos</a></li>
-                                                    <li><a href="#">Gestión de inspeccines</a></li>
-                                                    <li><a href="#">Gestión de BPM </a></li>
-                                                    <li><a href="#">Consultar histórico</a></li>
-                                                    <li><a href="#">Reportes</a></li>
+                                        <div class="btn-menu">
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                                    Gestión de insumos
+                                                    <span class="caret"></span>
+                                                </button>
+                                                <ul class="dropdown-menu" role="menu">
+                                                    <li>
+                                                        <a href="#">Extintores</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">Botiquines</a>
+                                                    </li>
                                                 </ul>
-                                            </div>
-                                        </nav>
+                                            </div> 
+                                        </div>
+                                        <div class="btn-menu">
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                                    Gestión de inspeciones
+                                                    <span class="caret"></span>
+                                                </button>
+                                                <ul class="dropdown-menu" role="menu">
+                                                    <li>
+                                                        <a href="#">Inspección Extintores</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">Inspección Botiquines</a>
+                                                    </li>
+                                                </ul>
+                                            </div> 
+                                        </div>
+                                        <div class="btn-menu">
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                                    Gestión de BPM
+                                                    <span class="caret"></span>
+                                                </button>
+                                                <ul class="dropdown-menu" role="menu">
+                                                    <li>
+                                                        <a href="#">Establecimientos</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">Cuestionarios</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">Registrar inspección</a>
+                                                    </li>
+                                                </ul>
+                                            </div> 
+                                        </div>
+                                        <div class="btn-menu">
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                                    Consultar histórico
+                                                    <span class="caret"></span>
+                                                </button>
+                                                <ul class="dropdown-menu" role="menu">
+                                                    <li>
+                                                        <a href="#">Extintores</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">Botiquines</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">BPM</a>
+                                                    </li>
+                                                </ul>
+                                            </div> 
+                                        </div>
+                                        <div class="btn-menu">
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                                    Reportes
+                                                    <span class="caret"></span>
+                                                </button>
+                                                <ul class="dropdown-menu" role="menu">
+                                                    <li>
+                                                        <a href="#">Extintores</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">Botiquínes</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">BPM</a>
+                                                    </li>
+                                                </ul>
+                                            </div> 
+                                        </div>   
                                     </div>                  
                                 </div>    
                             </div>

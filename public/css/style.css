@@ -52,3 +52,12 @@ footer{
     text-align: left;
     font-size: 1rem;
 }
+
+.btn-menu{
+    text-align: left;
+    margin-left: 10px;
+}
+
+.btn-menu li{
+    margin-left: 10px;
+}
