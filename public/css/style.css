@@ -70,8 +70,8 @@ footer{
     width: 200px;
     color: white;
     font-size: 12px;
-    padding: 10px;
-    padding-top: 10px;
+    padding-top: 80px;
+    padding-bottom: 10px;
 }
 
 .boton a{
