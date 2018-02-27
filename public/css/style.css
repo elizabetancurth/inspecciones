@@ -48,6 +48,10 @@ footer{
     margin: 0 auto !important;
 }
 
+.col-menu{
+    width: auto;
+}
+
 .col-menu ul{
     text-align: left;
     font-size: 1rem;
@@ -74,4 +78,14 @@ footer{
     width: 100px;
     color: white;
     font-size: 14px;
+}
+
+#mensaje-bienvenida{
+    text-align: center;
+    font-size: 1.1rem;
+    line-height: 25px;
+}
+
+.contenido{
+    margin-top: -109px;
 }
