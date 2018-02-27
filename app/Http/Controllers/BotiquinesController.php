@@ -13,7 +13,7 @@ class BotiquinesController extends Controller
      */
     public function index()
     {
-        //
+        return view('botiquines.consultar');
     }
 
     /**
@@ -23,7 +23,7 @@ class BotiquinesController extends Controller
      */
     public function create()
     {
-        //
+        return view('botiquines.crear');
     }
 
     /**
