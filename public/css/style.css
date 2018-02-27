@@ -61,3 +61,17 @@ footer{
 .btn-menu li{
     margin-left: 10px;
 }
+
+.boton{
+    width: 200px;
+    color: white;
+    font-size: 12px;
+    padding: 10px;
+    padding-top: 10px;
+}
+
+.boton a{
+    width: 100px;
+    color: white;
+    font-size: 14px;
+}

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class ExtintoresController extends Controller
+class BotiquinesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +13,7 @@ class ExtintoresController extends Controller
      */
     public function index()
     {
-        return view('extintores.consultar_extintores');
+        //
     }
 
     /**
@@ -23,7 +23,7 @@ class ExtintoresController extends Controller
      */
     public function create()
     {
-        return view('extintores.crear_extintores');
+        //
     }
 
     /**

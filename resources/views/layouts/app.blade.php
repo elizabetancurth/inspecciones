@@ -85,10 +85,10 @@
                                                 </button>
                                                 <ul class="dropdown-menu" role="menu">
                                                     <li>
-                                                        <a href="#">Extintores</a>
+                                                        <a href="extintores">Extintores</a>
                                                     </li>
                                                     <li>
-                                                        <a href="#">Botiquines</a>
+                                                        <a href="botiquines">Botiquines</a>
                                                     </li>
                                                 </ul>
                                             </div> 

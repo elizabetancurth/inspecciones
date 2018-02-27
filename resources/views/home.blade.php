@@ -11,7 +11,6 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
                     Texto
                 </div>
             </div>
