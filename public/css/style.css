@@ -1,0 +1,35 @@
+body{
+    background: white !important; 
+    font-family: Arial Narrow !important;
+    font-size: 1.1rem !important;
+}
+
+#bar-menu a{
+   font-size: 30px;
+   text-align: center;
+}
+
+footer{
+    background-color: #556277;
+    margin-bottom: auto;
+    height: 50px;
+    text-align: center;
+    color: #fff;
+}
+
+.card{
+    border-bottom: 2px solid rgba(14, 102, 177, 0.87) !important; 
+    font-size: 1.3em;
+    color: #1d80bd;
+    font-weight: normal;
+    letter-spacing: normal;
+    float: left;
+    line-height: 60px;
+    margin: 0;
+    text-align: center;
+    width: 100%;
+}
+
+.navbarSupportedContent a{
+    font-size: 1.2rem !important;
+}
