@@ -30,6 +30,25 @@ footer{
     width: 100%;
 }
 
-.navbarSupportedContent a{
-    font-size: 1.2rem !important;
+
+.encabezado{
+    padding: 5px 18px;
+    background:rgba(0,0,0,.03);
+    color: #000;
+    font-size: 24px;
+    border-bottom: 1px solid #e2e2e2;
+    margin: 0;
+    display: block;
+    border-radius: 5px 5px 0px 0px;
+    text-align: left;
+    font-size: 30px;
+}
+
+.col-md-9{
+    margin: 0 auto !important;
+}
+
+.col-menu ul{
+    text-align: left;
+    font-size: 1rem;
 }
