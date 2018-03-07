@@ -13,7 +13,7 @@ class ExtintoresController extends Controller
      */
     public function index()
     {
-        return view('extintores.consultar_extintores');
+        return view('extintores.consultar');
     }
 
     /**
@@ -23,7 +23,7 @@ class ExtintoresController extends Controller
      */
     public function create()
     {
-        return view('extintores.crear_extintores');
+        return view('extintores.crear');
     }
 
     /**
