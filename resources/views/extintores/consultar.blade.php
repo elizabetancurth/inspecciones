@@ -10,7 +10,7 @@
                     <div class="boton">
                         <button type='button' class='btn btn-info' data-toggle='modal' data-target='#capa_modal' style='width:100%'>
                             <span class='fa fa-eye' aria-hidden='true'></span>
-                            <a href="extintores/create">Crear nuevo extintor</a>
+                            <a href={{ route('extintores.create')}}>Crear nuevo extintor</a>
                         </button>
                     </div>
                     <div>
