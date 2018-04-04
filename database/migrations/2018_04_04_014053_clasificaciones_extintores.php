@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Extintores extends Migration
+class ClasificacionesExtintores extends Migration
 {
     /**
      * Run the migrations.
@@ -13,25 +13,14 @@ class Extintores extends Migration
      */
     public function up()
     {
-        Schema::create('extintores', function (Blueprint $table) {
+        Schema::create('clasificaciones_extintores', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('codigo');
-            $table->integer('clasificacion__extintor_id')->unsigned()->nullable();
-            $table->string('altura');
-            $table->integer('ubicacion_id')->unsigned()->nullable();
+            $table->string('nombre');
             $table->enum('estado', ['Activo', 'Inactivo']);
             $table->integer('user_id_creacion')->unsigned()->nullable();
             $table->integer('user_id_modificacion')->unsigned()->nullable();
             $table->rememberToken();
             $table->timestamps();
-
-            $table->foreign('clasificacion__extintor_id')->references('id')->on('clasificaciones_extintores')
-                ->onUpdate('CASCADE')
-                ->onDelete('SET NULL');
-
-            $table->foreign('ubicacion_id')->references('id')->on('ubicaciones')
-                ->onUpdate('CASCADE')
-                ->onDelete('SET NULL');
 
             $table->foreign('user_id_creacion')->references('id')->on('users')
                 ->onUpdate('CASCADE')
@@ -50,6 +39,6 @@ class Extintores extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('extintores');
+        Schema::dropIfExists('clasificaciones_extintores');
     }
 }
