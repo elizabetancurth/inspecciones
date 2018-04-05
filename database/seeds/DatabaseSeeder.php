@@ -17,5 +17,6 @@ class DatabaseSeeder extends Seeder
         $this->call(EdificioSeeder::class);
         $this->call(UbicacionesSeeder::class);
         $this->call(ClasificacionExtintorSeeder::class);
+        $this->call(TipoBotiquinSeeder::class);
     }
 }
