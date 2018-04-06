@@ -18,5 +18,8 @@ class DatabaseSeeder extends Seeder
         $this->call(UbicacionesSeeder::class);
         $this->call(ClasificacionExtintorSeeder::class);
         $this->call(TipoBotiquinSeeder::class);
+        $this->call(InspeccionClasificacionSeeder::class);
+        $this->call(TipoPreguntaSeeder::class);
+        $this->call(OpcionRespuestaSeeder::class);
     }
 }
