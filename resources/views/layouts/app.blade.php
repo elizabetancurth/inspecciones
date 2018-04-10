@@ -93,7 +93,7 @@
                                         </h5>
                                     </div>
                                     <div id="collapseTwo" class="collapse hide" aria-labelledby="headingTwo" data-parent="#accordion">
-                                        <a href="#" class="list-group-item list-group-item-action">Listar</a>
+                                        <a href="botiquines" class="list-group-item list-group-item-action">Listar</a>
                                 </div>
 
                                 <div class="card-header" id="headingThree">

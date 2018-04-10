@@ -7,14 +7,11 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 use Session;
-use App\Edificio;
-use App\Ubicacion;
-use App\TipoBotiquin;
 use App\Botiquin;
 use App\InsumoBotiquin;
 use App\Http\Requests\ExtintorRequest;
 
-class BotiquinController extends Controller
+class InsumoBotiquinController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -23,12 +20,7 @@ class BotiquinController extends Controller
      */
     public function index()
     {
-        $botiquines = Botiquin::all();
-        $edificios = Edificio::all();
-        $tipos_botiquines = TipoBotiquin::all();
-        return view('botiquines.consultar', ['botiquines'=>$botiquines, 
-                                            'edificios' =>$edificios, 
-                                            'tipos_botiquines'=>$tipos_botiquines]);
+        //
     }
 
     /**
@@ -47,29 +39,23 @@ class BotiquinController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(BotiquinRequest $request)
+    public function store(Request $request, $id)
     {
         $owner = Auth:: User()->id;
 
         $input = $request -> all();
 
-        $ubicacion = new Ubicacion();
-        $ubicacion -> piso = $input['piso'];
-        $ubicacion -> referencia = $input['referencia'];
-        $ubicacion -> estado = 'Activo';
-        $ubicacion -> edificio_id = $input['edificio'];
-        $ubicacion -> user_id_creacion = $owner;
-        $ubicacion->save();
-        
-        $botiquin = new Botiquin;
-        $botiquin -> codigo = $input['codigo'];
-        $botiquin -> tipo_botiquin_id = $input['tipo_botiquin'];
-        $botiquin -> estado = 'Activo';
-        $botiquin -> ubicacion_id = $ubicacion->id;
-        $botiquin -> user_id_creacion = $owner;
-        $botiquin->save();
+        $insumo_botiquin = new InsumoBotiquin;
+        $insumo_botiquin -> nombre = $input['nombre'];
+        $insumo_botiquin -> tipo = $input['tipo'];
+        $insumo_botiquin -> fecha_vencimiento = $input['fechaVencimiento'];
+        $insumo_botiquin -> cantidad = $input['cantidad'];
+        $insumo_botiquin -> botiquin_id = $id;
+        $insumo_botiquin -> estado = 'Activo';
+        $insumo_botiquin -> user_id_creacion = $owner;
+        $insumo_botiquin->save();
 
-        Session::flash('flash_message', 'Botiquín creado exitosamente');
+        Session::flash('flash_message', 'Insumo creado exitosamente');
 
         return redirect('/botiquines');
     }
@@ -82,9 +68,7 @@ class BotiquinController extends Controller
      */
     public function show($id)
     {
-        $botiquin = Botiquin::findOrFail($id);
-        $insumos_botiquines = InsumoBotiquin::where('botiquin_id', $id)->get();
-        return view('botiquines.ver', ['botiquin' => $botiquin, 'insumos_botiquines' => $insumos_botiquines]);
+        //
     }
 
     /**

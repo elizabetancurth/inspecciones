@@ -4,6 +4,9 @@
 
 @section("content")
 
+<a href="{{ route('extintores.index') }}">Volver a extintores</a>
+<br>
+
     {!! Form::model($extintor, [ 
         'method' => 'PUT', 
         'route' => ['extintores.update', $extintor->id]

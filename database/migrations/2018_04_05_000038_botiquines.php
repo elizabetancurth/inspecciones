@@ -17,6 +17,7 @@ class Botiquines extends Migration
             $table->increments('id');
             $table->string('codigo');
             $table->integer('tipo_botiquin_id')->unsigned()->nullable();
+            $table->integer('ubicacion_id')->unsigned()->nullable();
             $table->enum('estado', ['Activo', 'Inactivo']);
             $table->integer('user_id_creacion')->unsigned()->nullable();
             $table->integer('user_id_modificacion')->unsigned()->nullable();
@@ -24,6 +25,10 @@ class Botiquines extends Migration
             $table->timestamps();
 
             $table->foreign('tipo_botiquin_id')->references('id')->on('tipos_botiquines')
+                ->onUpdate('CASCADE')
+                ->onDelete('SET NULL');
+
+            $table->foreign('ubicacion_id')->references('id')->on('ubicaciones')
                 ->onUpdate('CASCADE')
                 ->onDelete('SET NULL');
 
