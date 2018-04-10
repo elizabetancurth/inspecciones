@@ -19,5 +19,5 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('extintores', 'ExtintoresController');
-Route::resource('botiquines', 'BotiquinesController');
+Route::resource('extintores', 'ExtintorController');
+Route::resource('botiquines', 'BotiquinController');

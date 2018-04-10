@@ -17,6 +17,7 @@ class Extintores extends Migration
             $table->increments('id');
             $table->string('codigo');
             $table->integer('clasificacion_extintor_id')->unsigned()->nullable();
+            $table->integer('capacidad');
             $table->string('altura');
             $table->integer('ubicacion_id')->unsigned()->nullable();
             $table->enum('estado', ['Activo', 'Inactivo']);
