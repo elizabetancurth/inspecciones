@@ -93,7 +93,7 @@
                                         </h5>
                                     </div>
                                     <div id="collapseTwo" class="collapse hide" aria-labelledby="headingTwo" data-parent="#accordion">
-                                        <a href="botiquines" class="list-group-item list-group-item-action">Listar</a>
+                                        <a href="{{ route('botiquines.index') }}" class="list-group-item list-group-item-action">Listar</a>
                                 </div>
 
                                 <div class="card-header" id="headingThree">
@@ -123,7 +123,7 @@
                                 <div class="card-header" id="headingFive">
                                         <h5 class="mb-0">
                                             <button class="btn btn-link" data-toggle="collapse" data-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
-                                            Formularios
+                                            Formatos
                                             </button>
                                         </h5>
                                     </div>
