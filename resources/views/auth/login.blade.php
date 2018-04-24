@@ -4,17 +4,18 @@
 
 @section('content')
 
-    <div class="card">
-        <div class="card-header">
-           Inicio de Sesión
-        </div>
-        <div class="card-body">
-            <div class="row justify-content-center container-fluid">
+<div class="card">
+    <div class="card-header">
+        Inicio de Sesión
+    </div>
+
+    <div class="card-body">
+        <div class="row justify-content-center container-fluid">
             <form method="POST" action="{{ route('login') }}">
                 @csrf
 
                 <div class="form-group row">
-                    <label for="email" class="col-md-4   text-md-right">
+                    <label for="email" class="col-md-5   text-md-right">
                         Usuario:
                     </label>
                     <div>
@@ -29,7 +30,7 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="password" class="col-md-4 col-form-label text-md-right">Contraseña:</label>
+                    <label for="password" class="col-md-5 col-form-label text-md-right">Contraseña:</label>
 
                     <div>
                         <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
@@ -58,8 +59,8 @@
                         </button>
                     </div>
                 </div>
-            </form>               
-        </div>
-        </div>
+            </form> 
+        </div>              
     </div>
+</div>
 @endsection

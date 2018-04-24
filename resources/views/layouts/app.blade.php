@@ -82,7 +82,7 @@
                                     </h5>
                                 </div>
                                 <div id="collapseOne" class="collapse hide" aria-labelledby="headingOne" data-parent="#accordion">
-                                    <a href="extintores" class="list-group-item list-group-item-action">Listar</a>
+                                    <a href="{{ route('extintores.index') }}" class="list-group-item list-group-item-action">Listar</a>
                                 </div>
 
                                 <div class="card-header" id="headingTwo">
@@ -132,17 +132,19 @@
                                         <a href="#" class="list-group-item list-group-item-action">Diseñar</a>
                                 </div>
 
-                                <div class="card-header" id="headingSix">
-                                        <h5 class="mb-0">
-                                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseSix" aria-expanded="true" aria-controls="collapseSix">
-                                            Usuarios
-                                            </button>
-                                        </h5>
+                                @if(Auth::user()->rol=='Administrador')
+                                    <div class="card-header" id="headingSix">
+                                            <h5 class="mb-0">
+                                                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseSix" aria-expanded="true" aria-controls="collapseSix">
+                                                Usuarios
+                                                </button>
+                                            </h5>
+                                        </div>
+                                        <div id="collapseSix" class="collapse hide" aria-labelledby="headingSix" data-parent="#accordion">
+                                            <a href="#" class="list-group-item list-group-item-action">Listar</a>
+                                            <a href="{{ route('register') }}" class="list-group-item list-group-item-action">Crear</a>
                                     </div>
-                                    <div id="collapseSix" class="collapse hide" aria-labelledby="headingSix" data-parent="#accordion">
-                                        <a href="#" class="list-group-item list-group-item-action">Listar</a>
-                                        <a href="{{ route('register') }} class="list-group-item list-group-item-action">Crear</a>
-                                </div>
+                                @endif
                             </div>
                         </div>
                     </div>
