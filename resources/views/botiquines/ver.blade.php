@@ -3,7 +3,7 @@
 @section("headerTitle", "Datos del botiquín")
 
 @section("content")
-<a href="{{ route('botiquines.index') }}">Volver a botiquines</a>
+<a href="{{ route('botiquines.index') }}">< Volver a botiquines</a>
 <br>
 <h2>Botiquín {{$botiquin->tipo->nombre}} N° {{$botiquin->codigo}}</h2>
 <br>

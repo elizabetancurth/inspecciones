@@ -22,3 +22,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('extintores', 'ExtintorController');
 Route::resource('botiquines', 'BotiquinController');
 Route::resource('insumos_botiquines', 'InsumoBotiquinController');
+Route::resource('formatos', 'FormatoController');
+Route::resource('preguntas', 'PreguntaFormatoController');

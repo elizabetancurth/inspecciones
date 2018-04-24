@@ -3,7 +3,7 @@
 @section("headerTitle", "Datos del extintor")
 
 @section("content")
-<a href="{{ route('extintores.index') }}">Volver a extintores</a>
+<a href="{{ route('extintores.index') }}">< Volver a extintores</a>
 <br>
 <h2>Extintor N° {{$extintor->codigo}}</h2>
 <br>

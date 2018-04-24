@@ -128,7 +128,7 @@
                                         </h5>
                                     </div>
                                     <div id="collapseFive" class="collapse hide" aria-labelledby="headingFive" data-parent="#accordion">
-                                        <a href="#" class="list-group-item list-group-item-action">Listar</a>
+                                        <a href="{{ route('formatos.index') }}" class="list-group-item list-group-item-action">Listar</a>
                                         <a href="#" class="list-group-item list-group-item-action">Diseñar</a>
                                 </div>
 
