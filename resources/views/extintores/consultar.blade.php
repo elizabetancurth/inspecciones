@@ -26,7 +26,7 @@
         <tr>
             <th scope="col">Código</th>
             <th scope="col">Tipo</th>
-            <th scope="col">Fecha de Creación</th>
+            <th scope="col">Fecha de Recarga</th>
             <th scope="col">Estado</th>
             <th scope="col"></th>
             <th scope="col"></th>
@@ -38,7 +38,7 @@
                 <tr>
                     <td>{{$extintor->codigo}}</td>
                     <td>{{$extintor->clasificacion->nombre}}</td>
-                    <td>{{$extintor->created_at}}</td>
+                    <td>{{$extintor->fecha_ultima_recarga->fecha_recarga}}</td>
                     <td>{{$extintor->estado}}</td>
                     <td><a class="text-muted" href="{{ route('extintores.show', $extintor->id) }}"><span class="oi oi-eye"></span></a></td>
                     <td><a class="text-muted" href="{{ route('extintores.edit', $extintor->id) }}"><span class="oi oi-pencil"></span></a></td>

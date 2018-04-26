@@ -26,7 +26,7 @@
         <tr>
             <th scope="col">Código</th>
             <th scope="col">Tipo</th>
-            <th scope="col">Fecha de Creación</th>
+            <th scope="col">Ubicación</th>
             <th scope="col">Estado</th>
             <th scope="col"></th>
             <th scope="col"></th>
@@ -38,7 +38,7 @@
                 <tr>
                     <td>{{$botiquin->codigo}}</td>
                     <td>{{$botiquin->tipo->nombre}}</td>
-                    <td>{{$botiquin->created_at}}</td>
+                    <td>{{$botiquin->ubicacion->edificio->nombre}}</td>
                     <td>{{$botiquin->estado}}</td>
                     <td><a class="text-muted" href="{{ route('botiquines.show', $botiquin->id) }}"><span class="oi oi-eye"></span></a></td>
                     <td><a class="text-muted" href="{{ route('botiquines.edit', $botiquin->id) }}"><span class="oi oi-pencil"></span></a></td>

@@ -26,4 +26,9 @@ class Extintor extends Model
     {
       return $this->belongsTo('App\Ubicacion','ubicacion_id','id');
     }
+
+    function fecha_ultima_recarga()
+    {
+      return $this->belongsTo('App\RecargaExtintor','id','extintor_id');
+    }
 }
