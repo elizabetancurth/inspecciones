@@ -20,7 +20,7 @@
         <div class="card-body container-fluid text-center align-middle">
             <div id="bar-menu">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <img src="images/logo.png" alt="" width=100px;>
+                    <img src="/images/logo.png" alt="" width=100px;>
                 </a>
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <h1>Unidad de Seguridad y Salud en el Trabajo</h1>
