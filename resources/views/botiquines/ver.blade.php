@@ -35,24 +35,37 @@
         <div class="col-mod-3">
             <h3>Insumos:</h3>
         </div>
+    
+    @if(count($botiquin->insumos_botiquin)>0)
         <table class="table">
             <thead>
                 <tr>
                     <th scope="col">Nombre</th>
                     <th scope="col">Cantidad</th>
                     <th scope="col">Fecha Vencimiento</th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
             @foreach($botiquin->insumos_botiquin as $insumo_botiquin)
                 <tr>
-                    <td>$insumo_botiquin->nombre</td>
-                    <td>$insumo_botiquin->cantidad</td>
-                    <td>$insumo_botiquin->fecha_vencimiento</td>
+                    <td>{{$insumo_botiquin->nombre}}</td>
+                    <td>{{$insumo_botiquin->cantidad}}</td>
+                    <td>@if($insumo_botiquin==null)
+                            No aplica
+                        @else
+                            {{$insumo_botiquin->fecha_vencimiento}}
+                        @endif
+                    </td>
+                    <td><a class="text-muted" href="#"><span class="oi oi-pencil"></span></a></td>
                 </tr>
              @endforeach
             </tbody>
         </table>
+    @else
+        <h4>No existen insumos en el botiquín<h4>
+        <br>
+    @endif
     </div>
 
     <button type="button" class="btn btn-info container-fluid" data-toggle="modal" data-target="#crearModal">
@@ -71,11 +84,16 @@
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
-                    {!! Form::open(['route' => 'insumos_botiquines.store' , $botiquin->id]) !!}
+                    {!! Form::open(['route' => 'insumos_botiquines.store']) !!}
+                    @csrf
                     <div class="form-group">
                         <table class="container-fluid">
-                            <thead><th colspan="2"><h4>Información General</h4></th></thead>
                             <tbody>
+                                <tr>
+                                    <div class="form-group row">
+                                        {!! Form::text('botiquin_id', $botiquin->id, ['class' => 'form-control'])!!}
+                                    </div>
+                                </tr>
                                 <tr>
                                     <th class="col-md-5">
                                         {{ Form::label("nombre", "Nombre:") }}         
@@ -97,10 +115,10 @@
                                 <tr>
                                 <tr>
                                     <th class="col-md-5">
-                                        {{ Form::label("fechaVecimiento", "Fecha de vencimiento:") }}
+                                        {{ Form::label("fechaVencimiento", "Fecha de vencimiento:") }}
                                     </th>
                                     <td>
-                                        {{ Form::date("fechaVecimiento", \Carbon\Carbon::now(), ["class" => "container-fluid"]) }}
+                                        {{ Form::date("fechaVencimiento", \Carbon\Carbon::now(), ["class" => "container-fluid"]) }}
                                     </td>
                                 </tr>
                                 <tr>

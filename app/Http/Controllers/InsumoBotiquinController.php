@@ -39,7 +39,7 @@ class InsumoBotiquinController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $id)
+    public function store(Request $request)
     {
         $owner = Auth:: User()->id;
 
@@ -50,14 +50,14 @@ class InsumoBotiquinController extends Controller
         $insumo_botiquin -> tipo = $input['tipo'];
         $insumo_botiquin -> fecha_vencimiento = $input['fechaVencimiento'];
         $insumo_botiquin -> cantidad = $input['cantidad'];
-        $insumo_botiquin -> botiquin_id = $id;
+        $insumo_botiquin -> botiquin_id = $input['botiquin_id'];
         $insumo_botiquin -> estado = 'Activo';
         $insumo_botiquin -> user_id_creacion = $owner;
         $insumo_botiquin->save();
 
         Session::flash('flash_message', 'Insumo creado exitosamente');
 
-        return redirect('/botiquines');
+        return redirect('/botiquines/'.$input['botiquin_id']);
     }
 
     /**

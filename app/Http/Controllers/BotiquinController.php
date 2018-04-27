@@ -12,7 +12,7 @@ use App\Ubicacion;
 use App\TipoBotiquin;
 use App\Botiquin;
 use App\InsumoBotiquin;
-use App\Http\Requests\ExtintorRequest;
+use App\Http\Requests\BotiquinRequest;
 
 class BotiquinController extends Controller
 {
@@ -47,7 +47,7 @@ class BotiquinController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(BotiquinRequest $request)
+    public function store(Request $request)
     {
         $owner = Auth:: User()->id;
 

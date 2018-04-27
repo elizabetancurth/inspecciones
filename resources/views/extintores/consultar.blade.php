@@ -21,32 +21,36 @@
     </div>
     <hr>
 
-    <table class="table">
-        <thead class="thead-dark">
-        <tr>
-            <th scope="col">Código</th>
-            <th scope="col">Tipo</th>
-            <th scope="col">Fecha de Recarga</th>
-            <th scope="col">Estado</th>
-            <th scope="col"></th>
-            <th scope="col"></th>
-            <th scope="col"></th>
-        </tr>
-        </thead>
-        <tbody>
-            @foreach($extintores as $extintor)
-                <tr>
-                    <td>{{$extintor->codigo}}</td>
-                    <td>{{$extintor->clasificacion->nombre}}</td>
-                    <td>{{$extintor->fecha_ultima_recarga->fecha_recarga}}</td>
-                    <td>{{$extintor->estado}}</td>
-                    <td><a class="text-muted" href="{{ route('extintores.show', $extintor->id) }}"><span class="oi oi-eye"></span></a></td>
-                    <td><a class="text-muted" href="{{ route('extintores.edit', $extintor->id) }}"><span class="oi oi-pencil"></span></a></td>
-                    <td><a class="text-muted" data-toggle="modal" data-target="#modalConfirmarBorrado" href=""><span class="oi oi-x"></span></a></td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
+    @if(count($extintores) >0)
+        <table class="table">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">Código</th>
+                <th scope="col">Tipo</th>
+                <th scope="col">Fecha de Recarga</th>
+                <th scope="col">Estado</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+                @foreach($extintores as $extintor)
+                    <tr>
+                        <td>{{$extintor->codigo}}</td>
+                        <td>{{$extintor->clasificacion->nombre}}</td>
+                        <td>{{$extintor->fecha_ultima_recarga->fecha_recarga}}</td>
+                        <td>{{$extintor->estado}}</td>
+                        <td><a class="text-muted" href="{{ route('extintores.show', $extintor->id) }}"><span class="oi oi-eye"></span></a></td>
+                        <td><a class="text-muted" href="{{ route('extintores.edit', $extintor->id) }}"><span class="oi oi-pencil"></span></a></td>
+                        <td><a class="text-muted" data-toggle="modal" data-target="#modalConfirmarBorrado" href=""><span class="oi oi-x"></span></a></td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    @else
+        <h4>No existen extintores</h4>
+    @endif
 
     <nav aria-label="container-fluid Page navigation example">
         <ul class="pagination justify-content-center">
@@ -71,6 +75,8 @@
             <div class="modal-body">
                 <div class="container-fluid">
                     {!! Form::open(['route' => 'extintores.store']) !!}
+                    @csrf
+
                     <div class="form-group">
                         <table class="container-fluid">
                             <thead><th colspan="2"><h4>Información General</h4></th></thead>
@@ -188,9 +194,9 @@
                 </div>
             </div>
             <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-            {!! Form::submit('Crear Extintor', ['class' => 'btn btn-info']) !!}
-            {!! Form::close()!!}
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                {!! Form::submit('Crear Extintor', ['class' => 'btn btn-info']) !!}
+                {!! Form::close()!!}
             </div>
             </div>
         </div>

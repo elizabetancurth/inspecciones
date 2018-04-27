@@ -17,7 +17,7 @@ class InsumosBotiquin extends Migration
             $table->increments('id');
             $table->string('nombre');
             $table->enum('tipo', ['Fármaco', 'Utencilio']);
-            $table->date('fecha_vencimiento');
+            $table->date('fecha_vencimiento')->nullable();
             $table->integer('cantidad');
             $table->integer('botiquin_id')->unsigned()->nullable();
             $table->enum('estado', ['Activo', 'Inactivo']);
