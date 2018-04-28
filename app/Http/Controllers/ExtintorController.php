@@ -24,12 +24,8 @@ class ExtintorController extends Controller
      */
     public function index()
     {
-        $edificios = Edificio::all();
-        $clasificaciones_extintores = ClasificacionExtintor::all();
         $extintores = Extintor::all();
-        return view('extintores.consultar', ['edificios' => $edificios, 
-                                            'clasificaciones' => $clasificaciones_extintores,
-                                            'extintores' => $extintores]);
+        return view('extintores.consultar', ['extintores' => $extintores]);
     }
 
     /**
@@ -39,7 +35,9 @@ class ExtintorController extends Controller
      */
     public function create()
     {   
-        //
+        $edificios = Edificio::all();
+        $clasificaciones_extintores = ClasificacionExtintor::all();
+        return view('extintores.crear', ['edificios' => $edificios, 'clasificaciones' => $clasificaciones_extintores]);
     }
 
     /**
@@ -50,6 +48,7 @@ class ExtintorController extends Controller
      */
     public function store(ExtintorRequest $request)
     {
+        
         $owner = Auth:: User()->id;
 
         $input = $request -> all();

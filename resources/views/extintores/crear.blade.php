@@ -1,139 +1,63 @@
 @extends('layouts.app')
 
+@section("headerTitle", "Crear Extintor")
+
 @section('content')
-<div class="container">
-    <div class="contenido">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="encabezado">Crear Extintor</div>
-                    </div>
-                    {!! Form::open(['route' => 'extintores.store']) !!}
-                    <div class="form-group">
-                        <table class="container-fluid">
-                            <thead><th colspan="2"><h4>Información General</h4></th></thead>
-                            <tbody>
-                                <tr>
-                                    <th class="col-md-5">
-                                        {{ Form::label("codigo", "Código:") }}         
-                                    </th>
-                                    <td>
-                                        {{ Form::text("codigo", "", ["class" => "container-fluid"]) }}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th class="col-md-5">
-                                        {{ Form::label("clasificacion", "Clasificación:") }}
-                                    </th>
-                                    <td>
-                                        <select id='clasificacion' name='clasificacion'  class="form-control"  >
-                                            <option value="" >Seleccione la clasificación</option>
-                                            <?php 
-                                                $options = "";
+    {!! Form::open(['route' => 'extintores.store']) !!}
+        <div class="container col-md-10">
+            <table class="container-fluid">
+                <thead>
+                    <tr colspan='2'><h4>Información General</h4></tr>
+                </thead><hr><br>
+                <tbody>
+                    <tr><th>{{ Form::label("codigo", "Código:") }}</th><td>{{ Form::text("codigo", "", ["class" => "container-fluid form-control"]) }}</td></tr>
+                    <tr><th>{{ Form::label("clasificacion", "Clasificación:") }}</th><td><select id='clasificacion' name='clasificacion'  class="form-control"  >
+                            <option value="" >Seleccione la clasificación</option>
+                            <?php 
+                                $options = "";
 
-                                                foreach ($clasificaciones as $key => $value)
-                                                {
-                                                    $options .=  "<option  value='".$value->id."'> ".$value->nombre."</option>";
-                                                }
-                                                echo $options;
-                                            ?>
-                                        </select>
-                                    </td>
-                                <tr>
-                                <tr>
-                                    <th class="col-md-5">
-                                        {{ Form::label("capacidad", "Capacidad (Kg):") }}
-                                    </th>
-                                    <td>
-                                        {{ Form::number("capacidad", null, ["step" => "0.01", "class" => "container-fluid"]) }}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>
-                                        <h4>Ubicación</h4>
-                                    </th>
-                                </tr>
-                                <tr>
-                                    <th class="col-md-5">
-                                        {{ Form::label("bloque", "Bloque:") }}
-                                    </th>
-                                    <td>
-                                    <select id='edificio' name='edificio'  class="form-control"  >
-                                        <option value="" >Seleccione el Edificio</option>
-                                        <?php 
-                                            $options = "";
+                                foreach ($clasificaciones as $key => $value)
+                                {
+                                    $options .=  "<option  value='".$value->id."'> ".$value->nombre."</option>";
+                                }
+                                echo $options;
+                            ?>
+                        </select></td></tr>
+                    <tr><th>{{ Form::label("capacidad", "Capacidad (Kg):") }}</th><td>{{ Form::number("capacidad", null, ["step" => "0.01", "class" => "container-fluid form-control"]) }}</td></tr>
+                    <tr><th>{{ Form::label("fechaRecarga", "Fecha de Recarga:") }}</th><td>{{ Form::date("fechaRecarga", \Carbon\Carbon::now(), ["class" => "container-fluid form-control"]) }}</td></tr> 
+                    <tr><th>{{ Form::label("fechaVencimiento", "Fecha de Vencimiento:") }}</th><td>{{ Form::date("fechaVencimiento", \Carbon\Carbon::now(), ["class" => "container-fluid form-control"]) }}</td></tr> 
+                </tbody>
+            </table><br>
+            <table class="container-fluid">
+                <thead>
+                    <tr colspan='2'><h4>Ubicación</h4></tr>
+                </thead><hr><br>
+                <tbody>
+                    <tr><th>{{ Form::label("bloque", "Bloque:") }}</th><td><select id='edificio' name='edificio'  class="form-control"  >
+                                                                                <option value="" >Seleccione el Edificio</option>
+                                                                                <?php 
+                                                                                    $options = "";
 
-                                            foreach ($edificios as $key => $value)
-                                            {
-                                                $options .=  "<option  value='".$value->id."'> ".$value->nombre."</option>";
-                                            }
-                                            echo $options;
-                                        ?>
-                                    </select>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th class="col-md-5">
-                                        {{ Form::label("piso", "Piso:") }}
-                                    </th>
-                                    <td>
-                                        <select class="form-control" id="piso">
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>5</option>
-                                        </select>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th class="col-md-5">
-                                        {{ Form::label("altura", "Altura (m):") }}
-                                    </th>
-                                    <td>
-                                        {{ Form::text("altura", "", ["class" => "container-fluid"]) }}<br>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th class="col-md-4">
-                                        {{ Form::label("referencia", "Referencia:") }}
-                                    </th>
-                                    <td>
-                                        {{ Form::text("referencia", "", ["class" => "container-fluid"]) }}<br>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>
-                                        <h4>Fechas</h4>
-                                    </th>
-                                </tr>
-                                <tr>
-                                    <th class="col-md-5">
-                                        {{ Form::label("fechaRecarga", "Fecha de Recarga:") }}
-                                    </th>
-                                    <td>
-                                        {{ Form::date("fechaRecarga", \Carbon\Carbon::now(), ["class" => "container-fluid"]) }}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th class="col-md-5">
-                                        {{ Form::label("fechaVencimiento", "Fecha de Vencimiento:") }}
-                                    </th>
-                                    <td>
-                                        {{ Form::date("fechaVencimiento", \Carbon\Carbon::now(), ["class" => "container-fluid"]) }}
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>  
-                    </div>                    	
-                </div>
-            </div>
-            <div class="modal-footer">
-            {!! Form::submit('Crear Publicación', ['class' => 'btn btn-primary']) !!}
-            {!! Form::close()!!}
-                </div>
+                                                                                    foreach ($edificios as $key => $value)
+                                                                                    {
+                                                                                        $options .=  "<option  value='".$value->id."'> ".$value->nombre."</option>";
+                                                                                    }
+                                                                                    echo $options;
+                                                                                ?>
+                                                                            </select></td></tr>
+                    <tr><th>{{ Form::label("piso", "Piso:") }}</th><td>{{ Form::select( "piso"
+                                                                                        ,["S" => "--Seleccione--", "1" => "1", "2" => "2", "3" => "3", "4" => "4", "5" => "5"]
+                                                                                        ,null
+                                                                                        ,["class" => "container-fluid form-control"]) }}</td></tr> 
+                    <tr><th>{{ Form::label("altura", "Altura (m):") }}</th><td>{{ Form::text("codigo", "", ["class" => "container-fluid form-control"]) }}</td></tr> 
+                    <tr><th>{{ Form::label("referencia", "Referencia:") }}</th><td>{{ Form::text("referencia", "", ["class" => "container-fluid form-control"]) }}<br></td></tr> 
+                </tbody>
+            </table><br>
+            <div>
+                <a role="button" class="btn btn-secondary" href="{{ route('extintores.index') }}">Cerrar</a>
+                {!! Form::submit('Crear Extintor', ['class' => 'btn btn-info']) !!}
             </div>
         </div>
-    </div>
-</div>
+        
+    {!! Form::close() !!}
 @endsection
