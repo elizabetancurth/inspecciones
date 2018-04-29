@@ -25,7 +25,7 @@ class ExtintorController extends Controller
      */
     public function index()
     {
-        $extintores = Extintor::all();
+        $extintores = Extintor::paginate(5);
         return view('extintores.consultar', ['extintores' => $extintores]);
     }
 
@@ -50,8 +50,6 @@ class ExtintorController extends Controller
     public function store(ExtintorRequest $request)
     {
         $owner = Auth:: User()->id;
-
-        
 
         $input = $request -> all();
 
