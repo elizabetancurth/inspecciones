@@ -73,7 +73,10 @@
                             <tbody>
                                 <tr>
                                     <div class="form-group row">
-                                        <label for="nombre" class="col-md-5 col-form-label text-md-right">Nombre</label>
+                                        <label for="nombre" class="col-md-5 col-form-label text-md-right">Nombre
+                                            <span class="required">*</span>
+                                        </label>
+                                        
 
                                         <div class="col-md-6">
                                             <input id="nombre" type="text" class="form-control{{ $errors->has('nombre') ? ' is-invalid' : '' }}" name="nombre" value="{{ old('nombre') }}" required autofocus>

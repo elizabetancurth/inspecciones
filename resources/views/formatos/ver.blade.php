@@ -16,15 +16,13 @@
                 <th scope="col">Preguntas</th>
                 <th scope="col"></th>
                 <th scope="col"></th>
-                <th scope="col"></th>
             </tr>
             </thead>
             <tbody>
                 @foreach($formato->preguntas as $pregunta)
                     <tr>
                         <td>{{$pregunta->descripcion}}</td>
-                        <td><a class="text-muted" href="#"><span class="oi oi-eye"></span></a></td>
-                        <td><a class="text-muted" href="#"><span class="oi oi-pencil"></span></a></td>
+                        <td><a class="text-muted" href="{{ route('preguntas.edit', $pregunta->id) }}"><span class="oi oi-pencil"></span></a></td>
                         <td><a class="text-muted" data-toggle="modal" data-target="#modalConfirmarBorrado" href=""><span class="oi oi-x"></span></a></td>
                     </tr>
                 @endforeach
@@ -52,13 +50,14 @@
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
-                    {!! Form::open(['route' => 'preguntas.store']) !!}
+                    {!! Form::open(['route' => ['preguntas.update', $pregunta->id]]) !!}
                     <div class="form-group">
                         <table class="container-fluid">
                             <tbody>
                                 <tr>
                                     <div class="form-group row">
-                                        {!! Form::label('tipo', 'Tipo de pregunta', ['class' => 'control-label'])!!}
+                                        {!! Form::label('tipo', 'Tipo de pregunta: ', ['class' => 'control-label'])!!}
+                                        <span class="required">*</span>
                                         <select id='tipo' name='tipo_pregunta'  class="form-control"  >
                                             <option value="" >Seleccione el tipo</option>
                                             <?php 
@@ -75,7 +74,8 @@
                                 </tr>
                                 <tr>
                                     <div class="form-group row">
-                                        {!! Form::label('descripcion', 'Descripción', ['class' => 'control-label'])!!}
+                                        {!! Form::label('descripcion', 'Descripción: ', ['class' => 'control-label'])!!}
+                                        <span class="required"> *</span>
                                         {!! Form::textarea('descripcion', null, ['class' => 'form-control','rows' => 3]) !!}
                                     </div>
                                 </tr>

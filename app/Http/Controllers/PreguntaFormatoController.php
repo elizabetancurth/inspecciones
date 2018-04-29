@@ -77,7 +77,17 @@ class PreguntaFormatoController extends Controller
      */
     public function edit($id)
     {
-        //
+         try
+         {
+             $pregunta = PreguntaFormato::findOrFail($id);
+             $tipos_preguntas = TipoPregunta::All();
+             return view('formatos.preguntas.editar', ['pregunta' => $pregunta, 'tipos_preguntas' => $tipos_preguntas]);
+         }
+         catch(ModelNotFoundException $e)
+         {
+             Session::flash('flash_message', "No se encuentra la pregunta");
+             return redirect()->back();
+         }
     }
 
     /**
@@ -89,7 +99,21 @@ class PreguntaFormatoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try
+        {
+            $pregunta = PreguntaFormato::findOrFail($id);
+
+            $input = $request->all();
+            $pregunta -> fill($input) -> save();
+
+            Session::flash('flash_message', "Pregunta actualizada correctamente");
+            return redirect()->back();
+        }
+        catch(ModelNotFoundException $e)
+        {
+            Session::flash('flash_message', "No se eactualizo la pregunta");
+             return redirect()->back();
+        }
     }
 
     /**
