@@ -71,7 +71,7 @@
                             <div class="card">
 
                                 <div class="card-header">
-                                    <a href="home" class="btn btn-link">Inicio</a>
+                                    <a href="/home" class="btn btn-link">Inicio</a>
                                 </div>
 
                                 <div class="card-header" id="headingOne">
@@ -83,6 +83,7 @@
                                 </div>
                                 <div id="collapseOne" class="collapse hide" aria-labelledby="headingOne" data-parent="#accordion">
                                     <a href="{{ route('extintores.index') }}" class="list-group-item list-group-item-action">Listar</a>
+                                    <a href="{{ route('extintores.create') }}" class="list-group-item list-group-item-action">Crear</a>
                                 </div>
 
                                 <div class="card-header" id="headingTwo">
@@ -94,6 +95,7 @@
                                     </div>
                                     <div id="collapseTwo" class="collapse hide" aria-labelledby="headingTwo" data-parent="#accordion">
                                         <a href="{{ route('botiquines.index') }}" class="list-group-item list-group-item-action">Listar</a>
+                                        <a href="{{ route('botiquines.create') }}" class="list-group-item list-group-item-action">Crear</a>                               
                                 </div>
 
                                 <div class="card-header" id="headingThree">
@@ -129,7 +131,6 @@
                                     </div>
                                     <div id="collapseFive" class="collapse hide" aria-labelledby="headingFive" data-parent="#accordion">
                                         <a href="{{ route('formatos.index') }}" class="list-group-item list-group-item-action">Listar</a>
-                                        <a href="#" class="list-group-item list-group-item-action">Diseñar</a>
                                 </div>
 
                                 @if(Auth::user()->rol=='Administrador')
