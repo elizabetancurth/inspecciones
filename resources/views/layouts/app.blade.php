@@ -71,7 +71,7 @@
                             <div class="card">
 
                                 <div class="card-header">
-                                    <a href="home" class="btn btn-link">Inicio</a>
+                                    <a href="/home" class="btn btn-link">Inicio</a>
                                 </div>
 
                                 <div class="card-header" id="headingOne">
