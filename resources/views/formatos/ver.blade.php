@@ -50,7 +50,7 @@
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
-                    {!! Form::open(['route' => ['preguntas.update', $pregunta->id]]) !!}
+                    {!! Form::open(['route' => 'preguntas.store']) !!}
                     <div class="form-group">
                         <table class="container-fluid">
                             <tbody>
