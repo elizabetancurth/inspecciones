@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Foundation\Validation\ValidationRequests;
 
 use Session;
 use App\Edificio;
@@ -48,8 +49,9 @@ class ExtintorController extends Controller
      */
     public function store(ExtintorRequest $request)
     {
-        
         $owner = Auth:: User()->id;
+
+        
 
         $input = $request -> all();
 
@@ -78,8 +80,6 @@ class ExtintorController extends Controller
         $fechas -> estado = 'Activo';
         $fechas -> user_id_creacion = $owner;
         $fechas -> save();
-
-        Session::flash('flash_message', 'Extintor creado exitosamente');
 
         return redirect('/extintores');
         
