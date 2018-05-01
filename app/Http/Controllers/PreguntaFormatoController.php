@@ -13,6 +13,15 @@ use Session;
 
 class PreguntaFormatoController extends Controller
 {
+    
+    /**
+     * Solo parar usuarios autenticados
+     */
+    function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *

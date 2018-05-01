@@ -40,7 +40,13 @@ class InsumoBotiquinController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {   
+        
+        function __construct()
+        {
+            $this->middleware('auth');
+        }
+
         $owner = Auth:: User()->id;
 
         $input = $request -> all();

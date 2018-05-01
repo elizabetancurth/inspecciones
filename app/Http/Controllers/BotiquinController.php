@@ -15,7 +15,15 @@ use App\InsumoBotiquin;
 use App\Http\Requests\BotiquinRequest;
 
 class BotiquinController extends Controller
-{
+{   
+    /**
+     * Solo para usuarios autenticados
+     */
+    function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *

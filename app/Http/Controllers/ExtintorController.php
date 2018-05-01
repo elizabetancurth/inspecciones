@@ -17,7 +17,15 @@ use App\Http\Requests\ExtintorRequest;
 
 class ExtintorController extends Controller
 {
-     
+    
+    /**
+     * Solo para usuarios autenticados
+     */
+    function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -65,7 +73,7 @@ class ExtintorController extends Controller
         $extintor -> codigo = $input['codigo'];
         $extintor -> clasificacion_extintor_id = $input['clasificacion'];
         $extintor -> capacidad = $input['capacidad'];
-        $extintor -> altura = $input['capacidad'];
+        $extintor -> altura = $input['altura'];
         $extintor -> estado = 'Activo';
         $extintor -> ubicacion_id = $ubicacion->id;
         $extintor -> user_id_creacion = $owner;
@@ -108,11 +116,9 @@ class ExtintorController extends Controller
         $extintor = Extintor::findOrFail($id);
         $edificios = Edificio::all();
         $clasificaciones_extintores = ClasificacionExtintor::all();
-        $recarga_extintor = RecargaExtintor::where('extintor_id',$id)->get();
         return view('extintores.editar', ['extintor' => $extintor, 
                                             'edificios' => $edificios, 
-                                            'clasificaciones' => $clasificaciones_extintores,
-                                                'recarga_extintor' => $recarga_extintor]);
+                                                'clasificaciones' => $clasificaciones_extintores,]);
     }
 
     /**
@@ -122,13 +128,28 @@ class ExtintorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ExtintorRequest $request, Extintor $extintor)
+    public function update(Request $request, $id)
     {
+
+        $owner = Auth:: User()->id;
+        
         $input = $request->all();
 
-        $extintor = new Extintor();
-        $extintor->fill($input)->save();
-       
+        $extintor = Extintor::findOrFail($id);
+        $extintor -> codigo = $input['codigo'];
+        $extintor -> clasificacion_extintor_id = $input['clasificacion'];
+        $extintor -> capacidad = $input['capacidad'];
+        $extintor -> altura = $input['altura'];
+        $extintor -> user_id_modificacion = $owner;
+        $extintor->save();
+
+        $ubicacion = Ubicacion::findOrFail($extintor->ubicacion_id);
+        $ubicacion -> piso = $input['piso'];
+        $ubicacion -> referencia = $input['referencia'];
+        $ubicacion -> edificio_id = $input['edificio'];
+        $ubicacion -> user_id_modificacion = $owner;
+        $ubicacion->save(); 
+
         Session::flash('flash_message', 'Extintor editado exitosamente!');
         
         return redirect('/extintores');

@@ -14,6 +14,14 @@ use Session;
 class FormatoController extends Controller
 {
     /**
+     * Solo para usuarios autenticados
+     */
+    function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
