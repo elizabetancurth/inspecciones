@@ -150,6 +150,12 @@ class ExtintorController extends Controller
         $ubicacion -> user_id_modificacion = $owner;
         $ubicacion->save(); 
 
+        $fechas = RecargaExtintor::findOrFail($id);
+        $fechas -> fecha_recarga = $input['fechaRecarga'];
+        $fechas -> fecha_vencimiento = $input['fechaVencimiento'];
+        $fechas -> user_id_modificacion = $owner;
+        $fechas -> save();
+
         Session::flash('flash_message', 'Extintor editado exitosamente!');
         
         return redirect('/extintores');
