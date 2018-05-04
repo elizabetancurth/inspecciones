@@ -27,12 +27,12 @@
             }
     </script>
 
-    <a class="btn btn-info container-fluid" href="{{ route('extintores.create')}}" role="button">Crear</a>
+    <a href="{{ route('extintores.index') }}">< Volver a extintores</a>
     <hr>
 
     <!--<div class="align-items-end text-right container-fluid input-group mb-3 col-md-4">-->
     <div class="container-fluid input-group mb-3" style="padding: 0px;">
-        <div class="col-md-8"><h2>Listado General de Extintores</h2></div>
+        <div class="col-md-8"><h2>Extintores Inactivos</h2></div>
         <input onkeyup="myFunction()" id="buscar" type="text" class="form-control" placeholder="Buscar Código..." aria-label="Buscar" aria-describedby="basic-addon2">
         <div class="input-group-append">
             <button class="btn btn-outline-secondary" type="button">
@@ -52,7 +52,6 @@
                 <th scope="col">Estado</th>
                 <th scope="col"></th>
                 <th scope="col"></th>
-                <th scope="col"></th>
             </tr>
             </thead>
             <tbody>
@@ -62,15 +61,14 @@
                         <td>{{$extintor->clasificacion->nombre}}</td>
                         <td>{{$extintor->fecha_ultima_recarga->fecha_recarga}}</td>
                         <td>{{$extintor->estado}}</td>
-                        <td><a class="btn btn-success" href="{{ route('extintores.show', $extintor->id) }}">Ver</span></a></td>
-                        <td><a class="btn btn-info" href="{{ route('extintores.edit', $extintor->id) }}">Editar</span></a></td>
+                        <td><a class="text-muted" href="{{ route('extintores.show', $extintor->id) }}"><span class="oi oi-eye"></span></a></td>
                         <td>
                             {!! Form::open([
                                 'method' => 'DELETE',
                                 'route' => ['extintores.destroy', $extintor->id]
                             ]) !!}
                                 
-                            {!! Form::submit('Quitar', ['class' => 'btn btn-danger']) !!}
+                            {!! Form::submit('Activar', ['class' => 'btn btn-danger']) !!}
                             {!! Form::close() !!}
                         </td>
                     </tr>
@@ -78,7 +76,7 @@
             </tbody>
         </table>
     @else
-        <h4>No existen extintores</h4>
+        <h4>No existen extintores inactivos</h4>
     @endif
 
     <nav aria-label="container-fluid Page navigation example">
@@ -86,30 +84,5 @@
             {{ $extintores->links() }}
         </ul>
     </nav>
-
-    <hr>
-    <a href="/extintores_inactivos">Ver extintores inactivos ></a>
-
-    <!-- Modal Confirmación Borrado -->
-    <div class="modal fade" id="modalConfirmarBorrado" tabindex="-1" role="dialog" aria-labelledby="modalConfirmarBorradoLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalConfirmarBorradoLabel">Confirmación de Borrado</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>¿En verdad desea borrar este registro?</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-info">Confirmado</button>
-            </div>
-            </div>
-        </div>
-    </div>
-    <!--End of Modal -->
 
 @endsection

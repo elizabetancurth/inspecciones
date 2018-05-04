@@ -33,7 +33,8 @@ class ExtintorController extends Controller
      */
     public function index()
     {
-        $extintores = Extintor::paginate(5);
+        $extintores = Extintor::where('estado','Activo')
+                                                ->paginate(5);
         return view('extintores.consultar', ['extintores' => $extintores]);
     }
 
@@ -169,6 +170,26 @@ class ExtintorController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $owner = Auth:: User()->id;
+        $extintor = Extintor::findOrFail($id);
+
+        if($extintor->estado === 'Inactivo')
+        {
+            $extintor -> estado = 'Activo';
+        }  
+        else
+        {
+            $extintor -> estado = 'Inactivo';
+        }
+            
+        $extintor -> user_id_modificacion = $owner;
+        $extintor->save();
+        return redirect('/extintores');
+    }
+
+    public function frm_inactivos()
+    {
+        $extintores = Extintor::where('estado', 'Inactivo')->paginate(5);
+        return view('extintores.inactivos', ['extintores' => $extintores]);
     }
 }
