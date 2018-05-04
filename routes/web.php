@@ -24,6 +24,7 @@ Route::resource('botiquines', 'BotiquinController');
 Route::resource('insumos_botiquines', 'InsumoBotiquinController');
 Route::resource('formatos', 'FormatoController');
 Route::resource('preguntas', 'PreguntaFormatoController');
+Route::resource('inspecciones', 'InspeccionController');
 
 //**---------- Inactivos ---------- **//
 
