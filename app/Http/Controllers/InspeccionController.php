@@ -11,6 +11,7 @@ use Session;
 use App\Inspeccion;
 use App\InspeccionClasificacion;
 use App\InspeccionExtintor;
+use App\Formato;
 use App\Extintor;
 use App\RecargaExtintor;
 use App\Http\Requests\ExtintorRequest;
@@ -36,7 +37,10 @@ class InspeccionController extends Controller
      */
     public function create()
     {
-        //
+        $clasificaciones = InspeccionClasificacion::all();
+        $formatos = Formato::where('estado','Activo')->get();
+        return view('inspecciones.crear', ['formatos' => $formatos, 
+                                            'clasificaciones' => $clasificaciones]);
     }
 
     /**
@@ -47,7 +51,28 @@ class InspeccionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $owner = Auth:: User()->id;
+
+        $input = $request -> all();
+
+        $inspeccion = new Inspeccion;
+        $inspeccion -> fecha = $input['fecha'];
+        $inspeccion -> hora = $input['hora'];
+        $inspeccion -> inspeccion_clasificacion_id = $input['clasificacion'];
+        $inspeccion -> formato_inspeccion_id = $input['formato'];
+        $inspeccion -> estado = 'Activo';
+        $inspeccion -> user_id_creacion = $owner;
+        $inspeccion->save();
+
+        /**
+         * Inspección si es de tipo Botiquines
+         */
+        if( $inspeccion -> inspeccion_clasificacion_id == 1)
+        {
+         
+        }
+
+        return redirect('/inspecciones');
     }
 
     /**
