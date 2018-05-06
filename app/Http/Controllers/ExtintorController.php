@@ -181,7 +181,7 @@ class ExtintorController extends Controller
         {
             $extintor -> estado = 'Inactivo';
         }
-            
+                
         $extintor -> user_id_modificacion = $owner;
         $extintor->save();
         return redirect('/extintores');

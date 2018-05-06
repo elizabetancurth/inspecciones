@@ -15,7 +15,7 @@
             
             // Loop through all table rows, and hide those who don't match the search query
             for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[1];
+                td = tr[i].getElementsByTagName("td")[0];
                 if (td) {
                 if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
                     tr[i].style.display = "";
@@ -69,7 +69,7 @@
                                 'method' => 'DELETE',
                                 'route' => ['extintores.destroy', $extintor->id]
                             ]) !!}
-                                
+                            
                             {!! Form::submit('Quitar', ['class' => 'btn btn-danger']) !!}
                             {!! Form::close() !!}
                         </td>
@@ -89,27 +89,5 @@
 
     <hr>
     <a href="/extintores_inactivos">Ver extintores inactivos ></a>
-
-    <!-- Modal Confirmación Borrado -->
-    <div class="modal fade" id="modalConfirmarBorrado" tabindex="-1" role="dialog" aria-labelledby="modalConfirmarBorradoLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalConfirmarBorradoLabel">Confirmación de Borrado</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>¿En verdad desea borrar este registro?</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-info">Confirmado</button>
-            </div>
-            </div>
-        </div>
-    </div>
-    <!--End of Modal -->
 
 @endsection
