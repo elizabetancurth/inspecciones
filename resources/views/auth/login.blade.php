@@ -14,11 +14,13 @@
             <form method="POST" action="{{ route('login') }}">
                 @csrf
 
-                <div class="form-group row">
-                    <label for="email" class="col-md-5   text-md-right">
+                <div class="row">
+                    <div class="col">
+                    <label for="email" class="text-md-right">
                         Usuario:
                     </label>
-                    <div>
+                    </div>
+                    <div class="col col-md-8">
                         <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
 
                             @if ($errors->has('email'))
@@ -27,12 +29,13 @@
                                 </span>
                             @endif
                     </div>
-                </div>
+                </div><br>
 
-                <div class="form-group row">
-                    <label for="password" class="col-md-5 col-form-label text-md-right">Contraseña:</label>
-
-                    <div>
+                <div class="row">
+                <div class="col">
+                    <label for="password" class="col-form-label text-md-right">Contraseña:</label>
+                    </div>
+                    <div class="col col-md-8">
                         <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
                         @if ($errors->has('password'))
                             <span class="invalid-feedback">

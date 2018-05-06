@@ -16,18 +16,24 @@
     <body>
         
         <!-- Header -->
-        
-        <div class="card-body container-fluid text-center align-middle">
+        <div class="card-body container container-fluid align-middle">
             <div id="bar-menu">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    <img src="/images/logo.png" alt="" width=100px;>
-                </a>
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    <h1>Unidad de Seguridad y Salud en el Trabajo</h1>
-                </a>
+                <div class="row align-middle">
+                    <div class="col col-md-2">
+                        <a class="navbar-brand" href="{{ url('/') }}">
+                            <img src="/images/logo.png">
+                        </a>
+                    </div>
+                
+                    <div class="col">
+                        <a class="navbar-brand" href="{{ url('/') }}">
+                            <h1>Gestión de Inspecciones </h1>
+                            <h3>Unidad de Seguridad y Salud en el Trabajo</h3> 
+                        </a>
+                    </div>
+                </div>
             </div>  
         </div>
-        
         <!-- End of Header -->
         
         <div class="container">
@@ -38,10 +44,10 @@
                     @if (Auth::user())
                         <div class="card text-center">
                             <div class="card-header text-left">Bienvenido</div>
-                            <div>
+                            <!-- <div>
                                 <br>
-                             <!--<img class="card-img-top" src="cat.jpeg" alt="User Image">-->
-                            </div>
+                                <img class="card-img-top" src="cat.jpeg" alt="User Image">
+                            </div> -->
                             <div class="card-body">
                                 <div class="dropdown container-fluid">
                                     <button class="btn btn-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

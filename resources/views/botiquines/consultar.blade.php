@@ -41,9 +41,17 @@
                         <td>{{$botiquin->tipo->nombre}}</td>
                         <td>{{$botiquin->ubicacion->edificio->nombre}}</td>
                         <td>{{$botiquin->estado}}</td>
-                        <td><a class="text-muted" href="{{ route('botiquines.show', $botiquin->id) }}"><span class="oi oi-eye"></span></a></td>
-                        <td><a class="text-muted" href="{{ route('botiquines.edit', $botiquin->id) }}"><span class="oi oi-pencil"></span></a></td>
-                        <td><a class="text-muted" data-toggle="modal" data-target="#modalConfirmarBorrado" href=""><span class="oi oi-x"></span></a></td>
+                        <td><a class="btn btn-success" href="{{ route('botiquines.show', $botiquin->id) }}">Ver</span></a></td>
+                        <td><a class="btn btn-info" href="{{ route('botiquines.edit', $botiquin->id) }}">Editar</span></a></td>
+                        <td>
+                            {!! Form::open([
+                                'method' => 'DELETE',
+                                'route' => ['botiquines.destroy', $botiquin->id]
+                            ]) !!}
+                                
+                            {!! Form::submit('Quitar', ['class' => 'btn btn-danger']) !!}
+                            {!! Form::close() !!}
+                        </td>
                     </tr>
                 @endforeach
             </tbody>

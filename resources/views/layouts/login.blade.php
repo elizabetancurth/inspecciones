@@ -15,18 +15,24 @@
 </head>
 <body>
     <!-- Header -->
-        
-    <div class="card-body container-fluid text-center align-middle">
+    <div class="card-body container container-fluid col-md-7">
             <div id="bar-menu">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    <img src="/images/logo.png" alt="" width=100px;>
-                </a>
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    <h1>Unidad de Seguridad y Salud en el Trabajo</h1>
-                </a>
+                <div class="row">
+                    <div class="col text-right">
+                        <a class="navbar-brand" href="{{ url('/') }}">
+                            <img src="/images/logo.png">
+                        </a>
+                    </div>
+                
+                    <div class="col text-left">
+                        <a class="navbar-brand" href="{{ url('/') }}">
+                            <h1>Gestión de Inspecciones </h1>
+                            <h3>Unidad de Seguridad y Salud en el Trabajo</h3> 
+                        </a>
+                    </div>
+                </div>
             </div>  
         </div>
-        
         <!-- End of Header -->
 
         <div class="container col-md-5">

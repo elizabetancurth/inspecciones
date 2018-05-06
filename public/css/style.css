@@ -1,4 +1,8 @@
 #bar-menu a{
-   text-align: center;
+   text-align: left;
    color: black;
+}
+
+#bar-menu .row .col-md-2{
+    max-width: 13%;
 }
