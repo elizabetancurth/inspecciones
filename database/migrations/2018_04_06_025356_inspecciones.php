@@ -19,6 +19,7 @@ class Inspecciones extends Migration
             $table->time('hora');
             $table->integer('inspeccion_clasificacion_id')->unsigned()->nullable();
             $table->integer('formato_inspeccion_id')->unsigned()->nullable();
+            $table->integer('id_elemento')->unsigned();
             $table->enum('estado', ['Activo', 'Inactivo']);
             $table->integer('user_id_creacion')->unsigned()->nullable();
             $table->integer('user_id_modificacion')->unsigned()->nullable();

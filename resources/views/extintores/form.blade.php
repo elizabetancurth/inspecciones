@@ -32,7 +32,7 @@
             </tr>
             <tr>
                 <th>
-                    {{ Form::label("capacidad", "Capacidad (Kg):") }}
+                    {{ Form::label("capacidad", "Capacidad (Libras):") }}
                 </th>
                 <td>
                     <input class="form-control" type="number" name="capacidad" value="{{$extintor->capacidad or old('capacidad')}}">
@@ -93,7 +93,7 @@
             </tr> 
             <tr>
                 <th>
-                    {{ Form::label("altura", "Altura (m):") }}
+                    {{ Form::label("altura", "Altura (cm):") }}
                 </th>
                 <td>
                     <input class="form-control" type="text" name="altura" value="{{$extintor->altura or old('altura')}}"> 

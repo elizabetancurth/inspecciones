@@ -13,6 +13,8 @@ use App\InspeccionClasificacion;
 use App\InspeccionExtintor;
 use App\Formato;
 use App\Extintor;
+use App\Botiquin;
+use App\Establecimiento;
 use App\RecargaExtintor;
 use App\Http\Requests\ExtintorRequest;
 
@@ -26,7 +28,8 @@ class InspeccionController extends Controller
     public function index()
     {
         $inspecciones = Inspeccion::where('estado','Activo')
-                                                ->paginate(5);
+                                                ->paginate(5);                                       
+                                                
         return view('inspecciones.consultar', ['inspecciones' => $inspecciones]);
     }
 
@@ -52,24 +55,42 @@ class InspeccionController extends Controller
     public function store(Request $request)
     {
         $owner = Auth:: User()->id;
-
+        $extintores = Extintor::where('estado', 'Activo')->get();
+        $botiquines = Botiquin::where('estado', 'Activo')->get();
+        
         $input = $request -> all();
+        $tipo = $input['clasificacion']; 
 
-        $inspeccion = new Inspeccion;
-        $inspeccion -> fecha = $input['fecha'];
-        $inspeccion -> hora = $input['hora'];
-        $inspeccion -> inspeccion_clasificacion_id = $input['clasificacion'];
-        $inspeccion -> formato_inspeccion_id = $input['formato'];
-        $inspeccion -> estado = 'Activo';
-        $inspeccion -> user_id_creacion = $owner;
-        $inspeccion->save();
-
-        /**
-         * Inspección si es de tipo Botiquines
-         */
-        if( $inspeccion -> inspeccion_clasificacion_id == 1)
+        if( $tipo === '1' )
         {
-         
+            foreach($extintores as $extintor)
+            {
+                $inspeccion = new Inspeccion;
+                $inspeccion -> fecha = $input['fecha'];
+                $inspeccion -> hora = $input['hora'];
+                $inspeccion -> inspeccion_clasificacion_id = $input['clasificacion'];
+                $inspeccion -> id_elemento = $extintor->id;
+                $inspeccion -> formato_inspeccion_id = $input['formato'];
+                $inspeccion -> estado = 'Activo';
+                $inspeccion -> user_id_creacion = $owner;
+                $inspeccion->save(); 
+            }
+        }
+
+        if( $tipo === '2' )
+        {
+            foreach($botiquines as $botiquin)
+            {
+                $inspeccion = new Inspeccion;
+                $inspeccion -> fecha = $input['fecha'];
+                $inspeccion -> hora = $input['hora'];
+                $inspeccion -> inspeccion_clasificacion_id = $input['clasificacion'];
+                $inspeccion -> id_elemento = $botiquin->id;
+                $inspeccion -> formato_inspeccion_id = $input['formato'];
+                $inspeccion -> estado = 'Activo';
+                $inspeccion -> user_id_creacion = $owner;
+                $inspeccion->save(); 
+            }
         }
 
         return redirect('/inspecciones');

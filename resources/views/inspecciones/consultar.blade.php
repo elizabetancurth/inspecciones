@@ -48,6 +48,7 @@
             <tr>
                 <th scope="col">Fecha</th>
                 <th scope="col">Tipo</th>
+                <th scope="col">Elemento</th>
                 <th scope="col"></th>
                 <th scope="col"></th>
                 <th scope="col"></th>
@@ -58,6 +59,7 @@
                     <tr>
                         <td>{{$inspeccion->fecha}}</td>
                         <td>{{$inspeccion->tipo->nombre}}</td>
+                        <td>@if ($inspeccion->idElemento != null) {{$inspeccion->idElemento->codigo}} @else Nulo @endif</td>
                         <td><a class="btn btn-success" href="{{ route('inspecciones.show', $inspeccion->id) }}">Ver</span></a></td>
                         <td><a class="btn btn-info" href="{{ route('inspecciones.edit', $inspeccion->id) }}">Editar</span></a></td>
                         <td>
