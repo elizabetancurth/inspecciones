@@ -55,17 +55,35 @@
             </tr>
             </thead>
             <tbody>
-                @foreach($inspecciones as $inspeccion)
+                @foreach($inspeccionesExtintores as $inspeccionE)
                     <tr>
-                        <td>{{$inspeccion->fecha}}</td>
-                        <td>{{$inspeccion->tipo->nombre}}</td>
-                        <td>@if ($inspeccion->idElemento != null) {{$inspeccion->idElemento->codigo}} @else Nulo @endif</td>
-                        <td><a class="btn btn-success" href="{{ route('inspecciones.show', $inspeccion->id) }}">Ver</span></a></td>
-                        <td><a class="btn btn-info" href="{{ route('inspecciones.edit', $inspeccion->id) }}">Editar</span></a></td>
+                        <td>{{$inspeccionE->inspeccion->fecha}}</td>
+                        <td>{{$inspeccionE->inspeccion->tipo->nombre}}</td>
+                        <td>Código: {{$inspeccionE->extintor->codigo}}
+                        <td><a class="btn btn-success" href="{{ route('inspecciones.show', $inspeccionE->id) }}">Ver</span></a></td>
+                        <td><a class="btn btn-info" href="{{ route('inspecciones.edit', $inspeccionE->id) }}">Editar</span></a></td>
                         <td>
                             {!! Form::open([
                                 'method' => 'DELETE',
-                                'route' => ['inspecciones.destroy', $inspeccion->id]
+                                'route' => ['inspecciones.destroy', $inspeccionE->id]
+                            ]) !!}
+                                
+                            {!! Form::submit('Quitar', ['class' => 'btn btn-danger']) !!}
+                            {!! Form::close() !!}
+                        </td>
+                    </tr>
+                @endforeach
+                @foreach($inspeccionesBotiquines as $inspeccionB)
+                    <tr>
+                        <td>{{$inspeccionB->inspeccion->fecha}}</td>
+                        <td>{{$inspeccionB->inspeccion->tipo->nombre}}</td>
+                        <td>{{$inspeccionB->insumo_botiquin->botiquin->codigo}} - {{$inspeccionB->insumo_botiquin->nombre}} 
+                        <td><a class="btn btn-success" href="{{ route('inspecciones.show', $inspeccionB->id) }}">Ver</span></a></td>
+                        <td><a class="btn btn-info" href="{{ route('inspecciones.edit', $inspeccionB->id) }}">Editar</span></a></td>
+                        <td>
+                            {!! Form::open([
+                                'method' => 'DELETE',
+                                'route' => ['inspecciones.destroy', $inspeccionB->id]
                             ]) !!}
                                 
                             {!! Form::submit('Quitar', ['class' => 'btn btn-danger']) !!}

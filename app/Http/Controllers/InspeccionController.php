@@ -11,6 +11,7 @@ use Session;
 use App\Inspeccion;
 use App\InspeccionClasificacion;
 use App\InspeccionExtintor;
+use App\InspeccionBotiquin;
 use App\Formato;
 use App\Extintor;
 use App\Botiquin;
@@ -27,10 +28,12 @@ class InspeccionController extends Controller
      */
     public function index()
     {
-        $inspecciones = Inspeccion::where('estado','Activo')
-                                                ->paginate(5);                                       
-                                                
-        return view('inspecciones.consultar', ['inspecciones' => $inspecciones]);
+        $inspecciones = Inspeccion::where('estado','Activo')->paginate(5);
+        $inspeccionesExtintores =  InspeccionExtintor::all();
+        $inspeccionesBotiquines =  InspeccionBotiquin::all();                                                                                 
+        return view('inspecciones.consultar', ['inspecciones' => $inspecciones, 
+                                                    'inspeccionesExtintores' => $inspeccionesExtintores,
+                                                        'inspeccionesBotiquines' => $inspeccionesBotiquines]);
     }
 
     /**
@@ -69,11 +72,15 @@ class InspeccionController extends Controller
                 $inspeccion -> fecha = $input['fecha'];
                 $inspeccion -> hora = $input['hora'];
                 $inspeccion -> inspeccion_clasificacion_id = $input['clasificacion'];
-                $inspeccion -> id_elemento = $extintor->id;
                 $inspeccion -> formato_inspeccion_id = $input['formato'];
                 $inspeccion -> estado = 'Activo';
                 $inspeccion -> user_id_creacion = $owner;
                 $inspeccion->save(); 
+
+                $inspeccion_extintor = new InspeccionExtintor;
+                $inspeccion_extintor -> inspeccion_id = $inspeccion->id;
+                $inspeccion_extintor -> extintor_id = $extintor-> id;
+                $inspeccion_extintor->save(); 
             }
         }
 
@@ -81,17 +88,25 @@ class InspeccionController extends Controller
         {
             foreach($botiquines as $botiquin)
             {
-                $inspeccion = new Inspeccion;
-                $inspeccion -> fecha = $input['fecha'];
-                $inspeccion -> hora = $input['hora'];
-                $inspeccion -> inspeccion_clasificacion_id = $input['clasificacion'];
-                $inspeccion -> id_elemento = $botiquin->id;
-                $inspeccion -> formato_inspeccion_id = $input['formato'];
-                $inspeccion -> estado = 'Activo';
-                $inspeccion -> user_id_creacion = $owner;
-                $inspeccion->save(); 
+                foreach($botiquin->insumos_botiquin as $insumo)
+                {
+                    $inspeccion = new Inspeccion;
+                    $inspeccion -> fecha = $input['fecha'];
+                    $inspeccion -> hora = $input['hora'];
+                    $inspeccion -> inspeccion_clasificacion_id = $input['clasificacion'];
+                    $inspeccion -> formato_inspeccion_id = $input['formato'];
+                    $inspeccion -> estado = 'Activo';
+                    $inspeccion -> user_id_creacion = $owner;
+                    $inspeccion->save(); 
+
+                    $inspeccion_botiquin = new InspeccionBotiquin;
+                    $inspeccion_botiquin -> inspeccion_id = $inspeccion->id;
+                    $inspeccion_botiquin -> insumo_botiquin_id = $insumo-> id;
+                    $inspeccion_botiquin->save(); 
+                }
             }
         }
+
 
         return redirect('/inspecciones');
     }

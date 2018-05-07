@@ -4,13 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class InspeccionExtintor extends Model
+class InspeccionBotiquin extends Model
 {
-    protected $table = 'inspecciones_extintores';
+    protected $table = 'inspecciones_insumos_botiquines';
 
     protected $fillable = [
       'inspeccion_id',
-      'extintor_id'
+      'insumo_botiquin_id'
   ];
 
     function inspeccion()
@@ -18,8 +18,8 @@ class InspeccionExtintor extends Model
       return $this->belongsTo('App\Inspeccion','inspeccion_id','id');
     }
 
-    function extintor()
+    function insumo_botiquin()
     {
-      return $this->belongsTo('App\Extintor','extintor_id','id');
+      return $this->belongsTo('App\InsumoBotiquin','insumo_botiquin_id','id');
     }
 }

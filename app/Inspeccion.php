@@ -19,18 +19,5 @@ class Inspeccion extends Model
       return $this->belongsTo('App\Formato','formato_inspeccion_id','id');
     }
 
-    function idElemento()
-    {
-      if('inspeccion_clasificacion_id' === 2){
-        $object = $this->belongsTo('App\Extintor','id_elemento','id');
-        
-        return $object;
-      }
-      else{
-        return $this->belongsTo('App\Botiquin','id_elemento','id');
-      }
-      
-      //Revisar que cuando no existan registros, busque sin problemas.
-    }
     
 }

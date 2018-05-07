@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Inspecciones extends Migration
+class InspeccionesInsumosBotiquines extends Migration
 {
     /**
      * Run the migrations.
@@ -13,23 +13,21 @@ class Inspecciones extends Migration
      */
     public function up()
     {
-        Schema::create('inspecciones', function (Blueprint $table) {
+        Schema::create('inspecciones_insumos_botiquines', function (Blueprint $table) {
             $table->increments('id');
-            $table->date('fecha');
-            $table->time('hora');
-            $table->integer('inspeccion_clasificacion_id')->unsigned()->nullable();
-            $table->integer('formato_inspeccion_id')->unsigned()->nullable();
+            $table->integer('inspeccion_id')->unsigned()->nullable();
+            $table->integer('insumo_botiquin_id')->unsigned()->nullable();
             $table->enum('estado', ['Activo', 'Inactivo']);
             $table->integer('user_id_creacion')->unsigned()->nullable();
             $table->integer('user_id_modificacion')->unsigned()->nullable();
             $table->rememberToken();
             $table->timestamps();
 
-            $table->foreign('inspeccion_clasificacion_id')->references('id')->on('inspecciones_clasificaciones')
+            $table->foreign('inspeccion_id')->references('id')->on('inspecciones')
                 ->onUpdate('CASCADE')
                 ->onDelete('SET NULL');
 
-            $table->foreign('formato_inspeccion_id')->references('id')->on('formatos_inspecciones')
+            $table->foreign('insumo_botiquin_id')->references('id')->on('insumos_botiquin')
                 ->onUpdate('CASCADE')
                 ->onDelete('SET NULL');
 
@@ -50,6 +48,6 @@ class Inspecciones extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('inspecciones');
+        Schema::dropIfExists('inspecciones_insumos_botiquines');
     }
 }
