@@ -22,7 +22,7 @@
     <hr>
     @if(count($formatos) >0)
         <table class="table">
-            <thead class="thead-dark">
+            <thead class="thead-light">
             <tr>
                 <th scope="col">Nombre</th>
                 <th scope="col"></th>

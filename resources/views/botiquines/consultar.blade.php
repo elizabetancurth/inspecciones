@@ -23,7 +23,7 @@
 
     @if(count($botiquines) >0)
         <table class="table">
-            <thead class="thead-dark">
+            <thead class="thead-light">
             <tr>
                 <th scope="col">Código</th>
                 <th scope="col">Tipo</th>

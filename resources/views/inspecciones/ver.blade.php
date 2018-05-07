@@ -12,7 +12,7 @@
     <div class="container">
     
         <table class="table">
-            <thead class="thead-dark">
+            <thead class="thead-light">
                 <tr>
                     <th scope="col">Pregunta</th>
                     <th scope="col">Respuesta</th>

@@ -44,7 +44,7 @@
 
     @if(count($extintores) >0)
         <table id="tabla" class="table">
-            <thead class="thead-dark">
+            <thead class="thead-light">
             <tr>
                 <th scope="col">Código</th>
                 <th scope="col">Tipo</th>
