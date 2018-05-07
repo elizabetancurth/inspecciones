@@ -4,11 +4,20 @@
 
 @section("content")
 
-    <a href="{{ route('extintores.index') }}">< Volver a extintores</a>
-    <br>
-    <h2>Extintor N° {{$extintor->codigo}}</h2>
-    <br>
-
+    <div class"container">
+        <div class="row">
+            <div class="col col-md-7" >
+            <a href="{{ route('extintores.index') }}">< Volver a extintores</a>
+            <br>
+                <h2>Extintor N° {{$extintor->codigo}}</h2>
+                <br>
+            </div>
+            <div class="col col-md-5" >
+                {!!QrCode::size(150)->generate(Request::url()); !!}
+            </div>
+        </div>        
+    </div>
+    
     <div class="container">
         <div class="row">
             <div class="col col-md-6" >
@@ -57,8 +66,9 @@
                         </tr>
                     </tbody>
                 </table>
-                <br>
             </div>
+
+            
 
             <div class="col col-md-6"> 
                 <h3>Historial de Recargas</h3>
