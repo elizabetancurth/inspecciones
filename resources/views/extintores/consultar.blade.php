@@ -88,6 +88,6 @@
     </nav>
 
     <hr>
-    <a href="/extintores_inactivos">Ver extintores inactivos ></a>
+    <a href={{ route('extintores.inactivos') }}>Ver extintores inactivos ></a>
 
 @endsection

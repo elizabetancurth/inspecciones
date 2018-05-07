@@ -60,12 +60,12 @@
                         <td>{{$inspeccionE->inspeccion->fecha}}</td>
                         <td>{{$inspeccionE->inspeccion->tipo->nombre}}</td>
                         <td>Código: {{$inspeccionE->extintor->codigo}}
-                        <td><a class="btn btn-success" href="{{ route('inspecciones.show', $inspeccionE->id) }}">Ver</span></a></td>
-                        <td><a class="btn btn-info" href="{{ route('inspecciones.edit', $inspeccionE->id) }}">Editar</span></a></td>
+                        <td><a class="btn btn-success" href="{{ route('inspecciones_extintores.show', $inspeccionE->id) }}">Ver</span></a></td>
+                        <td><a class="btn btn-info" href="{{ route('inspecciones_extintores.edit', $inspeccionE->id) }}">Editar</span></a></td>
                         <td>
                             {!! Form::open([
                                 'method' => 'DELETE',
-                                'route' => ['inspecciones.destroy', $inspeccionE->id]
+                                'route' => ['inspecciones_extintores.destroy', $inspeccionE->id]
                             ]) !!}
                                 
                             {!! Form::submit('Quitar', ['class' => 'btn btn-danger']) !!}

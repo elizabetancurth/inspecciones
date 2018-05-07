@@ -25,7 +25,8 @@ Route::resource('insumos_botiquines', 'InsumoBotiquinController');
 Route::resource('formatos', 'FormatoController');
 Route::resource('preguntas', 'PreguntaFormatoController');
 Route::resource('inspecciones', 'InspeccionController');
+Route::resource('inspecciones_extintores', 'InspeccionExtintorController');
 
 //**---------- Inactivos ---------- **//
 
-Route::get('extintores_inactivos', 'ExtintorController@frm_inactivos');
+Route::get('extintores_inactivos', [ 'as' => 'extintores.inactivos', 'uses' => 'ExtintorController@frm_inactivos']);

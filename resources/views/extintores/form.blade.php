@@ -110,6 +110,7 @@
             </tr> 
         </tbody>
     </table><br>
+
     <div>
         <a role="button" class="btn btn-secondary" href="{{ route('extintores.index') }}">Cerrar</a>
         <input class="btn btn-primary" type="submit" value="{{ $bthText or 'Crear Extintor'}}" >
