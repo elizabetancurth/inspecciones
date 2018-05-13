@@ -30,3 +30,8 @@ Route::resource('inspecciones_extintores', 'InspeccionExtintorController');
 //**---------- Inactivos ---------- **//
 
 Route::get('extintores_inactivos', [ 'as' => 'extintores.inactivos', 'uses' => 'ExtintorController@frm_inactivos']);
+
+//**---------- Rutas específicas ---------- **//
+
+Route::get('crear_insumo/{id}', [ 'as' => 'insumos_botiquines.create_insumo', 'uses' => 'InsumoBotiquinController@create_insumo']);
+

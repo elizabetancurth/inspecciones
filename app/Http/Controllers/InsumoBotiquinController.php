@@ -33,6 +33,12 @@ class InsumoBotiquinController extends Controller
         //
     }
 
+    public function create_insumo($id)
+    {
+        $botiquin = Botiquin::findOrFail($id);
+        return view('botiquines.insumos_botiquin.crear', ['botiquin' => $botiquin]);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -85,7 +91,10 @@ class InsumoBotiquinController extends Controller
      */
     public function edit($id)
     {
-        //
+        $insumo_botiquin = InsumoBotiquin::findOrFail($id);
+        $botiquin = Botiquin::where('id', $insumo_botiquin->botiquin_id)->get();
+        return view('botiquines.insumos_botiquin.editar', ['insumo_botiquin' => $insumo_botiquin, 'botiquin'=> $botiquin]);
+
     }
 
     /**
@@ -97,7 +106,21 @@ class InsumoBotiquinController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $owner = Auth:: User()->id;
+        
+        $input = $request->all();
+
+        $insumo_botiquin = InsumoBotiquin::findOrFail($id);
+        $insumo_botiquin -> nombre = $input['nombre'];
+        $insumo_botiquin -> tipo = $input['tipo'];
+        $insumo_botiquin -> fecha_vencimiento = $input['fechaVencimiento'];
+        $insumo_botiquin -> cantidad = $input['cantidad'];
+        $insumo_botiquin -> user_id_modificacion = $owner;
+        $insumo_botiquin->save();
+
+        Session::flash('flash_message', 'Insumo modificado exitosamente');
+
+        return redirect('/botiquines/'.$input['botiquin_id']);
     }
 
     /**

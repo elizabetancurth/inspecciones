@@ -85,10 +85,14 @@
                     {{ Form::label("piso", "Piso:") }}
                 </th>
                 <td>
-                    {{ Form::select( "piso"
-                                    ,["S" => "--Seleccione--", "1" => "1", "2" => "2", "3" => "3", "4" => "4", "5" => "5"]
-                                    , null
-                                    ,["class" => "container-fluid form-control"]) }}
+                    <select id='piso' name='piso'  class="form-control"  >
+                        <option value="" >{{$extintor->ubicacion->piso or old("--Seleccione--")}}</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                    </select>
                 </td>
             </tr> 
             <tr>

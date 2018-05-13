@@ -1,6 +1,6 @@
 @extends("layouts.app")
 
-@section("headerTitle", "Editar extintor")
+@section("headerTitle", "Editar Extintor")
 
 @section("content")
 

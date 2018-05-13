@@ -51,13 +51,13 @@
                 <tr>
                     <td>{{$insumo_botiquin->nombre}}</td>
                     <td>{{$insumo_botiquin->cantidad}}</td>
-                    <td>@if($insumo_botiquin==null)
+                    <td>@if($insumo_botiquin->fecha_vencimiento === null)
                             No aplica
                         @else
                             {{$insumo_botiquin->fecha_vencimiento}}
                         @endif
                     </td>
-                    <td><a class="text-muted" href="#"><span class="oi oi-pencil"></span></a></td>
+                    <td><a class="btn btn-info" href="{{ route('insumos_botiquines.edit', $insumo_botiquin->id) }}">Editar</span></a></td>
                 </tr>
              @endforeach
             </tbody>
@@ -68,79 +68,5 @@
     @endif
     </div>
 
-    <button type="button" class="btn btn-info container-fluid" data-toggle="modal" data-target="#crearModal">
-        Crear Insumo
-    </button>
-
-    <!-- Modal Crear -->
-    <div class="modal fade" id="crearModal" tabindex="-1" role="dialog" aria-labelledby="crearModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title" id="crearModalLabel">Crear Insumo Botiquín {{$botiquin->codigo}}</h3>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="container-fluid">
-                    {!! Form::open(['route' => 'insumos_botiquines.store']) !!}
-                    @csrf
-                    <div class="form-group">
-                        <table class="container-fluid">
-                            <tbody>
-                                <tr>
-                                    <div class="form-group row">
-                                        {!! Form::text('botiquin_id', $botiquin->id, ['class' => 'form-control'])!!}
-                                    </div>
-                                </tr>
-                                <tr>
-                                    <th class="col-md-5">
-                                        {{ Form::label("nombre", "Nombre:") }}         
-                                    </th>
-                                    <td>
-                                        {{ Form::text("nombre", "", ["class" => "container-fluid"]) }}
-                                    </td>
-                                </tr>
-                                <tr>
-                                <th class="col-md-5">
-                                        {{ Form::label("tipo", "Tipo:") }}
-                                    </th>
-                                    <td>
-                                        {{ Form::select( "tipo"
-                                            ,["S" => "--Seleccione--", "1" => "Fármaco", "2" => "Utencilio"]
-                                            , ""
-                                            ,["class" => "container-fluid"]) }}
-                                    </td>
-                                <tr>
-                                <tr>
-                                    <th class="col-md-5">
-                                        {{ Form::label("fechaVencimiento", "Fecha de vencimiento:") }}
-                                    </th>
-                                    <td>
-                                        {{ Form::date("fechaVencimiento", \Carbon\Carbon::now(), ["class" => "container-fluid"]) }}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th class="col-md-5">
-                                        {{ Form::label("cantidad", "Cantidad:") }}         
-                                    </th>
-                                    <td>
-                                        {{ Form::number("cantidad", null, ["class" => "container-fluid"]) }}
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>  
-                    </div>                    	
-                </div>
-            </div>
-            <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-            {!! Form::submit('Crear Insumo Botiquín', ['class' => 'btn btn-info']) !!}
-            {!! Form::close()!!}
-            </div>
-            </div>
-        </div>
-    </div>
-    <!-- End Crear Modal -->
+    <a class="btn btn-info container-fluid" href="{{ route('insumos_botiquines.create_insumo' , $botiquin->id)}}" role="button">Crear Insumo</a>
 @endsection
