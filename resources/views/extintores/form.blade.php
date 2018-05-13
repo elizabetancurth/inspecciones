@@ -17,7 +17,7 @@
                 </th>
                 <td>
                     <select id='clasificacion' name='clasificacion'  class="form-control"  >
-                        <option value="" >{{$extintor->clasificacion->nombre or old("--Seleccione--")}}</option>
+                        <option value="" >{{$extintor->clasificacion->nombre or "--Seleccione--"}}</option>
                         <?php 
                             $options = "";
 
@@ -67,7 +67,7 @@
                 </th>
                 <td>
                     <select id='edificio' name='edificio'  class="form-control"  >
-                        <option value="" >{{$extintor->ubicacion->edificio->nombre or old("--Seleccione--")}}</option>
+                        <option value="" >{{$extintor->ubicacion->edificio->nombre or "--Seleccione--"}}</option>
                         <?php 
                             $options = "";
 
@@ -86,7 +86,7 @@
                 </th>
                 <td>
                     <select id='piso' name='piso'  class="form-control"  >
-                        <option value="" >{{$extintor->ubicacion->piso or old("--Seleccione--")}}</option>
+                        <option value="" >{{$extintor->ubicacion->piso or "--Seleccione--"}}</option>
                             <option>1</option>
                             <option>2</option>
                             <option>3</option>
