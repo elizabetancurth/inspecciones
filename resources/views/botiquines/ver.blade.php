@@ -3,31 +3,43 @@
 @section("headerTitle", "Datos del botiquín")
 
 @section("content")
-<a href="{{ route('botiquines.index') }}">< Volver a botiquines</a>
-<br>
-<h2>Botiquín {{$botiquin->tipo->nombre}} N° {{$botiquin->codigo}}</h2>
-<br>
+
+    <div class"container">
+        <div class="row">
+            <div class="col">
+                <a href="{{ route('botiquines.index') }}">< Volver a botiquines</a>
+                <br>
+                <h2>Botiquín {{$botiquin->tipo->nombre}} N° {{$botiquin->codigo}}</h2>
+                <br>
+            </div>
+        </div>
+    </div>
 
     <div class="container">
-        <div class="col-mod-3">
-            <h3>Ubicación</h3>
+        <div class="row">
+            <div class="col col-md-7">
+                <h3>Ubicación</h3>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Bloque</th>
+                            <th scope="col">Piso</th>
+                            <th scope="col">Referencia</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{$botiquin->ubicacion->edificio->nombre }}</td>
+                            <td>{{$botiquin->ubicacion->piso }}</td>
+                            <td>{{$botiquin->ubicacion->referencia }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col col-md-5" >
+                {!!QrCode::size(150)->generate(Request::url()); !!}
+            </div>
         </div>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">Bloque</th>
-                    <th scope="col">Piso</th>
-                    <th scope="col">Referencia</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>{{$botiquin->ubicacion->edificio->nombre }}</td>
-                    <td>{{$botiquin->ubicacion->piso }}</td>
-                    <td>{{$botiquin->ubicacion->referencia }}</td>
-                </tr>
-            </tbody>
-        </table>
     </div>
 
     <div class="container"> 

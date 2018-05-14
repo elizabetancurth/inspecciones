@@ -4,13 +4,13 @@
 
 @section("content")
 
-    <div class"container">
+    <div class="container">
         <div class="row">
             <div class="col col-md-7" >
-            <a href="{{ route('extintores.index') }}">< Volver a extintores</a>
-            <br>
-                <h2>Extintor N° {{$extintor->codigo}}</h2>
+                <a href="{{ route('extintores.index') }}">< Volver a extintores</a>
                 <br>
+                    <h2>Extintor N° {{$extintor->codigo}}</h2>
+                    <br>
             </div>
             <div class="col col-md-5" >
                 {!!QrCode::size(150)->generate(Request::url()); !!}
