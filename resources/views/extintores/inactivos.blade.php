@@ -51,7 +51,6 @@
                 <th scope="col">Fecha de Recarga</th>
                 <th scope="col">Estado</th>
                 <th scope="col"></th>
-                <th scope="col"></th>
             </tr>
             </thead>
             <tbody>
@@ -61,7 +60,6 @@
                         <td>{{$extintor->clasificacion->nombre}}</td>
                         <td>{{$extintor->fecha_ultima_recarga->fecha_recarga}}</td>
                         <td>{{$extintor->estado}}</td>
-                        <td><a class="text-muted" href="{{ route('extintores.show', $extintor->id) }}"><span class="oi oi-eye"></span></a></td>
                         <td>
                             {!! Form::open([
                                 'method' => 'DELETE',

@@ -4,7 +4,6 @@
 
 @section("content")
 
-    <!-- Código para campo buscar -->
     <script>
             function myFunction() {
             // Declare variables 
@@ -16,7 +15,7 @@
             
             // Loop through all table rows, and hide those who don't match the search query
             for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[0];
+                td = tr[i].getElementsByTagName("td")[1];
                 if (td) {
                 if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
                     tr[i].style.display = "";
@@ -27,14 +26,13 @@
             }
             }
     </script>
-    <!-- Fin de código para campo buscar -->
 
-    <a class="btn btn-info container-fluid" href="{{ route('botiquines.create')}}" role="button">Crear</a>
+    <a href="{{ route('botiquines.index') }}">< Volver a botiquines activos</a>
     <hr>
 
     <!--<div class="align-items-end text-right container-fluid input-group mb-3 col-md-4">-->
     <div class="container-fluid input-group mb-3" style="padding: 0px;">
-        <div class="col-md-8"><h2>Listado General de Botiquines</h2></div>
+        <div class="col-md-8"><h2>Botiquines Inactivos</h2></div>
         <input onkeyup="myFunction()" id="buscar" type="text" class="form-control" placeholder="Buscar Código..." aria-label="Buscar" aria-describedby="basic-addon2">
         <div class="input-group-append">
             <button class="btn btn-outline-secondary" type="button">
@@ -53,8 +51,6 @@
                 <th scope="col">Ubicación</th>
                 <th scope="col">Estado</th>
                 <th scope="col"></th>
-                <th scope="col"></th>
-                <th scope="col"></th>
             </tr>
             </thead>
             <tbody>
@@ -64,15 +60,13 @@
                         <td>{{$botiquin->tipo->nombre}}</td>
                         <td>{{$botiquin->ubicacion->edificio->nombre}}</td>
                         <td>{{$botiquin->estado}}</td>
-                        <td><a class="btn btn-success" href="{{ route('botiquines.show', $botiquin->id) }}">Ver</span></a></td>
-                        <td><a class="btn btn-info" href="{{ route('botiquines.edit', $botiquin->id) }}">Editar</span></a></td>
                         <td>
                             {!! Form::open([
                                 'method' => 'DELETE',
                                 'route' => ['botiquines.destroy', $botiquin->id]
                             ]) !!}
                                 
-                            {!! Form::submit('Quitar', ['class' => 'btn btn-danger']) !!}
+                            {!! Form::submit('Activar', ['class' => 'btn btn-danger']) !!}
                             {!! Form::close() !!}
                         </td>
                     </tr>
@@ -81,7 +75,7 @@
         </table>
     @else
         <div class="alert alert-danger">
-            <strong>¡Atención!</strong> No existen botiquines.
+            <strong>¡Atención!</strong> No existen botiquines inactivos.
         </div>
     @endif
 
@@ -91,6 +85,4 @@
         </ul>
     </nav>
 
-    <hr>
-    <a href={{ route('botiquines.inactivos') }}>Ver botiquines inactivos ></a>
 @endsection

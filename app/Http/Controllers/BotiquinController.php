@@ -149,6 +149,26 @@ class BotiquinController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $owner = Auth:: User()->id;
+        $botiquin = Botiquin::findOrFail($id);
+
+        if($botiquin->estado === 'Inactivo')
+        {
+            $botiquin -> estado = 'Activo';
+        }  
+        else
+        {
+            $botiquin -> estado = 'Inactivo';
+        }
+                
+        $botiquin -> user_id_modificacion = $owner;
+        $botiquin->save();
+        return redirect('/botiquines');
+    }
+
+    public function frm_inactivos()
+    {
+        $botiquines = Botiquin::where('estado', 'Inactivo')->paginate(5);
+        return view('botiquines.inactivos', ['botiquines' => $botiquines]);
     }
 }
