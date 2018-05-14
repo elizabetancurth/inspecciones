@@ -72,7 +72,9 @@
             </tbody>
         </table>
     @else
-        <h4>No existen insumos en el botiquín<h4>
+        <div class="alert alert-danger">
+            <strong>¡Atención!</strong> No existen insumos en este botiquín.
+        </div>
         <br>
     @endif
     </div>

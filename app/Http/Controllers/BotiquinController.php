@@ -31,10 +31,9 @@ class BotiquinController extends Controller
      */
     public function index()
     {
-        $botiquines = Botiquin::all();
-        $edificios = Edificio::all();
-        return view('botiquines.consultar', ['botiquines'=>$botiquines, 
-                                            'edificios' =>$edificios]);
+        $botiquines = Botiquin::where('estado','Activo')
+                                        ->paginate(5);
+        return view('botiquines.consultar', ['botiquines'=>$botiquines]);
     }
 
     /**

@@ -4,6 +4,7 @@
 
 @section("content")
 
+    <!-- Código para campo buscar -->
     <script>
             function myFunction() {
             // Declare variables 
@@ -26,6 +27,7 @@
             }
             }
     </script>
+    <!-- Fin de código para campo buscar -->
 
     <a class="btn btn-info container-fluid" href="{{ route('extintores.create')}}" role="button">Crear</a>
     <hr>
@@ -78,7 +80,9 @@
             </tbody>
         </table>
     @else
-        <h4>No existen extintores</h4>
+        <div class="alert alert-danger">
+            <strong>¡Atención!</strong> No existen extintores.
+        </div>
     @endif
 
     <nav aria-label="container-fluid Page navigation example">
