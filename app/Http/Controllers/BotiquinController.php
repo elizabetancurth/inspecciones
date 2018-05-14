@@ -33,10 +33,8 @@ class BotiquinController extends Controller
     {
         $botiquines = Botiquin::all();
         $edificios = Edificio::all();
-        $tipos_botiquines = TipoBotiquin::all();
         return view('botiquines.consultar', ['botiquines'=>$botiquines, 
-                                            'edificios' =>$edificios, 
-                                            'tipos_botiquines'=>$tipos_botiquines]);
+                                            'edificios' =>$edificios]);
     }
 
     /**
@@ -46,7 +44,9 @@ class BotiquinController extends Controller
      */
     public function create()
     {
-        //
+        $edificios = Edificio::all();
+        $tipos_botiquines = TipoBotiquin::all();
+        return view('botiquines.crear', ['edificios' => $edificios, 'tipos_botiquines' => $tipos_botiquines]);
     }
 
     /**
@@ -103,7 +103,12 @@ class BotiquinController extends Controller
      */
     public function edit($id)
     {
-        //
+        $botiquin = Botiquin::findOrFail($id);
+        $edificios = Edificio::all();
+        $tipos_botiquines = TipoBotiquin::all();
+        return view('botiquines.editar', ['botiquin' => $botiquin, 
+                                            'edificios' => $edificios, 
+                                                'tipos_botiquines' => $tipos_botiquines,]);
     }
 
     /**
@@ -115,7 +120,26 @@ class BotiquinController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $owner = Auth:: User()->id;
+        
+        $input = $request->all();
+       
+        $botiquin = Botiquin::findOrFail($id);
+        $botiquin -> codigo = $input['codigo'];
+        $botiquin -> tipo_botiquin_id = $input['tipo_botiquin'];
+        $botiquin -> user_id_modificacion = $owner;
+        $botiquin->save();
+
+        $ubicacion = Ubicacion::findOrFail($botiquin->ubicacion_id);
+        $ubicacion -> piso = $input['piso'];
+        $ubicacion -> referencia = $input['referencia'];
+        $ubicacion -> edificio_id = $input['edificio'];
+        $ubicacion -> user_id_modificacion = $owner;
+        $ubicacion->save();
+
+        Session::flash('flash_message', 'Botiquín modificado exitosamente');
+
+        return redirect('/botiquines');
     }
 
     /**
