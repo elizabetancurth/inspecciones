@@ -76,7 +76,9 @@
             </tbody>
         </table>
     @else
-        <h4>No existen extintores inactivos</h4>
+        <div class="alert alert-danger">
+            <strong>¡Atención!</strong> No existen extintores.
+        </div>
     @endif
 
     <nav aria-label="container-fluid Page navigation example">

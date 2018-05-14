@@ -29,7 +29,9 @@
             </tbody>
         </table>
     @else
-        <h4>{{"No existen preguntas en el formato"}}</h4>
+        <div class="alert alert-danger">
+            <strong>¡Atención!</strong> No existen preguntas en el formato.
+        </div>
     @endif
         <br>
     </div>

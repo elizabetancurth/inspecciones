@@ -42,7 +42,9 @@
             </tbody>
         </table>
     @else
-        <h4>{{"No existen formatos"}}</h4>
+        <div class="alert alert-danger">
+            <strong>¡Atención!</strong> No existen formato.
+        </div>
     @endif
 
     <nav aria-label="container-fluid Page navigation example">
