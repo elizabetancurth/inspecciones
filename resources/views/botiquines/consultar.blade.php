@@ -45,7 +45,7 @@
     <hr>
 
     @if(count($botiquines) >0)
-        <table class="table">
+        <table id="tabla" class="table">
             <thead class="thead-light">
             <tr>
                 <th scope="col">Código</th>
