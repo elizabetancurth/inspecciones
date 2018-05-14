@@ -4,12 +4,12 @@
 
 @section("content")
 
-    <a class="btn btn-info container-fluid" href="{{ route('formatos.create')}}" role="button">Crear</a>
+    <a href="{{ route('formatos.index') }}">< Volver a formatos</a>
     <hr>
 
     <!--<div class="align-items-end text-right container-fluid input-group mb-3 col-md-4">-->
     <div class="container-fluid input-group mb-3" style="padding: 0px;">
-        <div class="col-md-8"><h2>Listado General de Formatos</h2></div>
+        <div class="col-md-8"><h2>Formatos Inactivos</h2></div>
         <input type="text" class="form-control" placeholder="Buscar..." aria-label="Buscar" aria-describedby="basic-addon2">
         <div class="input-group-append">
             <button class="btn btn-outline-secondary" type="button">
@@ -17,6 +17,7 @@
             </button>
         </div>    
     </div>
+
     <hr>
     @if(count($formatos) >0)
         <table class="table">
@@ -24,23 +25,19 @@
             <tr>
                 <th scope="col">Nombre</th>
                 <th scope="col"></th>
-                <th scope="col"></th>
-                <th scope="col"></th>
             </tr>
             </thead>
             <tbody>
                 @foreach($formatos as $formato)
                     <tr>
                         <td>{{$formato->nombre}}</td>
-                        <td><a class="btn btn-success" href="{{ route('formatos.show', $formato->id) }}">Ver</span></a></td>
-                        <td><a class="btn btn-info" href="{{ route('formatos.edit', $formato->id) }}">Editar</span></a></td>
                         <td>
                             {!! Form::open([
                                 'method' => 'DELETE',
                                 'route' => ['formatos.destroy', $formato->id]
                             ]) !!}
                             
-                            {!! Form::submit('Quitar', ['class' => 'btn btn-danger']) !!}
+                            {!! Form::submit('Activar', ['class' => 'btn btn-danger']) !!}
                             {!! Form::close() !!}
                         </td>
                     </tr>
@@ -49,7 +46,7 @@
         </table>
     @else
         <div class="alert alert-danger">
-            <strong>¡Atención!</strong> No existen formatos.
+            <strong>¡Atención!</strong> No existen formatos inactivos.
         </div>
     @endif
 
@@ -58,7 +55,4 @@
             {{ $formatos->links() }}
         </ul>
     </nav>
-
-    <hr>
-    <a href={{ route('formatos.inactivos') }}>Ver formatos inactivos ></a>
 @endsection

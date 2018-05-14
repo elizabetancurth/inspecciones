@@ -31,6 +31,7 @@ Route::resource('inspecciones_extintores', 'InspeccionExtintorController');
 
 Route::get('extintores_inactivos', [ 'as' => 'extintores.inactivos', 'uses' => 'ExtintorController@frm_inactivos']);
 Route::get('botiquines_inactivos', [ 'as' => 'botiquines.inactivos', 'uses' => 'BotiquinController@frm_inactivos']);
+Route::get('formatos_inactivos', [ 'as' => 'formatos.inactivos', 'uses' => 'FormatoController@frm_inactivos']);
 
 //**---------- Rutas específicas ---------- **//
 

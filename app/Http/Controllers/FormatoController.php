@@ -28,7 +28,8 @@ class FormatoController extends Controller
      */
     public function index()
     {
-        $formatos = Formato::all();
+        $formatos = Formato::where('estado','Activo')
+                                                ->paginate(5);
         return view('formatos.consultar', ['formatos' => $formatos]);
     }
 
@@ -39,7 +40,7 @@ class FormatoController extends Controller
      */
     public function create()
     {
-        //
+        return view('formatos.crear');
     }
 
     /**
@@ -86,7 +87,8 @@ class FormatoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $formato = Formato::findOrFail($id);
+        return view('formatos.editar', ['formato' => $formato]);
     }
 
     /**
@@ -98,7 +100,19 @@ class FormatoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $owner = Auth:: User()->id;
+        
+        $input = $request->all();
+
+        $formato = Formato::findOrFail($id);
+        $formato -> nombre = $input['nombre'];
+        $formato -> user_id_modificacion = $owner;
+        $formato->save();
+
+        Session::flash('flash_message', 'Formato editado exitosamente');
+
+        return redirect('/formatos');
+
     }
 
     /**
@@ -109,6 +123,27 @@ class FormatoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $owner = Auth:: User()->id;
+
+        $formato = Formato::findOrFail($id);
+
+        if($formato->estado === 'Inactivo')
+        {
+            $formato -> estado = 'Activo';
+        }  
+        else
+        {
+            $formato -> estado = 'Inactivo';
+        }
+                
+        $formato -> user_id_modificacion = $owner;
+        $formato->save();
+        return redirect('/formatos');
+    }
+
+    public function frm_inactivos()
+    {
+        $formatos = Formato::where('estado', 'Inactivo')->paginate(5);
+        return view('formatos.inactivos', ['formatos' => $formatos]);
     }
 }
