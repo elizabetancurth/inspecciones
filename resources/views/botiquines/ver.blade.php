@@ -15,7 +15,7 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">Edificio</th>
+                    <th scope="col">Bloque</th>
                     <th scope="col">Piso</th>
                     <th scope="col">Referencia</th>
                 </tr>
@@ -28,21 +28,21 @@
                 </tr>
             </tbody>
         </table>
-        <br>
     </div>
 
     <div class="container"> 
         <div class="col-mod-3">
-            <h3>Insumos:</h3>
+            <h3>Insumos</h3>
         </div>
     
     @if(count($botiquin->insumos_botiquin)>0)
         <table class="table">
-            <thead>
+            <thead class="thead-light">
                 <tr>
                     <th scope="col">Nombre</th>
                     <th scope="col">Cantidad</th>
                     <th scope="col">Fecha Vencimiento</th>
+                    <th scope="col"></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -58,6 +58,15 @@
                         @endif
                     </td>
                     <td><a class="btn btn-info" href="{{ route('insumos_botiquines.edit', $insumo_botiquin->id) }}">Editar</span></a></td>
+                    <td>
+                        {!! Form::open([
+                            'method' => 'DELETE',
+                            'route' => ['insumos_botiquines.destroy', $insumo_botiquin->id]
+                        ]) !!}
+                        
+                        {!! Form::submit('Eliminar', ['class' => 'btn btn-danger']) !!}
+                        {!! Form::close() !!}
+                    </td>
                 </tr>
              @endforeach
             </tbody>

@@ -131,6 +131,10 @@ class InsumoBotiquinController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $insumo_botiquin = InsumoBotiquin::findOrFail($id);
+        $insumo_botiquin -> delete();
+
+        Session::flash('flash_message', 'Insumo eliminado exitosamente');
+        return redirect()->back();
     }
 }
