@@ -36,4 +36,5 @@ Route::get('formatos_inactivos', [ 'as' => 'formatos.inactivos', 'uses' => 'Form
 //**---------- Rutas específicas ---------- **//
 
 Route::get('crear_insumo/{id}', [ 'as' => 'insumos_botiquines.create_insumo', 'uses' => 'InsumoBotiquinController@create_insumo']);
+Route::get('crear_pregunta/{id}', [ 'as' => 'preguntas.create_pregunta', 'uses' => 'PreguntaFormatoController@create_pregunta']);
 

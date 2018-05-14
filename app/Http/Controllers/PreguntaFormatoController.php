@@ -42,6 +42,13 @@ class PreguntaFormatoController extends Controller
         //
     }
 
+    public function create_pregunta($id)
+    {
+        $formato = Formato::findOrFail($id);
+        $tipos_preguntas = TipoPregunta::All();
+        return view('formatos.preguntas.crear', ['formato' => $formato, 'tipos_preguntas' => $tipos_preguntas]);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -110,13 +117,19 @@ class PreguntaFormatoController extends Controller
     {
         try
         {
+            $owner = Auth:: User()->id; 
+
             $pregunta = PreguntaFormato::findOrFail($id);
 
             $input = $request->all();
-            $pregunta -> fill($input) -> save();
+            
+            $pregunta -> descripcion = $input['descripcion'];
+            $pregunta -> tipo_pregunta_id = $input['tipo_pregunta'];
+            $pregunta -> user_id_modificacion = $owner;
+            $pregunta->save();
 
             Session::flash('flash_message', "Pregunta actualizada correctamente");
-            return redirect()->back();
+            return redirect('/formatos/'.$input['formato_id']);
         }
         catch(ModelNotFoundException $e)
         {
@@ -133,6 +146,10 @@ class PreguntaFormatoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $pregunta = PreguntaFormato::findOrFail($id);
+        $pregunta -> delete();
+
+        Session::flash('flash_message', 'Pregunta exitosamente');
+        return redirect()->back();
     }
 }

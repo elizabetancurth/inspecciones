@@ -11,7 +11,7 @@
     <div class="container">
     @if(count($formato->preguntas) >0)
         <table class="table">
-            <thead class="thead-dark">
+            <thead class="thead-light">
             <tr>
                 <th scope="col">Preguntas</th>
                 <th scope="col"></th>
@@ -22,8 +22,16 @@
                 @foreach($formato->preguntas as $pregunta)
                     <tr>
                         <td>{{$pregunta->descripcion}}</td>
-                        <td><a class="text-muted" href="{{ route('preguntas.edit', $pregunta->id) }}"><span class="oi oi-pencil"></span></a></td>
-                        <td><a class="text-muted" data-toggle="modal" data-target="#modalConfirmarBorrado" href=""><span class="oi oi-x"></span></a></td>
+                        <td><a class="btn btn-info" href="{{ route('preguntas.edit', $pregunta->id) }}">Editar</span></a></td>
+                        <td>
+                            {!! Form::open([
+                                'method' => 'DELETE',
+                                'route' => ['preguntas.destroy', $pregunta->id]
+                            ]) !!}
+                            
+                            {!! Form::submit('Eliminar', ['class' => 'btn btn-danger']) !!}
+                            {!! Form::close() !!}
+                        </td>
                     </tr>
                 @endforeach
             </tbody>
@@ -36,68 +44,6 @@
         <br>
     </div>
 
-    <button type="button" class="btn btn-info container-fluid" data-toggle="modal" data-target="#crearModal">
-        Añadir Pregunta
-    </button>
+    <a class="btn btn-info container-fluid" href="{{ route('preguntas.create_pregunta' , $formato->id)}}" role="button">Añadir Pregunta</a>
 
-    <!-- Modal Crear -->
-    <div class="modal fade" id="crearModal" tabindex="-1" role="dialog" aria-labelledby="crearModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title" id="crearModalLabel">Crear Pregunta</h3>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="container-fluid">
-                    {!! Form::open(['route' => 'preguntas.store']) !!}
-                    <div class="form-group">
-                        <table class="container-fluid">
-                            <tbody>
-                                <tr>
-                                    <div class="form-group row">
-                                        {!! Form::label('tipo', 'Tipo de pregunta: ', ['class' => 'control-label'])!!}
-                                        <span class="required">*</span>
-                                        <select id='tipo' name='tipo_pregunta'  class="form-control"  >
-                                            <option value="" >Seleccione el tipo</option>
-                                            <?php 
-                                                $options = "";
-
-                                                foreach ($tipos_preguntas as $key => $value)
-                                                {
-                                                    $options .=  "<option  value='".$value->id."'> ".$value->nombre."</option>";
-                                                }
-                                                echo $options;
-                                            ?>
-                                        </select>
-                                    </div>
-                                </tr>
-                                <tr>
-                                    <div class="form-group row">
-                                        {!! Form::label('descripcion', 'Descripción: ', ['class' => 'control-label'])!!}
-                                        <span class="required"> *</span>
-                                        {!! Form::textarea('descripcion', null, ['class' => 'form-control','rows' => 3]) !!}
-                                    </div>
-                                </tr>
-                                <tr>
-                                    <div class="form-group row">
-                                        {!! Form::text('formato_id', $formato->id, ['class' => 'form-control'])!!}
-                                    </div>
-                                </tr>
-                            </tbody>
-                        </table>  
-                    </div>                    	
-                </div>
-            </div>
-            <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-            {!! Form::submit('Crear Pregunta', ['class' => 'btn btn-info']) !!}
-            {!! Form::close()!!}
-            </div>
-            </div>
-        </div>
-    </div>
-    <!-- End Crear Modal -->
 @endsection

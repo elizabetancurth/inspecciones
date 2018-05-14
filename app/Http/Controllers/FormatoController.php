@@ -75,8 +75,7 @@ class FormatoController extends Controller
     public function show($id)
     {
         $formato = Formato::findOrFail($id);
-        $tipos_preguntas = TipoPregunta::All();
-        return view('formatos.ver', ['formato' => $formato, 'tipos_preguntas' => $tipos_preguntas]);
+        return view('formatos.ver', ['formato' => $formato]);
     }
 
     /**
