@@ -73,24 +73,6 @@
                         </td>
                     </tr>
                 @endforeach
-                @foreach($inspeccionesBotiquines as $inspeccionB)
-                    <tr>
-                        <td>{{$inspeccionB->inspeccion->fecha}}</td>
-                        <td>{{$inspeccionB->inspeccion->tipo->nombre}}</td>
-                        <td>{{$inspeccionB->insumo_botiquin->botiquin->codigo}} - {{$inspeccionB->insumo_botiquin->nombre}} 
-                        <td><a class="btn btn-success" href="{{ route('inspecciones.show', $inspeccionB->id) }}">Ver</span></a></td>
-                        <td><a class="btn btn-info" href="{{ route('inspecciones.edit', $inspeccionB->id) }}">Editar</span></a></td>
-                        <td>
-                            {!! Form::open([
-                                'method' => 'DELETE',
-                                'route' => ['inspecciones.destroy', $inspeccionB->id]
-                            ]) !!}
-                                
-                            {!! Form::submit('Quitar', ['class' => 'btn btn-danger']) !!}
-                            {!! Form::close() !!}
-                        </td>
-                    </tr>
-                @endforeach
             </tbody>
         </table>
     @else

@@ -14,5 +14,4 @@ class InsumoBotiquin extends Model
       return $this->belongsTo('App\Botiquin','botiquin_id','id');
     }
     
-    
 }
