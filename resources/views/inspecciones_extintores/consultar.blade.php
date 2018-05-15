@@ -27,7 +27,7 @@
             }
     </script>
 
-    <a class="btn btn-info container-fluid" href="{{ route('inspecciones.create')}}" role="button">Crear</a>
+    <a class="btn btn-info container-fluid" href="{{ route('inspecciones_extintores.create')}}" role="button">Crear</a>
     <hr>
 
     <!--<div class="align-items-end text-right container-fluid input-group mb-3 col-md-4">-->
@@ -55,17 +55,16 @@
             </tr>
             </thead>
             <tbody>
-                @foreach($inspeccionesExtintores as $inspeccionE)
+                @foreach($inspecciones as $inspeccion)
                     <tr>
-                        <td>{{$inspeccionE->inspeccion->fecha}}</td>
-                        <td>{{$inspeccionE->inspeccion->tipo->nombre}}</td>
-                        <td>Código: {{$inspeccionE->extintor->codigo}}
-                        <td><a class="btn btn-success" href="{{ route('inspecciones_extintores.show', $inspeccionE->id) }}">Ver</span></a></td>
-                        <td><a class="btn btn-info" href="{{ route('inspecciones_extintores.edit', $inspeccionE->id) }}">Editar</span></a></td>
+                        <td>{{$inspeccion->inspeccion->fecha}}</td>
+                        <td>{{$inspeccion->inspeccion->tipo->nombre}}</td>
+                        <td>Código: {{$inspeccion->extintor->codigo}}
+                        <td><a class="btn btn-success" href="{{ route('inspecciones_extintores.show', $inspeccion->id) }}">Ver</span></a></td>
                         <td>
                             {!! Form::open([
                                 'method' => 'DELETE',
-                                'route' => ['inspecciones_extintores.destroy', $inspeccionE->id]
+                                'route' => ['inspecciones_extintores.destroy', $inspeccion->id]
                             ]) !!}
                                 
                             {!! Form::submit('Quitar', ['class' => 'btn btn-danger']) !!}
@@ -88,6 +87,6 @@
     </nav>
 
     <hr>
-    <a href="/">Ver inspecciones inactivos ></a>
+    <a href="/">Ver inspecciones de extintores inactivas ></a>
 
 @endsection

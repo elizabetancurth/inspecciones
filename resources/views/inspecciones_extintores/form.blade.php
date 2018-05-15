@@ -20,30 +20,11 @@
             </tr>
             <tr>
                 <th>
-                    {{ Form::label("clasificacion", "Clasificación:") }}
-                </th>
-                <td>
-                    <select id='clasificacion' name='clasificacion'  class="form-control"  >
-                        <option value="" >{{$inspeccion->clasificacion->nombre or old("--Seleccione--")}}</option>
-                        <?php 
-                            $options = "";
-
-                            foreach ($clasificaciones as $key => $value)
-                            {
-                                $options .=  "<option  value='".$value->id."'> ".$value->nombre."</option>";
-                            }
-                            echo $options;
-                        ?>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <th>
                     {{ Form::label("formato", "Formato:") }}
                 </th>
                 <td>
                     <select id='formato' name='formato'  class="form-control"  >
-                        <option value="" >{{$inspeccion->formato->nombre or old("--Seleccione--")}}</option>
+                        <option value="" >{{$inspeccion->formato->nombre or "--Seleccione--"}}</option>
                         <?php 
                             $options = "";
 
@@ -59,7 +40,7 @@
         </tbody>
     </table><br>
     <div>
-        <a role="button" class="btn btn-secondary" href="{{ route('inspecciones.index') }}">Cerrar</a>
-        <input class="btn btn-primary" type="submit" value="{{ $bthText or 'Crear Inspección'}}" >
+        <a role="button" class="btn btn-secondary" href="{{ route('inspecciones_extintores.index') }}">Cerrar</a>
+        <input class="btn btn-primary" type="submit" value="{{ $bthText or 'Crear Inspección Extintores'}}" >
     </div>
 </div>

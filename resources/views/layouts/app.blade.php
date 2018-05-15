@@ -124,7 +124,8 @@
                                         </h5>
                                     </div>
                                     <div id="collapseFour" class="collapse hide" aria-labelledby="headingFour" data-parent="#accordion">
-                                        <a href="{{ route('inspecciones.index') }}" class="list-group-item list-group-item-action">Listar</a>
+                                        <a href="{{ route('inspecciones_extintores.index') }}" class="list-group-item list-group-item-action">Extintores</a>
+                                        <a href="#" class="list-group-item list-group-item-action">Botiquines</a>
                                         <a href="{{ route('inspecciones.create') }}" class="list-group-item list-group-item-action">Programar</a>
                                 </div>
 

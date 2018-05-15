@@ -4,7 +4,7 @@
 
 @section("content")
 
-    <a href="{{ route('inspecciones.index') }}">< Volver a inspecciones</a>
+    <a href="{{ route('inspecciones_extintores.index') }}">< Volver a inspecciones</a>
     <br>
     <h2>Inspección Extintor N° {{$inspeccion->extintor->codigo}}</h2>
     <br>
@@ -23,20 +23,20 @@
                 <tr>
                     <td>{{$pregunta -> descripcion}}</td>
                     <td>
-                    <div class="form-check">
-                        <label class="form-check-label">
-                            <input type="checkbox" class="form-check-input" value="">Bueno
-                        </label>
-                        </div>
                         <div class="form-check">
-                        <label class="form-check-label">
-                            <input type="checkbox" class="form-check-input" value="">Regular
-                        </label>
-                        </div>
-                        <div class="form-check disabled">
-                        <label class="form-check-label">
-                            <input type="checkbox" class="form-check-input" value="" disabled>Malo
-                        </label>
+                            <label class="form-check-label">
+                                <input type="checkbox" class="form-check-input" value="1">Bueno
+                            </label>
+                            </div>
+                            <div class="form-check">
+                            <label class="form-check-label">
+                                <input type="checkbox" class="form-check-input" value="2">Regular
+                            </label>
+                            </div>
+                            <div class="form-check">
+                            <label class="form-check-label">
+                                <input type="checkbox" class="form-check-input" value="3" >Malo
+                            </label>
                         </div>
                     </td>
                 </tr>

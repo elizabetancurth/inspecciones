@@ -4,7 +4,7 @@
 
 @section('content')
 
-<a href="{{ route('inspecciones.index') }}">< Volver a inspecciones</a>
+<a href="{{ route('inspecciones_extintores.index') }}">< Volver a inspeccion de extintores</a>
 <br>
     @if(count($errors)>0)
         <div class="alert alert-danger" role="alert">
@@ -16,9 +16,9 @@
         </div>
     @endif
 
-    {!! Form::open(['route' => 'inspecciones.store']) !!}
+    {!! Form::open(['route' => 'inspecciones_extintores.store']) !!}
         
-        @include('inspecciones.form')        
+        @include('inspecciones_extintores.form')        
     
     {!! Form::close() !!}
 @endsection

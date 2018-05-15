@@ -3,23 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Foundation\Validation\ValidationRequests;
 
-use Session;
-use App\Inspeccion;
-use App\InspeccionClasificacion;
-use App\InspeccionExtintor;
-use App\InspeccionBotiquin;
-use App\Formato;
-use App\Extintor;
-use App\Botiquin;
-use App\Establecimiento;
-use App\RecargaExtintor;
-use App\Http\Requests\ExtintorRequest;
-
-class InspeccionController extends Controller
+class RespuestasInspeccionesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -28,7 +13,7 @@ class InspeccionController extends Controller
      */
     public function index()
     {
-        
+        //
     }
 
     /**
@@ -38,7 +23,7 @@ class InspeccionController extends Controller
      */
     public function create()
     {
-        
+        //
     }
 
     /**
@@ -60,7 +45,7 @@ class InspeccionController extends Controller
      */
     public function show($id)
     {
-        
+        //
     }
 
     /**

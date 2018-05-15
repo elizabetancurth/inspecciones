@@ -23,4 +23,6 @@ class PreguntaFormato extends Model
     {
       return $this->belongsTo('App\TipoPregunta','tipo_pregunta_id','id');
     }
+
+
 }

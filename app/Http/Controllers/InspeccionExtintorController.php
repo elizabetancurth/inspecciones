@@ -19,13 +19,22 @@ use App\Http\Requests\ExtintorRequest;
 class InspeccionExtintorController extends Controller
 {
     /**
+     * Solo para usuarios autenticados
+     */
+    function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //
+        $inspecciones = InspeccionExtintor::where('estado','Activo')->paginate(5);                                                                                
+        return view('inspecciones_extintores.consultar', ['inspecciones' => $inspecciones]);
     }
 
     /**
@@ -35,7 +44,8 @@ class InspeccionExtintorController extends Controller
      */
     public function create()
     {
-        //
+        $formatos = Formato::where('estado','Activo')->get();
+        return view('inspecciones_extintores.crear', ['formatos' => $formatos]);
     }
 
     /**
@@ -46,7 +56,30 @@ class InspeccionExtintorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $owner = Auth:: User()->id;
+        $extintores = Extintor::where('estado', 'Activo')->get();
+                
+        $input = $request -> all();
+        $tipo = 1; //Extintores//
+
+        foreach($extintores as $extintor)
+        {
+            $inspeccion = new Inspeccion;
+            $inspeccion -> fecha = $input['fecha'];
+            $inspeccion -> hora = $input['hora'];
+            $inspeccion -> inspeccion_clasificacion_id = $tipo;
+            $inspeccion -> formato_inspeccion_id = $input['formato'];
+            $inspeccion -> estado = 'Activo';
+            $inspeccion -> user_id_creacion = $owner;
+            $inspeccion->save(); 
+
+            $inspeccion_extintor = new InspeccionExtintor;
+            $inspeccion_extintor -> inspeccion_id = $inspeccion->id;
+            $inspeccion_extintor -> extintor_id = $extintor-> id;
+            $inspeccion_extintor->save(); 
+        }
+
+        return redirect('/inspecciones_extintores');
     }
 
     /**
@@ -58,7 +91,7 @@ class InspeccionExtintorController extends Controller
     public function show($id)
     {
         $inspeccion = InspeccionExtintor::findOrFail($id);
-        return view('inspecciones.ver', ['inspeccion' => $inspeccion]);
+        return view('inspecciones_extintores.ver', ['inspeccion' => $inspeccion]);
     }
 
     /**
@@ -92,6 +125,10 @@ class InspeccionExtintorController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $inspeccion = InspeccionExtintor::findOrFail($id);
+        $inspeccion -> delete();
+
+        Session::flash('flash_message', 'Insumo eliminado exitosamente');
+        return redirect()->back();
     }
 }
