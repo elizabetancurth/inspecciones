@@ -23,20 +23,14 @@
                 <tr>
                     <td>{{$pregunta -> descripcion}}</td>
                     <td>
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input type="checkbox" class="form-check-input" value="1">Bueno
-                            </label>
-                            </div>
-                            <div class="form-check">
-                            <label class="form-check-label">
-                                <input type="checkbox" class="form-check-input" value="2">Regular
-                            </label>
-                            </div>
-                            <div class="form-check">
-                            <label class="form-check-label">
-                                <input type="checkbox" class="form-check-input" value="3" >Malo
-                            </label>
+                        <select class="custom-select container-fluid" id="inputGroupSelect01">
+                            <option selected>--Seleccione--</option>
+                            @foreach($opcion_respuesta as $opcion)
+                                @if($pregunta->tipo_pregunta->id === $opcion->tipo_pregunta_id)
+                                <option value="{{$opcion->valor}}">{{$opcion->nombre}}</option>
+                                @endif
+                            @endforeach
+                        </select>
                         </div>
                     </td>
                 </tr>

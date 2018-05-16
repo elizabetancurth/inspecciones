@@ -14,6 +14,7 @@ use App\InspeccionExtintor;
 use App\Formato;
 use App\Extintor;
 use App\RecargaExtintor;
+use App\OpcionRespuesta;
 use App\Http\Requests\ExtintorRequest;
 
 class InspeccionExtintorController extends Controller
@@ -91,7 +92,8 @@ class InspeccionExtintorController extends Controller
     public function show($id)
     {
         $inspeccion = InspeccionExtintor::findOrFail($id);
-        return view('inspecciones_extintores.ver', ['inspeccion' => $inspeccion]);
+        $opcion_respuesta = OpcionRespuesta::all();
+        return view('inspecciones_extintores.ver', ['inspeccion' => $inspeccion, 'opcion_respuesta' => $opcion_respuesta]);
     }
 
     /**
