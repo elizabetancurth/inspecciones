@@ -38,3 +38,12 @@ Route::get('formatos_inactivos', [ 'as' => 'formatos.inactivos', 'uses' => 'Form
 Route::get('crear_insumo/{id}', [ 'as' => 'insumos_botiquines.create_insumo', 'uses' => 'InsumoBotiquinController@create_insumo']);
 Route::get('crear_pregunta/{id}', [ 'as' => 'preguntas.create_pregunta', 'uses' => 'PreguntaFormatoController@create_pregunta']);
 
+
+//**---------- Rutas Servicio Web REST ---------- **//
+
+Route::group(array('prefix' => 'api'), function()
+{
+    Route::get('extintores', 'api\ExtintorController@listAll');
+    Route::get('extintores/{id}', 'API\ExtintorController@listOne');
+    Route::post('extintores', 'api\ExtintorController@create');
+});
