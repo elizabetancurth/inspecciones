@@ -41,9 +41,14 @@ Route::get('crear_pregunta/{id}', [ 'as' => 'preguntas.create_pregunta', 'uses' 
 
 //**---------- Rutas Servicio Web REST ---------- **//
 
+Route::group(['middleware' => 'cors'], function()
+{
+    Route::post('login_api', 'ApiAuthController@UserAuth');
+});
+
 Route::group(array('prefix' => 'api'), function()
 {
     Route::get('extintores', 'api\ExtintorController@listAll');
-    Route::get('extintores/{id}', 'API\ExtintorController@listOne');
+    Route::get('extintores/{id}', 'api\ExtintorController@listOne');
     Route::post('extintores', 'api\ExtintorController@create');
 });

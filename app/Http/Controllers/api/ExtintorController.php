@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\api;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\ExtintorRequest;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
+
+use Illuminate\Support\Facades\Auth;
 
 use App\Edificio;
 use App\Ubicacion;
@@ -59,13 +62,44 @@ class ExtintorController extends Controller
     /**
      * Permite crear un nuevo extintor en el sistema.
      */
-    public function create(Request $request)
-    {
-        $input = $request->all();
-
+    public function create(ExtintorRequest $request)
+    {      
         try
         {
-            $response = Extintor::create($input);
+            $input = $request -> all();
+
+            $owner = $input['id_usuario'];
+
+            $ubicacion = new Ubicacion();
+            $ubicacion -> piso = $input['piso'];
+            $ubicacion -> referencia = $input['referencia'];
+            $ubicacion -> estado = 'Activo';
+            $ubicacion -> edificio_id = $input['edificio'];
+            $ubicacion -> user_id_creacion = $owner;
+            $ubicacion->save();
+            
+            $extintor = new Extintor;
+            $extintor -> codigo = $input['codigo'];
+            $extintor -> clasificacion_extintor_id = $input['clasificacion'];
+            $extintor -> capacidad = $input['capacidad'];
+            $extintor -> altura = $input['altura'];
+            $extintor -> estado = 'Activo';
+            $extintor -> ubicacion_id = $ubicacion->id;
+            $extintor -> user_id_creacion = $owner;
+            $extintor->save();
+
+            $response = 200;
+            $statusCode = 200; 
+
+            $fechas = new RecargaExtintor;
+            $fechas -> fecha_recarga = $input['fechaRecarga'];
+            $fechas -> fecha_vencimiento = $input['fechaVencimiento'];
+            $fechas -> extintor_id = $extintor->id;
+            $fechas -> estado = 'Activo';
+            $fechas -> user_id_creacion = $owner;
+            $fechas -> save();          
+
+            $response = 'ok';
             $statusCode = 200;  // OK
         }
         catch (QueryException $e)
