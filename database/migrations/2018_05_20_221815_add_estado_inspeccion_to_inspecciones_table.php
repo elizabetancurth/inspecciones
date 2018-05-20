@@ -14,7 +14,7 @@ class AddEstadoInspeccionToInspeccionesTable extends Migration
     public function up()
     {
         Schema::table('inspecciones', function (Blueprint $table) {
-            $table->enum('estado_inspeccion', ['Pendiente', 'Realizada', 'Cancelada'])->nullable();
+            $table->enum('estado_inspeccion', ['Pendiente', 'Realizada', 'Cancelada']);
         });
     }
 
