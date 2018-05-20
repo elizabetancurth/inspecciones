@@ -48,7 +48,16 @@ Route::group(['middleware' => 'cors'], function()
 
 Route::group(array('prefix' => 'api'), function()
 {
+    Route::get('edificios', 'api\EdificioController@listAll');
+    Route::get('edificios/{id}', 'api\EdificioController@listOne');
+
+    Route::get('clasificacion_extintor', 'api\ClasificacionExtintorController@listAll');
+    Route::get('clasificacion_extintor/{id}', 'api\ClasificacionExtintorController@listOne');
+
     Route::get('extintores', 'api\ExtintorController@listAll');
     Route::get('extintores/{id}', 'api\ExtintorController@listOne');
     Route::post('extintores', 'api\ExtintorController@create');
+
+
+
 });
