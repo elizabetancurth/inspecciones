@@ -32,7 +32,7 @@
 
     <!--<div class="align-items-end text-right container-fluid input-group mb-3 col-md-4">-->
     <div class="container-fluid input-group mb-3" style="padding: 0px;">
-        <div class="col-md-8"><h2>Listado General de Inspecciones</h2></div>
+        <div class="col-md-8"><h2>Inspección de Extintores</h2></div>
         <input onkeyup="myFunction()" id="buscar" type="text" class="form-control" placeholder="Buscar Código..." aria-label="Buscar" aria-describedby="basic-addon2">
         <div class="input-group-append">
             <button class="btn btn-outline-secondary" type="button">
@@ -47,7 +47,7 @@
             <thead class="thead-light">
             <tr>
                 <th scope="col">Fecha</th>
-                <th scope="col">Tipo</th>
+                <th scope="col">Estado</th>
                 <th scope="col">Elemento</th>
                 <th scope="col"></th>
                 <th scope="col"></th>
@@ -58,7 +58,7 @@
                 @foreach($inspecciones as $inspeccion)
                     <tr>
                         <td>{{$inspeccion->inspeccion->fecha}}</td>
-                        <td>{{$inspeccion->inspeccion->tipo->nombre}}</td>
+                        <td>{{$inspeccion->inspeccion->estado_inspeccion}}</td>
                         <td>Código: {{$inspeccion->extintor->codigo}}
                         <td><a class="btn btn-success" href="{{ route('inspecciones_extintores.show', $inspeccion->id) }}">Ver</span></a></td>
                         <td>

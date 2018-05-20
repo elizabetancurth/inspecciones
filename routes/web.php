@@ -26,6 +26,7 @@ Route::resource('formatos', 'FormatoController');
 Route::resource('preguntas', 'PreguntaFormatoController');
 Route::resource('inspecciones', 'InspeccionController');
 Route::resource('inspecciones_extintores', 'InspeccionExtintorController');
+Route::resource('respuestas_inspecciones', 'RespuestaInspeccionController');
 
 //**---------- Inactivos ---------- **//
 

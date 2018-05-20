@@ -71,6 +71,7 @@ class InspeccionExtintorController extends Controller
             $inspeccion -> inspeccion_clasificacion_id = $tipo;
             $inspeccion -> formato_inspeccion_id = $input['formato'];
             $inspeccion -> estado = 'Activo';
+            $inspeccion -> estado_inspeccion = 'Pendiente';
             $inspeccion -> user_id_creacion = $owner;
             $inspeccion->save(); 
 
@@ -93,7 +94,8 @@ class InspeccionExtintorController extends Controller
     {
         $inspeccion = InspeccionExtintor::findOrFail($id);
         $opcion_respuesta = OpcionRespuesta::all();
-        return view('inspecciones_extintores.ver', ['inspeccion' => $inspeccion, 'opcion_respuesta' => $opcion_respuesta]);
+        $i = 0;
+        return view('inspecciones_extintores.ver', ['inspeccion' => $inspeccion, 'opcion_respuesta' => $opcion_respuesta, 'i' => $i]);
     }
 
     /**

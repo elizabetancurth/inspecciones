@@ -60,7 +60,7 @@ class BotiquinController extends Controller
 
         $input = $request -> all();
 
-        $ubicacion = new Ubicacion();
+        $ubicacion = new Ubicacion;
         $ubicacion -> piso = $input['piso'];
         $ubicacion -> referencia = $input['referencia'];
         $ubicacion -> estado = 'Activo';
