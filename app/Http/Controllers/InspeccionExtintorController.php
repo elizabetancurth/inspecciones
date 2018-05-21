@@ -34,8 +34,8 @@ class InspeccionExtintorController extends Controller
      */
     public function index()
     {
-        $inspecciones = InspeccionExtintor::where('estado','Activo')->paginate(5);                                                                                
-        return view('inspecciones_extintores.consultar', ['inspecciones' => $inspecciones]);
+        $inspecciones_extintores = InspeccionExtintor::paginate(5);                                                                       
+        return view('inspecciones_extintores.consultar', ['inspecciones' => $inspecciones_extintores]);
     }
 
     /**
