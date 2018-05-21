@@ -18,7 +18,7 @@ class InspeccionExtintorController extends Controller
     {
         try
         {
-            $response = InspeccionExtintor::where('estado','Activo')->get();
+            $response = InspeccionExtintor::all();
             $statusCode = 200; // OK
         }
         catch (ModelNotFoundException $e)
