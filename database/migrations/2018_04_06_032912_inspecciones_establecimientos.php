@@ -14,12 +14,9 @@ class InspeccionesEstablecimientos extends Migration
     public function up()
     {
         Schema::create('inspecciones_establecimientos', function (Blueprint $table) {
-            $table->increments('id');
             $table->integer('inspeccion_id')->unsigned()->nullable();
             $table->integer('establecimiento_id')->unsigned()->nullable();
             $table->enum('estado', ['Activo', 'Inactivo']);
-            $table->integer('user_id_creacion')->unsigned()->nullable();
-            $table->integer('user_id_modificacion')->unsigned()->nullable();
             $table->rememberToken();
             $table->timestamps();
 
@@ -28,14 +25,6 @@ class InspeccionesEstablecimientos extends Migration
                 ->onDelete('SET NULL');
 
             $table->foreign('establecimiento_id')->references('id')->on('establecimientos')
-                ->onUpdate('CASCADE')
-                ->onDelete('SET NULL');
-
-            $table->foreign('user_id_creacion')->references('id')->on('users')
-                ->onUpdate('CASCADE')
-                ->onDelete('SET NULL');
-
-            $table->foreign('user_id_modificacion')->references('id')->on('users')
                 ->onUpdate('CASCADE')
                 ->onDelete('SET NULL');
         });
