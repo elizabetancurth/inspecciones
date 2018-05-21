@@ -21,5 +21,9 @@ class DatabaseSeeder extends Seeder
         $this->call(InspeccionClasificacionSeeder::class);
         $this->call(TipoPreguntaSeeder::class);
         $this->call(OpcionRespuestaSeeder::class);
+        $this->call(UbicacionSeeder::class);
+        $this->call(ExtintorSeeder::class);
+        $this->call(FormatoSeeder::class);
+        $this->call(PreguntaSeeder::class);
     }
 }

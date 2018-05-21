@@ -14,6 +14,7 @@ class InspeccionesExtintores extends Migration
     public function up()
     {
         Schema::create('inspecciones_extintores', function (Blueprint $table) {
+            $table->increments('id');
             $table->integer('inspeccion_id')->unsigned()->nullable();
             $table->integer('extintor_id')->unsigned()->nullable();
             $table->rememberToken();

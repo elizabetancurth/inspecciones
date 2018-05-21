@@ -14,6 +14,7 @@ class InspeccionesInsumosBotiquines extends Migration
     public function up()
     {
         Schema::create('inspecciones_insumos_botiquines', function (Blueprint $table) {
+            $table->increments('id');
             $table->integer('inspeccion_id')->unsigned()->nullable();
             $table->integer('insumo_botiquin_id')->unsigned()->nullable();
             $table->rememberToken();

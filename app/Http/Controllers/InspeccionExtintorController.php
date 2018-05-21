@@ -129,7 +129,7 @@ class InspeccionExtintorController extends Controller
      */
     public function destroy($id)
     {
-        $inspeccion = InspeccionExtintor::findOrFail($id);
+        $inspeccion = Inspeccion::findOrFail($id);
         $inspeccion -> delete();
 
         Session::flash('flash_message', 'Insumo eliminado exitosamente');

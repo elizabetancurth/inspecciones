@@ -14,6 +14,7 @@ class InspeccionesEstablecimientos extends Migration
     public function up()
     {
         Schema::create('inspecciones_establecimientos', function (Blueprint $table) {
+            $table->increments('id');
             $table->integer('inspeccion_id')->unsigned()->nullable();
             $table->integer('establecimiento_id')->unsigned()->nullable();
             $table->enum('estado', ['Activo', 'Inactivo']);
