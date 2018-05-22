@@ -63,6 +63,9 @@ Route::group(array('prefix' => 'api'), function()
     Route::get('extintores/{id}', 'api\ExtintorController@listOne');
     Route::post('extintores', 'api\ExtintorController@create');
 
+    Route::get('recargas_extintores', 'api\FechaRecargasController@listAll');
+    Route::get('recargas_extintores/{id}', 'api\FechaRecargasController@listOne');
+
     Route::get('inspecciones', 'api\InspeccionController@listAll');
     Route::get('inspecciones/{id}', 'api\InspeccionController@listOne');
 
