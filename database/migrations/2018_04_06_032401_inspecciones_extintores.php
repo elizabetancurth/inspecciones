@@ -17,6 +17,7 @@ class InspeccionesExtintores extends Migration
             $table->increments('id');
             $table->integer('inspeccion_id')->unsigned()->nullable();
             $table->integer('extintor_id')->unsigned()->nullable();
+            $table->enum('estado', ['Activo', 'Inactivo']);
             $table->rememberToken();
             $table->timestamps();
 

@@ -78,6 +78,7 @@ class InspeccionExtintorController extends Controller
             $inspeccion_extintor = new InspeccionExtintor;
             $inspeccion_extintor -> inspeccion_id = $inspeccion->id;
             $inspeccion_extintor -> extintor_id = $extintor-> id;
+            $inspeccion_extintor -> estado = 'Activo';
             $inspeccion_extintor->save(); 
         }
 

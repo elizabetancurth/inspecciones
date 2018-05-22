@@ -17,6 +17,7 @@ class InspeccionesInsumosBotiquines extends Migration
             $table->increments('id');
             $table->integer('inspeccion_id')->unsigned()->nullable();
             $table->integer('insumo_botiquin_id')->unsigned()->nullable();
+            $table->enum('estado', ['Activo', 'Inactivo']);
             $table->rememberToken();
             $table->timestamps();
 
