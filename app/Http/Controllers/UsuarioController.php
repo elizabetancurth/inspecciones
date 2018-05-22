@@ -50,16 +50,16 @@ class UsuarioController extends Controller
     {
         $data = $request->all();
 
-        User::create([
-            'name' => $data['name'],
-            'lastname' => $data['lastname'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-            'rol' => $data['rol'],
-            'estado' => 'Activo',
-        ]);
+        $usuario = new User;
+        $usuario -> name = $data['name'];
+        $usuario -> lastname = $data['lastname'];
+        $usuario -> email = $data['email'];
+        $usuario -> password = Hash::make($data['password']);
+        $usuario -> rol = $data['rol'];
+        $usuario -> estado = 'Activo';
+        $usuario -> save();
 
-        return ('/usuarios');
+        return redirect('/usuarios');
     }
 
     /**
