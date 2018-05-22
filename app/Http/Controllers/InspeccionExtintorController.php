@@ -132,19 +132,27 @@ class InspeccionExtintorController extends Controller
     {
         $owner = Auth:: User()->id;
         $inspeccion_extintor = InspeccionExtintor::findOrFail($id);
-        $inspeccion = Inspeccion::where('id', $inspeccion_extintor->inspeccion_id);
-
-        dd($inspeccion);
+        $inspeccion = Inspeccion::findOrFail($inspeccion_extintor->inspeccion_id);
         
-        if($inspeccion_extintor-> estado === 'Inactivo')
-        {
-            $inspeccion -> estado = 'Activo';
-            $inspeccion_extintor -> estado = 'Activo';
-        }  
-        else
+        if($inspeccion -> estado === 'Activo')
         {
             $inspeccion -> estado = 'Inactivo';
             $inspeccion_extintor -> estado = 'Inactivo';
+
+            if ($inspeccion->estado_inspeccion === 'Pendiente')
+            {
+                $inspeccion -> estado_inspeccion = 'Cancelada';
+            }
+        }  
+        else
+        {
+            $inspeccion -> estado = 'Activo';
+            $inspeccion_extintor -> estado = 'Activo';
+
+            if ($inspeccion->estado_inspeccion === 'Cancelada')
+            {
+                $inspeccion -> estado_inspeccion = 'Pendiente';
+            }
         }
 
         $inspeccion -> user_id_modificacion = $owner;
