@@ -39,7 +39,7 @@
                             <th scope="col">
                                 Rol
                             </th>
-                            <td>$user->rol}}
+                            <td>{{$user->rol}}
                             </td>
                         </tr>
                     </tbody>
