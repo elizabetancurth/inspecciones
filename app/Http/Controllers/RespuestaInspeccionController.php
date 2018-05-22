@@ -46,6 +46,8 @@ class RespuestaInspeccionController extends Controller
         $owner = Auth:: User()->id;
         $input = $request -> all();
 
+        dd($input);
+
         $inspeccion_extintor = InspeccionExtintor::findOrFail($input['inspeccion_id']);
         $opcion_respuesta = OpcionRespuesta::all();
 
