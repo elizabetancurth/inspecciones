@@ -5,6 +5,7 @@ namespace App\Http\Controllers\api;
 use App\Inspeccion;
 use App\InspeccionExtintor;
 use App\RespuestaInspeccion;
+use App\OpcionRespuesta;
 
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -71,8 +72,9 @@ class RespuestaInspeccionController extends Controller
                 
                 if($pregunta->tipo_pregunta_id === 2)
                 {
-                    $respuesta -> respuesta = $input['respuesta_'.$i];
-                    $i = $i+1; 
+                    $valor = OpcionRespuesta::findOrFail($input['respuesta_'.$i]);
+                    $respuesta -> respuesta = $valor->nombre;
+                    $i = $i+1;
                 }
                 if($pregunta->tipo_pregunta_id === 3)
                 {

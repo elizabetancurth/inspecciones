@@ -96,7 +96,16 @@ class InspeccionExtintorController extends Controller
         $inspeccion = InspeccionExtintor::findOrFail($id);
         $opcion_respuesta = OpcionRespuesta::all();
         $i = 0;
-        return view('inspecciones_extintores.ver', ['inspeccion' => $inspeccion, 'opcion_respuesta' => $opcion_respuesta, 'i' => $i]);
+
+        if($inspeccion->inspeccion->estado_inspeccion === "Pendiente")
+        {
+            return view('inspecciones_extintores.realizar', ['inspeccion' => $inspeccion, 'opcion_respuesta' => $opcion_respuesta, 'i' => $i]);
+        }
+
+        if($inspeccion->inspeccion->estado_inspeccion === "Cancelada")
+        {
+            return redirect('/inspecciones_extintores'); 
+        }
     }
 
     /**
@@ -162,7 +171,6 @@ class InspeccionExtintorController extends Controller
 
         return redirect('/inspecciones_extintores');
 
-        return redirect()->back();
     }
 
     public function frm_inactivos()

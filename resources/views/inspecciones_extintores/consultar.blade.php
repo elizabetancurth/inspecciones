@@ -60,7 +60,13 @@
                         <td>{{$inspeccion->inspeccion->fecha}}</td>
                         <td>{{$inspeccion->inspeccion->estado_inspeccion}}</td>
                         <td>Código: {{$inspeccion->extintor->codigo}}
-                        <td><a class="btn btn-success" href="{{ route('inspecciones_extintores.show', $inspeccion->id) }}">Ver</span></a></td>
+                        <td>
+                            @if($inspeccion->inspeccion->estado_inspeccion === "Pendiente")
+                                <a class="btn btn-success" href="{{ route('inspecciones_extintores.show', $inspeccion->id) }}">Realizar</span></a></td>
+                            @endif
+                            @if($inspeccion->inspeccion->estado_inspeccion === "Realizada")
+                                <a class="btn btn-info" href="{{ route('respuestas_inspecciones.show', $inspeccion->id) }}">Resultado</span></a></td>
+                            @endif
                         <td>
                             {!! Form::open([
                                 'method' => 'DELETE',

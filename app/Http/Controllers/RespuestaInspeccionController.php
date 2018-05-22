@@ -57,7 +57,8 @@ class RespuestaInspeccionController extends Controller
             
             if($pregunta->tipo_pregunta_id === 2)
             {
-                $respuesta -> respuesta = $input['respuesta_'.$i];
+                $valor = OpcionRespuesta::findOrFail($input['respuesta_'.$i]);
+                $respuesta -> respuesta = $valor->nombre;
                 $i = $i+1; 
             }
             if($pregunta->tipo_pregunta_id === 3)
@@ -93,7 +94,10 @@ class RespuestaInspeccionController extends Controller
      */
     public function show($id)
     {
-        //
+        $inspeccion = InspeccionExtintor::findOrFail($id);
+        $respuestas = RespuestaInspeccion::where('inspeccion_id', $inspeccion->inspeccion->id)->get();
+
+        return view('inspecciones_extintores.ver', ['inspeccion' => $inspeccion, 'respuestas' => $respuestas]);
     }
 
     /**
