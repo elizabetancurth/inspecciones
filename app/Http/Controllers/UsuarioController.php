@@ -59,7 +59,7 @@ class UsuarioController extends Controller
             'estado' => 'Activo',
         ]);
 
-        return ('/home');
+        return ('/usuarios');
     }
 
     /**
@@ -71,7 +71,7 @@ class UsuarioController extends Controller
     public function show($id)
     {
         $user = User::findOrFail($id);
-        return view('Auth.perfil', ['user' => $user]);
+        return view('auth.perfil', ['user' => $user]);
     }
 
     /**
