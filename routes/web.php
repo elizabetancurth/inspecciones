@@ -52,6 +52,9 @@ Route::group(array('prefix' => 'api'), function()
     Route::get('edificios', 'api\EdificioController@listAll');
     Route::get('edificios/{id}', 'api\EdificioController@listOne');
 
+    Route::get('ubicaciones', 'api\UbicacionController@listAll');
+    Route::get('ubicaciones/{id}', 'api\UbicacionController@listOne');
+
     Route::get('clasificacion_extintor', 'api\ClasificacionExtintorController@listAll');
     Route::get('clasificacion_extintor/{id}', 'api\ClasificacionExtintorController@listOne');
 
@@ -64,6 +67,12 @@ Route::group(array('prefix' => 'api'), function()
 
     Route::get('inspecciones_extintores', 'api\InspeccionExtintorController@listAll');
     Route::get('inspecciones_extintores/{id}', 'api\InspeccionExtintorController@listOne');
+
+    Route::get('formatos_inspecciones', 'api\FormatoInspeccionController@listAll');
+    Route::get('formatos_inspecciones/{id}', 'api\FormatoInspeccionController@listOne');
+
+    Route::get('preguntas_formatos', 'api\PreguntaFormatoController@listAll');
+    Route::get('preguntas_formatos/{id}', 'api\PreguntaFormatoController@listOne');
 
     Route::get('respuestas_inspecciones', 'api\RespuestaInspeccionController@listAll');
     Route::get('respuestas_inspecciones/{id}', 'api\RespuestaInspeccionController@listOne');
