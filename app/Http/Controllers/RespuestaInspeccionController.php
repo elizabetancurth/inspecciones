@@ -7,6 +7,7 @@ use App\RespuestaInspeccion;
 use App\InspeccionExtintor;
 use App\Inspeccion;
 use App\OpcionRespuesta;
+use App\User;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -96,8 +97,9 @@ class RespuestaInspeccionController extends Controller
     {
         $inspeccion = InspeccionExtintor::findOrFail($id);
         $respuestas = RespuestaInspeccion::where('inspeccion_id', $inspeccion->inspeccion->id)->get();
+        $user = User::findOrFail($inspeccion->inspeccion->user_id_creacion);
 
-        return view('inspecciones_extintores.ver', ['inspeccion' => $inspeccion, 'respuestas' => $respuestas]);
+        return view('inspecciones_extintores.ver', ['inspeccion' => $inspeccion, 'respuestas' => $respuestas, 'user' => $user]);
     }
 
     /**
