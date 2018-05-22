@@ -40,7 +40,7 @@
                     <tr class="danger">
                         <td>{{$respuesta->pregunta->descripcion}}</td>
                         <td> {{$respuesta->respuesta}}</td>
-                    <tr>
+                    </tr>
                     @endif
                 @else
                     <tr>
