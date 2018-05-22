@@ -10,6 +10,14 @@ use Illuminate\Support\Facades\Validator;
 
 class UsuarioController extends Controller
 {
+        /**
+     * Solo para usuarios autenticados
+     */
+    function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     /**
      * Display a listing of the resource.
      *
