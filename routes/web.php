@@ -78,6 +78,9 @@ Route::group(array('prefix' => 'api'), function()
     Route::get('preguntas_formatos', 'api\PreguntaFormatoController@listAll');
     Route::get('preguntas_formatos/{id}', 'api\PreguntaFormatoController@listOne');
 
+    Route::get('opciones_respuestas', 'api\OpcionRespuestaController@listAll');
+    Route::get('opciones_respuestas/{id}', 'api\OpcionRespuestaController@listOne');
+
     Route::get('respuestas_inspecciones', 'api\RespuestaInspeccionController@listAll');
     Route::get('respuestas_inspecciones/{id}', 'api\RespuestaInspeccionController@listOne');
     Route::post('respuestas_inspecciones', 'api\RespuestaInspeccionController@create');
