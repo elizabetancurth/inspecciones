@@ -27,12 +27,12 @@
             }
     </script>
 
-    <a class="btn btn-info container-fluid" href="{{ route('inspecciones_extintores.create')}}" role="button">Crear</a>
+    <a href="{{ route('inspecciones_extintores.index') }}">< Volver a inspección de extintores</a>
     <hr>
 
     <!--<div class="align-items-end text-right container-fluid input-group mb-3 col-md-4">-->
     <div class="container-fluid input-group mb-3" style="padding: 0px;">
-        <div class="col-md-8"><h2>Inspección de Extintores</h2></div>
+        <div class="col-md-8"><h2>Inspección de Extintores "Inactivos"</h2></div>
         <input onkeyup="myFunction()" id="buscar" type="text" class="form-control" placeholder="Buscar Código..." aria-label="Buscar" aria-describedby="basic-addon2">
         <div class="input-group-append">
             <button class="btn btn-outline-secondary" type="button">
@@ -51,7 +51,6 @@
                 <th scope="col">Elemento</th>
                 <th scope="col"></th>
                 <th scope="col"></th>
-                <th scope="col"></th>
             </tr>
             </thead>
             <tbody>
@@ -60,14 +59,13 @@
                         <td>{{$inspeccion->inspeccion->fecha}}</td>
                         <td>{{$inspeccion->inspeccion->estado_inspeccion}}</td>
                         <td>Código: {{$inspeccion->extintor->codigo}}
-                        <td><a class="btn btn-success" href="{{ route('inspecciones_extintores.show', $inspeccion->id) }}">Ver</span></a></td>
                         <td>
                             {!! Form::open([
                                 'method' => 'DELETE',
                                 'route' => ['inspecciones_extintores.destroy', $inspeccion->id]
                             ]) !!}
                                 
-                            {!! Form::submit('Quitar', ['class' => 'btn btn-danger']) !!}
+                            {!! Form::submit('Activar', ['class' => 'btn btn-danger']) !!}
                             {!! Form::close() !!}
                         </td>
                     </tr>
@@ -76,7 +74,7 @@
         </table>
     @else
         <div class="alert alert-danger">
-            <strong>¡Atención!</strong> No existen inspecciones.
+            <strong>¡Atención!</strong> No existen inspecciones inactivas.
         </div>
     @endif
 
@@ -86,7 +84,5 @@
         </ul>
     </nav>
 
-    <hr>
-    <a href="{{ route('inspecciones_extintores.inactivos')}}">Ver inspecciones de extintores inactivas ></a>
 
 @endsection

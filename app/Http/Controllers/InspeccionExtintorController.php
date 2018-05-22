@@ -34,7 +34,7 @@ class InspeccionExtintorController extends Controller
      */
     public function index()
     {
-        $inspecciones = InspeccionExtintor::paginate(5);                                                                       
+        $inspecciones = InspeccionExtintor::where('estado', 'Activo')->paginate(5);                                                                       
         return view('inspecciones_extintores.consultar', ['inspecciones' => $inspecciones]);
     }
 
@@ -130,12 +130,36 @@ class InspeccionExtintorController extends Controller
      */
     public function destroy($id)
     {
-        $inspeccion = Inspeccion::findOrFail($id);
-        $inspeccion_extintor = InspeccionExtintor::where('inspeccion_id', $inspeccion->id);
-        $inspeccion_extintor -> delete();
-        $inspeccion -> delete();
+        $owner = Auth:: User()->id;
+        $inspeccion_extintor = InspeccionExtintor::findOrFail($id);
+        $inspeccion = Inspeccion::where('id', $inspeccion_extintor->inspeccion_id);
 
-        Session::flash('flash_message', 'Insumo eliminado exitosamente');
+        dd($inspeccion);
+        
+        if($inspeccion_extintor-> estado === 'Inactivo')
+        {
+            $inspeccion -> estado = 'Activo';
+            $inspeccion_extintor -> estado = 'Activo';
+        }  
+        else
+        {
+            $inspeccion -> estado = 'Inactivo';
+            $inspeccion_extintor -> estado = 'Inactivo';
+        }
+
+        $inspeccion -> user_id_modificacion = $owner;
+
+        $inspeccion->save();
+        $inspeccion_extintor->save();
+
+        return redirect('/inspecciones_extintores');
+
         return redirect()->back();
+    }
+
+    public function frm_inactivos()
+    {
+        $inspecciones = InspeccionExtintor::where('estado', 'Inactivo')->paginate(5);                                                                       
+        return view('inspecciones_extintores.inactivos', ['inspecciones' => $inspecciones]);
     }
 }
