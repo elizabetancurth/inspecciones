@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\User;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class UsuarioController extends Controller
 {
@@ -15,7 +17,9 @@ class UsuarioController extends Controller
      */
     public function index()
     {
-        //
+        $usuarios = User::where('estado', 'Activo')->paginate(5);
+
+        return view('auth.consultar', ['usuarios' => $usuarios]);
     }
 
     /**
@@ -25,7 +29,7 @@ class UsuarioController extends Controller
      */
     public function create()
     {
-        //
+        return view('auth.register');
     }
 
     /**
@@ -36,7 +40,18 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+        User::create([
+            'name' => $data['name'],
+            'lastname' => $data['lastname'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+            'rol' => $data['rol'],
+            'estado' => 'Activo',
+        ]);
+
+        return ('/home');
     }
 
     /**

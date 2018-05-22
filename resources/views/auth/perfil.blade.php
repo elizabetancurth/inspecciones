@@ -7,7 +7,7 @@
     <div class="container">
         <div class="row">
             <div class="col col-md-7" >
-                    <h2>Perfil de {{Auth::user()->name}}</h2>
+                    <h2>Perfil de {{$user->name}}</h2>
                     <br>
             </div>
         </div>        
@@ -24,7 +24,7 @@
                                 Nombre completo
                             </th>
                             <td>
-                                {{Auth::user()->name }} {{Auth::user()->lastname }}
+                                {{$user->name }} {{$user->lastname }}
                             </td>
                         </tr>
                         <tr>
@@ -32,15 +32,14 @@
                                 Correo Electrónico
                             </th>
                             <td>
-                                {{Auth::user()->email}}
+                                {{$user->email}}
                             </td>
                         </tr>
                         <tr>
                             <th scope="col">
                                 Rol
                             </th>
-                            <td>
-                                {{Auth::user()->rol}}
+                            <td>$user->rol}}
                             </td>
                         </tr>
                     </tbody>

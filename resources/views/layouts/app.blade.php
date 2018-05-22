@@ -149,8 +149,8 @@
                                             </h5>
                                         </div>
                                         <div id="collapseSix" class="collapse hide" aria-labelledby="headingSix" data-parent="#accordion">
-                                            <a href="#" class="list-group-item list-group-item-action">Listar</a>
-                                            <a href="{{ route('register') }}" class="list-group-item list-group-item-action">Crear</a>
+                                            <a href="{{ route('usuarios.index') }}" class="list-group-item list-group-item-action">Listar</a>
+                                            <a href="{{ route('usuarios.create') }}" class="list-group-item list-group-item-action">Crear</a>
                                     </div>
                                 @endif
                             </div>

@@ -7,7 +7,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card-body">
-                <form method="POST" action="{{ route('register') }}">
+                <form method="POST" action="{{ route('usuarios.store') }}">
                     @csrf
 
                     <div class="form-group row">
@@ -78,7 +78,7 @@
                         <label for="rol" class="col-md-5 col-form-label text-md-right">Rol</label>
 
                         <div class="col-md-6">
-                            <select class="form-control" id="rol">
+                            <select class="form-control" id="rol" name="rol">
                                 <option>Administrador</option>
                                 <option>APH</option>
                             </select>
