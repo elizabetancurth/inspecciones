@@ -76,6 +76,9 @@ Route::group(array('prefix' => 'api'), function()
     Route::get('inspecciones_extintores', 'api\InspeccionExtintorController@listAll');
     Route::get('inspecciones_extintores/{id}', 'api\InspeccionExtintorController@listOne');
 
+    Route::get('inspecciones_insumos_botiquines', 'api\InspeccionBotiquinController@listAll');
+    Route::get('inspecciones_insumos_botiquines/{id}', 'api\InspeccionBotiquinController@listOne');
+
     Route::get('formatos_inspecciones', 'api\FormatoInspeccionController@listAll');
     Route::get('formatos_inspecciones/{id}', 'api\FormatoInspeccionController@listOne');
 
