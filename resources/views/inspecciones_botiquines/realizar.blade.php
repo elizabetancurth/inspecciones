@@ -1,17 +1,18 @@
 @extends("layouts.app")
 
-@section("headerTitle", "Realizar Inspección")
+@section("headerTitle", "Realizar Inspección de Insumo Botiquín")
 
 @section("content")
 
-    <a href="{{ route('inspecciones_extintores.index') }}">< Volver a inspecciones</a>
+    <a href="{{ route('inspecciones_botiquines.ver_inspecciones_insumo', $inspeccion->insumo_botiquin->id)}}">< Volver a inspecciones</a>
     <br>
-    <h2>Inspección Extintor N° {{$inspeccion->extintor->codigo}}</h2>
+    <h2>Inspección Botiquín {{$inspeccion->insumo_botiquin->botiquin->codigo}}</h2>
+    <h3>Insumo: {{$inspeccion->insumo_botiquin->nombre}}</h3>
     <br>
 
     <div class="container">
 
-    {!! Form::open(['route' => 'respuestas_inspecciones.store']) !!}
+    {!! Form::open(['route' => 'res_inspecciones_botiquines.store']) !!}
     
         <table class="table">
             <thead class="thead-light">
@@ -37,7 +38,13 @@
                         @endif
                         <input type="hidden" value="{{$i = $i+1}}">
                         @if($pregunta->tipo_pregunta_id === 3)
-                            <input class="form-control" type="date" name="fecha_recarga" value="">
+                            @if($inspeccion->insumo_botiquin->tipo === 'Fármaco')
+                                <input class="form-control" type="date" name="fecha_vencimiento" value="">
+                            @endif
+                            @if($inspeccion->insumo_botiquin->tipo === 'Utencilio')
+                                <input type="hidden" name="fecha_vencimiento" value="0000-00-00">
+                                No aplica
+                            @endif
                         @endif
                         @if($pregunta->tipo_pregunta_id === 4)
                         <textarea class="form-control" name="observaciones"></textarea>
@@ -49,7 +56,7 @@
         </table>
         <input type="hidden" name="inspeccion_id" value="{{$inspeccion->id}}">
         <div>
-            <a role="button" class="btn btn-secondary" href="/inspecciones_extintores">Cerrar</a>
+            <a role="button" class="btn btn-secondary" href="{{ route('inspecciones_botiquines.ver_inspecciones_insumo', $inspeccion->insumo_botiquin->id)}}">Cerrar</a>
             <input class="btn btn-primary" type="submit" value="{{ $bthText or 'Guardar Inspección'}}" >
         </div>
     

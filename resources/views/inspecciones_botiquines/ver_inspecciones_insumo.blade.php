@@ -63,7 +63,7 @@
                                 <a class="btn btn-success" href="{{ route('inspecciones_botiquines.show', $inspeccion->id) }}">Realizar</span></a>
                             @endif
                             @if($inspeccion->inspeccion->estado_inspeccion === "Realizada")
-                                <a class="btn btn-info" href="{{ route('respuestas_inspecciones_botiquines.show', $inspeccion->id) }}">Resultado</span></a>
+                                <a class="btn btn-info" href="{{ route('res_inspecciones_botiquines.show', $inspeccion->id) }}">Resultado</span></a>
                             @endif
                         </td>
                     </tr>

@@ -28,6 +28,7 @@ Route::resource('inspecciones', 'InspeccionController');
 Route::resource('inspecciones_extintores', 'InspeccionExtintorController');
 Route::resource('respuestas_inspecciones', 'RespuestaInspeccionController');
 Route::resource('inspecciones_botiquines', 'InspeccionBotiquinController');
+Route::resource('res_inspecciones_botiquines', 'RespuestaInspeccionBotiquinController');
 Route::resource('usuarios', 'UsuarioController');
 
 //**---------- Inactivos ---------- **//

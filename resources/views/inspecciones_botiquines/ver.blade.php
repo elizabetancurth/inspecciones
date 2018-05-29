@@ -4,9 +4,9 @@
 
 @section("content")
 
-    <a href="{{ route('inspecciones_extintores.index') }}">< Volver a inspecciones</a>
+    <a href="{{ route('inspecciones_botiquines.ver_inspecciones_insumo', $inspeccion->insumo_botiquin->id)}}">< Volver a inspecciones de insumo</a>
     <br>
-    <h2>Inspección Extintor N° {{$inspeccion->extintor->codigo}}</h2>
+    <h2>Inspección Insumo {{$inspeccion->insumo_botiquin->nombre}}</h2>
     <br>
 
     <div>Inspección realizada el {{$inspeccion->inspeccion->created_at}}</div>
@@ -23,31 +23,10 @@
             </thead>
             <tbody>
             @foreach($respuestas as $respuesta)
-                 @if($respuesta->pregunta->tipo_pregunta_id === 2)
-                    @if($respuesta->respuesta === 'Bueno')
                     <tr>
                         <td>{{$respuesta->pregunta->descripcion}}</td>
                         <td> {{$respuesta->respuesta}}</td>
                     </tr>
-                    @endif
-                    @if($respuesta->respuesta === 'Regular')
-                    <tr class="warning">
-                        <td>{{$respuesta->pregunta->descripcion}}</td>
-                        <td> {{$respuesta->respuesta}}</td>
-                    </tr>
-                    @endif
-                    @if($respuesta->respuesta === 'Malo')
-                    <tr class="danger">
-                        <td>{{$respuesta->pregunta->descripcion}}</td>
-                        <td> {{$respuesta->respuesta}}</td>
-                    </tr>
-                    @endif
-                @else
-                    <tr>
-                        <td>{{$respuesta->pregunta->descripcion}}</td>
-                        <td> {{$respuesta->respuesta}}</td>
-                    </tr>
-                @endif
             @endforeach
             </tbody>
         </table>
