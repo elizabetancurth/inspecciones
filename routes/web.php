@@ -41,8 +41,8 @@ Route::get('inspecciones_extintores_inactivos', [ 'as' => 'inspecciones_extintor
 
 Route::get('crear_insumo/{id}', [ 'as' => 'insumos_botiquines.create_insumo', 'uses' => 'InsumoBotiquinController@create_insumo']);
 Route::get('crear_pregunta/{id}', [ 'as' => 'preguntas.create_pregunta', 'uses' => 'PreguntaFormatoController@create_pregunta']);
-Route::get('ver_inspeccion/{id}', [ 'as' => 'inspecciones_botiquines.ver_inspeccion', 'uses' => 'InspeccionBotiquinController@ver_inspeccion']);
-
+Route::get('ver_inspecciones_insumos/{id}', [ 'as' => 'inspecciones_botiquines.ver_inspecciones_insumos', 'uses' => 'InspeccionBotiquinController@ver_inspecciones_insumos']);
+Route::get('ver_inspecciones_insumo/{id}', [ 'as' => 'inspecciones_botiquines.ver_inspecciones_insumo', 'uses' => 'InspeccionBotiquinController@ver_inspecciones_insumo']);
 
 //**---------- Rutas Servicio Web REST ---------- **//
 

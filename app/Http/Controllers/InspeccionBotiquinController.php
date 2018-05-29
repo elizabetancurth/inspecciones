@@ -39,12 +39,26 @@ class InspeccionBotiquinController extends Controller
         return view('inspecciones_botiquines.consultar', ['inspecciones' => $inspecciones, 'botiquines' => $botiquines]);
     }
 
-    public function ver_inspeccion($id)
+    /**
+     * Muestra lista de insumos que contiene un botiquín
+     */
+    public function ver_inspecciones_insumos($id)
     {
         $botiquin = Botiquin::findOrFail($id);
         $insumos = InsumoBotiquin::where('botiquin_id', $botiquin->id)->paginate(5);
         
         return view('inspecciones_botiquines.ver_insumos', ['insumos' => $insumos, 'botiquin' => $botiquin]);        
+    }
+
+    /**
+     * Muestra lista de inspecciones al insumo seleccionado de un botiquín
+     */
+    public function ver_inspecciones_insumo($id)
+    {
+        $insumo = InsumoBotiquin::findOrFail($id);
+        $inspecciones = InspeccionBotiquin::where('insumo_botiquin_id', $insumo->id)->paginate(5);
+        
+        return view('inspecciones_botiquines.ver_inspecciones_insumo', ['inspecciones' => $inspecciones, 'insumo' => $insumo]);        
     }
 
     /**

@@ -51,7 +51,7 @@ CREATE TABLE `botiquines` (
 
 LOCK TABLES `botiquines` WRITE;
 /*!40000 ALTER TABLE `botiquines` DISABLE KEYS */;
-INSERT INTO `botiquines` VALUES (1,'1',1,6,'Activo',1,NULL,NULL,'2018-04-27 04:07:03','2018-04-27 04:07:03');
+INSERT INTO `botiquines` VALUES (1,'COD-0001',1,8,'Activo',1,NULL,NULL,'2018-05-26 17:19:59','2018-05-26 17:19:59');
 /*!40000 ALTER TABLE `botiquines` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -225,7 +225,7 @@ CREATE TABLE `extintores` (
   CONSTRAINT `extintores_ubicacion_id_foreign` FOREIGN KEY (`ubicacion_id`) REFERENCES `ubicaciones` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `extintores_user_id_creacion_foreign` FOREIGN KEY (`user_id_creacion`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `extintores_user_id_modificacion_foreign` FOREIGN KEY (`user_id_modificacion`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -234,7 +234,7 @@ CREATE TABLE `extintores` (
 
 LOCK TABLES `extintores` WRITE;
 /*!40000 ALTER TABLE `extintores` DISABLE KEYS */;
-INSERT INTO `extintores` VALUES (4,'2',1,10,'Piso',11,'Activo',1,1,NULL,'2018-04-30 08:34:17','2018-05-06 21:42:31'),(5,'3',1,10,'140',12,'Activo',1,1,NULL,'2018-05-01 16:17:35','2018-05-04 04:21:46'),(6,'4',1,10,'140',13,'Activo',1,NULL,NULL,'2018-05-04 00:00:55','2018-05-04 00:00:55'),(7,'5',3,3,'140',14,'Activo',1,1,NULL,'2018-05-04 00:04:49','2018-05-04 04:21:53'),(8,'6',1,10,'140',15,'Activo',1,1,NULL,'2018-05-04 00:36:46','2018-05-04 04:21:40');
+INSERT INTO `extintores` VALUES (1,'1',1,20,'Piso',1,'Activo',1,NULL,NULL,NULL,NULL),(2,'2',1,10,'Piso',2,'Activo',1,NULL,NULL,NULL,NULL),(3,'3',1,10,'140',3,'Activo',1,NULL,NULL,NULL,NULL),(4,'4',1,10,'Gabinete',7,'Activo',1,1,NULL,'2018-05-26 17:18:45','2018-05-26 17:19:28');
 /*!40000 ALTER TABLE `extintores` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -268,7 +268,7 @@ CREATE TABLE `formatos_inspecciones` (
 
 LOCK TABLES `formatos_inspecciones` WRITE;
 /*!40000 ALTER TABLE `formatos_inspecciones` DISABLE KEYS */;
-INSERT INTO `formatos_inspecciones` VALUES (1,'Inspección mensual de extintores','Activo',1,NULL,NULL,'2018-04-29 02:23:45','2018-04-29 02:23:45'),(2,'Inspección de insumos de botiquines','Activo',1,NULL,NULL,'2018-05-03 23:30:06','2018-05-03 23:30:06');
+INSERT INTO `formatos_inspecciones` VALUES (1,'Inspección mensual de extintores','Activo',1,NULL,NULL,NULL,NULL),(2,'Inspección de insumos de botiquines','Activo',1,NULL,NULL,'2018-05-26 17:51:45','2018-05-26 17:51:45');
 /*!40000 ALTER TABLE `formatos_inspecciones` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -291,6 +291,7 @@ CREATE TABLE `inspecciones` (
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
+  `estado_inspeccion` enum('Pendiente','Realizada','Cancelada') COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `inspecciones_inspeccion_clasificacion_id_foreign` (`inspeccion_clasificacion_id`),
   KEY `inspecciones_formato_inspeccion_id_foreign` (`formato_inspeccion_id`),
@@ -300,7 +301,7 @@ CREATE TABLE `inspecciones` (
   CONSTRAINT `inspecciones_inspeccion_clasificacion_id_foreign` FOREIGN KEY (`inspeccion_clasificacion_id`) REFERENCES `inspecciones_clasificaciones` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `inspecciones_user_id_creacion_foreign` FOREIGN KEY (`user_id_creacion`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `inspecciones_user_id_modificacion_foreign` FOREIGN KEY (`user_id_modificacion`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -309,6 +310,7 @@ CREATE TABLE `inspecciones` (
 
 LOCK TABLES `inspecciones` WRITE;
 /*!40000 ALTER TABLE `inspecciones` DISABLE KEYS */;
+INSERT INTO `inspecciones` VALUES (1,'2018-05-21','08:00:00',1,1,'Inactivo',1,1,NULL,'2018-05-22 04:09:06','2018-05-26 17:20:59','Realizada'),(2,'2018-05-21','08:00:00',1,1,'Activo',1,1,NULL,'2018-05-22 04:09:07','2018-05-22 05:43:17','Realizada'),(3,'2018-05-21','08:00:00',1,1,'Activo',1,1,NULL,'2018-05-22 04:09:07','2018-05-22 04:45:56','Pendiente'),(5,'2018-05-21','14:00:00',2,2,'Activo',1,NULL,NULL,'2018-05-26 18:35:26','2018-05-26 18:35:26','Pendiente'),(6,'2018-05-21','14:00:00',2,2,'Activo',1,NULL,NULL,'2018-05-26 18:35:26','2018-05-26 18:35:26','Pendiente'),(7,'2018-06-21','08:00:00',2,2,'Activo',1,NULL,NULL,'2018-05-28 08:30:35','2018-05-28 08:30:35','Pendiente'),(8,'2018-06-21','08:00:00',2,2,'Activo',1,NULL,NULL,'2018-05-28 08:30:36','2018-05-28 08:30:36','Pendiente');
 /*!40000 ALTER TABLE `inspecciones` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -358,20 +360,14 @@ CREATE TABLE `inspecciones_establecimientos` (
   `inspeccion_id` int(10) unsigned DEFAULT NULL,
   `establecimiento_id` int(10) unsigned DEFAULT NULL,
   `estado` enum('Activo','Inactivo') COLLATE utf8mb4_unicode_ci NOT NULL,
-  `user_id_creacion` int(10) unsigned DEFAULT NULL,
-  `user_id_modificacion` int(10) unsigned DEFAULT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `inspecciones_establecimientos_inspeccion_id_foreign` (`inspeccion_id`),
   KEY `inspecciones_establecimientos_establecimiento_id_foreign` (`establecimiento_id`),
-  KEY `inspecciones_establecimientos_user_id_creacion_foreign` (`user_id_creacion`),
-  KEY `inspecciones_establecimientos_user_id_modificacion_foreign` (`user_id_modificacion`),
   CONSTRAINT `inspecciones_establecimientos_establecimiento_id_foreign` FOREIGN KEY (`establecimiento_id`) REFERENCES `establecimientos` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `inspecciones_establecimientos_inspeccion_id_foreign` FOREIGN KEY (`inspeccion_id`) REFERENCES `inspecciones` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `inspecciones_establecimientos_user_id_creacion_foreign` FOREIGN KEY (`user_id_creacion`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `inspecciones_establecimientos_user_id_modificacion_foreign` FOREIGN KEY (`user_id_modificacion`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+  CONSTRAINT `inspecciones_establecimientos_inspeccion_id_foreign` FOREIGN KEY (`inspeccion_id`) REFERENCES `inspecciones` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -396,21 +392,15 @@ CREATE TABLE `inspecciones_extintores` (
   `inspeccion_id` int(10) unsigned DEFAULT NULL,
   `extintor_id` int(10) unsigned DEFAULT NULL,
   `estado` enum('Activo','Inactivo') COLLATE utf8mb4_unicode_ci NOT NULL,
-  `user_id_creacion` int(10) unsigned DEFAULT NULL,
-  `user_id_modificacion` int(10) unsigned DEFAULT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `inspecciones_extintores_inspeccion_id_foreign` (`inspeccion_id`),
   KEY `inspecciones_extintores_extintor_id_foreign` (`extintor_id`),
-  KEY `inspecciones_extintores_user_id_creacion_foreign` (`user_id_creacion`),
-  KEY `inspecciones_extintores_user_id_modificacion_foreign` (`user_id_modificacion`),
   CONSTRAINT `inspecciones_extintores_extintor_id_foreign` FOREIGN KEY (`extintor_id`) REFERENCES `extintores` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `inspecciones_extintores_inspeccion_id_foreign` FOREIGN KEY (`inspeccion_id`) REFERENCES `inspecciones` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `inspecciones_extintores_user_id_creacion_foreign` FOREIGN KEY (`user_id_creacion`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `inspecciones_extintores_user_id_modificacion_foreign` FOREIGN KEY (`user_id_modificacion`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  CONSTRAINT `inspecciones_extintores_inspeccion_id_foreign` FOREIGN KEY (`inspeccion_id`) REFERENCES `inspecciones` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -419,6 +409,7 @@ CREATE TABLE `inspecciones_extintores` (
 
 LOCK TABLES `inspecciones_extintores` WRITE;
 /*!40000 ALTER TABLE `inspecciones_extintores` DISABLE KEYS */;
+INSERT INTO `inspecciones_extintores` VALUES (1,1,1,'Inactivo',NULL,'2018-05-22 04:09:07','2018-05-26 17:20:59'),(2,2,2,'Activo',NULL,'2018-05-22 04:09:07','2018-05-22 04:45:47'),(3,3,3,'Activo',NULL,'2018-05-22 04:09:07','2018-05-22 04:45:56');
 /*!40000 ALTER TABLE `inspecciones_extintores` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -434,21 +425,15 @@ CREATE TABLE `inspecciones_insumos_botiquines` (
   `inspeccion_id` int(10) unsigned DEFAULT NULL,
   `insumo_botiquin_id` int(10) unsigned DEFAULT NULL,
   `estado` enum('Activo','Inactivo') COLLATE utf8mb4_unicode_ci NOT NULL,
-  `user_id_creacion` int(10) unsigned DEFAULT NULL,
-  `user_id_modificacion` int(10) unsigned DEFAULT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `inspecciones_insumos_botiquines_inspeccion_id_foreign` (`inspeccion_id`),
   KEY `inspecciones_insumos_botiquines_insumo_botiquin_id_foreign` (`insumo_botiquin_id`),
-  KEY `inspecciones_insumos_botiquines_user_id_creacion_foreign` (`user_id_creacion`),
-  KEY `inspecciones_insumos_botiquines_user_id_modificacion_foreign` (`user_id_modificacion`),
   CONSTRAINT `inspecciones_insumos_botiquines_inspeccion_id_foreign` FOREIGN KEY (`inspeccion_id`) REFERENCES `inspecciones` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `inspecciones_insumos_botiquines_insumo_botiquin_id_foreign` FOREIGN KEY (`insumo_botiquin_id`) REFERENCES `insumos_botiquin` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `inspecciones_insumos_botiquines_user_id_creacion_foreign` FOREIGN KEY (`user_id_creacion`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `inspecciones_insumos_botiquines_user_id_modificacion_foreign` FOREIGN KEY (`user_id_modificacion`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  CONSTRAINT `inspecciones_insumos_botiquines_insumo_botiquin_id_foreign` FOREIGN KEY (`insumo_botiquin_id`) REFERENCES `insumos_botiquin` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -457,6 +442,7 @@ CREATE TABLE `inspecciones_insumos_botiquines` (
 
 LOCK TABLES `inspecciones_insumos_botiquines` WRITE;
 /*!40000 ALTER TABLE `inspecciones_insumos_botiquines` DISABLE KEYS */;
+INSERT INTO `inspecciones_insumos_botiquines` VALUES (1,5,1,'Activo',NULL,'2018-05-26 18:35:26','2018-05-26 18:35:26'),(2,6,2,'Activo',NULL,'2018-05-26 18:35:26','2018-05-26 18:35:26'),(3,7,1,'Activo',NULL,'2018-05-28 08:30:35','2018-05-28 08:30:35'),(4,8,2,'Activo',NULL,'2018-05-28 08:30:36','2018-05-28 08:30:36');
 /*!40000 ALTER TABLE `inspecciones_insumos_botiquines` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -496,7 +482,7 @@ CREATE TABLE `insumos_botiquin` (
 
 LOCK TABLES `insumos_botiquin` WRITE;
 /*!40000 ALTER TABLE `insumos_botiquin` DISABLE KEYS */;
-INSERT INTO `insumos_botiquin` VALUES (1,'Algodón','Utencilio',NULL,10,1,'Activo',1,NULL,NULL,'2018-04-27 04:09:41','2018-04-27 04:09:41'),(2,'Acetaminofen','Fármaco','2019-04-27',10,1,'Activo',1,NULL,NULL,'2018-04-27 04:12:44','2018-04-27 04:12:44');
+INSERT INTO `insumos_botiquin` VALUES (1,'Algodón','Utencilio',NULL,10,1,'Activo',1,NULL,NULL,'2018-05-26 17:20:18','2018-05-26 17:20:18'),(2,'Acetaminofén','Fármaco','2020-05-30',10,1,'Activo',1,NULL,NULL,'2018-05-26 17:20:41','2018-05-26 17:20:41');
 /*!40000 ALTER TABLE `insumos_botiquin` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -512,7 +498,7 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=93 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -521,7 +507,7 @@ CREATE TABLE `migrations` (
 
 LOCK TABLES `migrations` WRITE;
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
-INSERT INTO `migrations` VALUES (1,'2014_10_12_000000_create_users_table',1),(2,'2014_10_12_100000_create_password_resets_table',1),(3,'2018_04_03_235634_empresas',1),(4,'2018_04_04_004214_edificios',1),(5,'2018_04_04_011508_ubicaciones',1),(6,'2018_04_04_014053_clasificaciones_extintores',1),(7,'2018_04_04_234721_extintores',1),(8,'2018_04_04_234818_recargas_extintores',1),(9,'2018_04_04_235449_tipos_botiquines',1),(10,'2018_04_05_000038_botiquines',1),(11,'2018_04_05_000858_insumos_botiquin',1),(12,'2018_04_06_005049_establecimientos',1),(13,'2018_04_06_011100_inspecciones_clasificaciones',1),(14,'2018_04_06_013931_formatos_inspecciones',1),(15,'2018_04_06_014143_tipos_preguntas',1),(16,'2018_04_06_014654_opciones_respuestas',1),(17,'2018_04_06_023836_preguntas_formatos',1),(18,'2018_04_06_025356_inspecciones',1),(19,'2018_04_06_025908_respuestas_inspecciones',1),(20,'2018_04_06_032401_inspecciones_extintores',1),(21,'2018_04_06_032739_inspecciones_insumos_botiquines',1),(22,'2018_04_06_032912_inspecciones_establecimientos',1);
+INSERT INTO `migrations` VALUES (70,'2014_10_12_000000_create_users_table',1),(71,'2014_10_12_100000_create_password_resets_table',1),(72,'2018_04_03_235634_empresas',1),(73,'2018_04_04_004214_edificios',1),(74,'2018_04_04_011508_ubicaciones',1),(75,'2018_04_04_014053_clasificaciones_extintores',1),(76,'2018_04_04_234721_extintores',1),(77,'2018_04_04_234818_recargas_extintores',1),(78,'2018_04_04_235449_tipos_botiquines',1),(79,'2018_04_05_000038_botiquines',1),(80,'2018_04_05_000858_insumos_botiquin',1),(81,'2018_04_06_005049_establecimientos',1),(82,'2018_04_06_011100_inspecciones_clasificaciones',1),(83,'2018_04_06_013931_formatos_inspecciones',1),(84,'2018_04_06_014143_tipos_preguntas',1),(85,'2018_04_06_014654_opciones_respuestas',1),(86,'2018_04_06_023836_preguntas_formatos',1),(87,'2018_04_06_025356_inspecciones',1),(88,'2018_04_06_025908_respuestas_inspecciones',1),(89,'2018_04_06_032401_inspecciones_extintores',1),(90,'2018_04_06_032739_inspecciones_insumos_botiquines',1),(91,'2018_04_06_032912_inspecciones_establecimientos',1),(92,'2018_05_20_221815_add_estado_inspeccion_to_inspecciones_table',1);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -614,7 +600,7 @@ CREATE TABLE `preguntas_formatos` (
   CONSTRAINT `preguntas_formatos_tipo_pregunta_id_foreign` FOREIGN KEY (`tipo_pregunta_id`) REFERENCES `tipos_preguntas` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `preguntas_formatos_user_id_creacion_foreign` FOREIGN KEY (`user_id_creacion`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `preguntas_formatos_user_id_modificacion_foreign` FOREIGN KEY (`user_id_modificacion`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -623,7 +609,7 @@ CREATE TABLE `preguntas_formatos` (
 
 LOCK TABLES `preguntas_formatos` WRITE;
 /*!40000 ALTER TABLE `preguntas_formatos` DISABLE KEYS */;
-INSERT INTO `preguntas_formatos` VALUES (1,'Estado del cilíndro',2,1,'Activo',1,NULL,NULL,'2018-04-29 02:25:45','2018-05-03 23:37:12'),(2,'Estado de la boquilla',2,1,'Activo',1,NULL,NULL,'2018-04-29 05:11:39','2018-04-29 05:11:39');
+INSERT INTO `preguntas_formatos` VALUES (1,'Estado del cilindro',2,1,'Activo',1,NULL,NULL,NULL,NULL),(2,'Estado de la boquilla',2,1,'Activo',1,NULL,NULL,NULL,NULL),(3,'Estado de la manguera',2,1,'Activo',1,NULL,NULL,NULL,NULL),(4,'Estado del manómetro',2,1,'Activo',1,NULL,NULL,NULL,NULL),(5,'Estado del PIN',2,1,'Activo',1,NULL,NULL,NULL,NULL),(6,'Señalización',2,1,'Activo',1,NULL,NULL,NULL,NULL),(7,'Fecha de recarga',3,1,'Activo',1,NULL,NULL,NULL,NULL),(8,'Observaciones',4,1,'Activo',1,NULL,NULL,NULL,NULL),(9,'Fecha de vencimiento',3,2,'Activo',1,NULL,NULL,'2018-05-26 17:52:03','2018-05-26 17:52:03'),(10,'Observaciones',4,2,'Activo',1,NULL,NULL,'2018-05-26 17:52:15','2018-05-26 17:52:15');
 /*!40000 ALTER TABLE `preguntas_formatos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -652,7 +638,7 @@ CREATE TABLE `recargas_extintores` (
   CONSTRAINT `recargas_extintores_extintor_id_foreign` FOREIGN KEY (`extintor_id`) REFERENCES `extintores` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `recargas_extintores_user_id_creacion_foreign` FOREIGN KEY (`user_id_creacion`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `recargas_extintores_user_id_modificacion_foreign` FOREIGN KEY (`user_id_modificacion`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -661,7 +647,7 @@ CREATE TABLE `recargas_extintores` (
 
 LOCK TABLES `recargas_extintores` WRITE;
 /*!40000 ALTER TABLE `recargas_extintores` DISABLE KEYS */;
-INSERT INTO `recargas_extintores` VALUES (1,'2018-04-27','2019-04-27',NULL,'Activo',1,NULL,NULL,'2018-04-27 03:21:28','2018-04-27 03:21:28'),(2,'2017-04-27','2019-04-27',NULL,'Activo',1,1,NULL,'2018-04-27 03:36:24','2018-05-01 17:29:44'),(3,'2018-04-30','2019-04-19',4,'Activo',1,NULL,NULL,'2018-04-30 08:34:17','2018-04-30 08:34:17'),(4,'2018-04-30','2019-04-19',5,'Activo',1,1,NULL,'2018-05-01 16:17:35','2018-05-03 23:54:26'),(5,'2018-05-03','2019-05-03',6,'Activo',1,NULL,NULL,'2018-05-04 00:00:55','2018-05-04 00:00:55'),(6,'2018-05-03','2019-05-03',7,'Activo',1,NULL,NULL,'2018-05-04 00:04:49','2018-05-04 00:04:49'),(7,'2018-05-03','2019-05-03',8,'Activo',1,NULL,NULL,'2018-05-04 00:36:46','2018-05-04 00:36:46');
+INSERT INTO `recargas_extintores` VALUES (1,'2017-06-29','2018-07-30',1,'Activo',1,NULL,NULL,NULL,NULL),(2,'2017-06-29','2018-07-30',2,'Activo',1,NULL,NULL,NULL,NULL),(3,'2017-06-29','2018-07-30',3,'Activo',1,NULL,NULL,NULL,NULL),(4,'2018-04-30','2019-05-01',4,'Activo',1,NULL,NULL,'2018-05-26 17:18:45','2018-05-26 17:18:45');
 /*!40000 ALTER TABLE `recargas_extintores` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -692,7 +678,7 @@ CREATE TABLE `respuestas_inspecciones` (
   CONSTRAINT `respuestas_inspecciones_pregunta_formato_id_foreign` FOREIGN KEY (`pregunta_formato_id`) REFERENCES `preguntas_formatos` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `respuestas_inspecciones_user_id_creacion_foreign` FOREIGN KEY (`user_id_creacion`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `respuestas_inspecciones_user_id_modificacion_foreign` FOREIGN KEY (`user_id_modificacion`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -701,6 +687,7 @@ CREATE TABLE `respuestas_inspecciones` (
 
 LOCK TABLES `respuestas_inspecciones` WRITE;
 /*!40000 ALTER TABLE `respuestas_inspecciones` DISABLE KEYS */;
+INSERT INTO `respuestas_inspecciones` VALUES (1,'3',1,1,'Activo',1,NULL,NULL,'2018-05-22 05:15:38','2018-05-22 05:15:38'),(2,'3',2,1,'Activo',1,NULL,NULL,'2018-05-22 05:15:38','2018-05-22 05:15:38'),(3,'3',3,1,'Activo',1,NULL,NULL,'2018-05-22 05:15:38','2018-05-22 05:15:38'),(4,'3',4,1,'Activo',1,NULL,NULL,'2018-05-22 05:15:38','2018-05-22 05:15:38'),(5,'3',5,1,'Activo',1,NULL,NULL,'2018-05-22 05:15:38','2018-05-22 05:15:38'),(6,'3',6,1,'Activo',1,NULL,NULL,'2018-05-22 05:15:38','2018-05-22 05:15:38'),(7,'2018-05-22',7,1,'Activo',1,NULL,NULL,'2018-05-22 05:15:38','2018-05-22 05:15:38'),(8,'Extintor en buen estado',8,1,'Activo',1,NULL,NULL,'2018-05-22 05:15:38','2018-05-22 05:15:38'),(9,'Bueno',1,2,'Activo',1,NULL,NULL,'2018-05-22 05:43:17','2018-05-22 05:43:17'),(10,'Bueno',2,2,'Activo',1,NULL,NULL,'2018-05-22 05:43:17','2018-05-22 05:43:17'),(11,'Bueno',3,2,'Activo',1,NULL,NULL,'2018-05-22 05:43:17','2018-05-22 05:43:17'),(12,'Regular',4,2,'Activo',1,NULL,NULL,'2018-05-22 05:43:17','2018-05-22 05:43:17'),(13,'Bueno',5,2,'Activo',1,NULL,NULL,'2018-05-22 05:43:17','2018-05-22 05:43:17'),(14,'Bueno',6,2,'Activo',1,NULL,NULL,'2018-05-22 05:43:17','2018-05-22 05:43:17'),(15,'2018-05-22',7,2,'Activo',1,NULL,NULL,'2018-05-22 05:43:17','2018-05-22 05:43:17'),(16,'Manómetro presenta daños',8,2,'Activo',1,NULL,NULL,'2018-05-22 05:43:17','2018-05-22 05:43:17');
 /*!40000 ALTER TABLE `respuestas_inspecciones` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -797,7 +784,7 @@ CREATE TABLE `ubicaciones` (
   CONSTRAINT `ubicaciones_edificio_id_foreign` FOREIGN KEY (`edificio_id`) REFERENCES `edificios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `ubicaciones_user_id_creacion_foreign` FOREIGN KEY (`user_id_creacion`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `ubicaciones_user_id_modificacion_foreign` FOREIGN KEY (`user_id_modificacion`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -806,7 +793,7 @@ CREATE TABLE `ubicaciones` (
 
 LOCK TABLES `ubicaciones` WRITE;
 /*!40000 ALTER TABLE `ubicaciones` DISABLE KEYS */;
-INSERT INTO `ubicaciones` VALUES (1,'1','Frente a la oficina del rector','Activo',1,1,NULL,NULL,NULL,NULL),(2,'4','Al lado de las sombrillas','Activo',2,1,NULL,NULL,NULL,NULL),(3,'5','Al costado del salón 503','Activo',3,1,NULL,NULL,NULL,NULL),(4,'1','Salón de música','Activo',1,1,NULL,NULL,'2018-04-27 03:21:28','2018-04-27 03:21:28'),(5,'1','Salón de música','Activo',2,1,1,NULL,'2018-04-27 03:36:24','2018-05-03 23:45:19'),(6,'1','Salón de música','Activo',1,1,NULL,NULL,'2018-04-27 04:07:03','2018-04-27 04:07:03'),(7,'2','Salón de música','Activo',1,1,NULL,NULL,'2018-04-30 08:25:48','2018-04-30 08:25:48'),(8,'2','Pasillo','Activo',1,1,NULL,NULL,'2018-04-30 08:28:26','2018-04-30 08:28:26'),(9,'1','Pasillo','Activo',1,1,NULL,NULL,'2018-04-30 08:31:50','2018-04-30 08:31:50'),(10,'2','Pasillo','Activo',1,1,NULL,NULL,'2018-04-30 08:33:42','2018-04-30 08:33:42'),(11,'1','Mercadeo (Antiguo)','Activo',2,1,1,NULL,'2018-04-30 08:34:17','2018-05-03 23:56:00'),(12,'1','Almacén','Activo',2,1,1,NULL,'2018-05-01 16:17:35','2018-05-03 23:55:29'),(13,'1','Archivo','Activo',2,1,NULL,NULL,'2018-05-04 00:00:55','2018-05-04 00:00:55'),(14,'2','Archivo','Activo',2,1,NULL,NULL,'2018-05-04 00:04:49','2018-05-04 00:04:49'),(15,'3','CEA','Activo',2,1,NULL,NULL,'2018-05-04 00:36:46','2018-05-04 00:36:46');
+INSERT INTO `ubicaciones` VALUES (1,'1','Frente a la oficina del rector','Activo',1,1,NULL,NULL,NULL,NULL),(2,'4','Al lado de las sombrillas','Activo',2,1,NULL,NULL,NULL,NULL),(3,'5','Al costado del salón 503','Activo',3,1,NULL,NULL,NULL,NULL),(4,'1','Salón de Música','Activo',1,1,NULL,NULL,NULL,NULL),(5,'1','Mercadeo (Antiguo)','Activo',2,1,NULL,NULL,NULL,NULL),(6,'1','Almacen','Activo',2,1,NULL,NULL,NULL,NULL),(7,'3','Pasillo','Activo',2,1,NULL,NULL,'2018-05-26 17:18:44','2018-05-26 17:18:44'),(8,'1','Almacén','Activo',2,1,NULL,NULL,'2018-05-26 17:19:59','2018-05-26 17:19:59');
 /*!40000 ALTER TABLE `ubicaciones` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -830,7 +817,7 @@ CREATE TABLE `users` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -839,7 +826,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Elizabeth','Betancurth','elizabetancurth@gmail.com','$2y$10$rwaH8SxMXWHIe6AyO.sz8.3br0RwYT.CYDxlZSZ63t8CrpuPhnrXO','Administrador','Activo','OPWtVfWbXyc7sR21hhyWjf1jxSl2oQSBSyrPJ5foVzg9JI1BTkSD2NmAhKt3',NULL,NULL),(2,'Daniel','Arboleda','daniel@gmail.com','$2y$10$MzEoZv6JS/MvuBu0hwdz5eJWEeNWitdrrAFPgUovJ1RZJmbHU/zCW','APH','Activo',NULL,NULL,NULL);
+INSERT INTO `users` VALUES (1,'Elizabeth','Betancurth','elizabetancurth@gmail.com','$2y$10$tgIazCotgzjbrzqZXrKvg.2dDxucQtp8PkysA80IyVtCxyQZdEh2m','Administrador','Activo','Cue894x4hBKYZ0LzyQrpZ8qwz3YvJQMiHo7odKiFUbPVdzL75mO2oz7o98Su',NULL,NULL),(2,'Daniel','Arboleda','daniel@gmail.com','$2y$10$mGN3qq0PR1fbWIr7NpVGXOxJR.w6dY7KPnmGgY6ctsJdbzrTY5H.a','APH','Activo','EQ78oG2wgdtOPm9y1JsQj6qGFPrkqrlDdIUYVmK59LWTgWAiVtKhHJvyEiiw',NULL,NULL),(3,'Luisa','Cuellar','luisa@gmail.com','$2y$10$ne73bla4kJ3/J6tuV2XdOeD5zUFva5NabkDqnGfBzEGR31NCcPwOW','APH','Activo','0ad84lLd21Ts026VaRwKJ4aB70JUZKeMGiGvncebs8Hce8IxsotV1YHhN8Vf','2018-05-22 07:42:05','2018-05-22 07:42:05'),(4,'Luis','Pérez','luis@gmail.com','$2y$10$49Q0cNE9Ezj0bHs/riTYee2I9itS.Us1/QPWVj8iYg2okZD2BPUWi','APH','Activo',NULL,'2018-05-22 22:56:44','2018-05-22 22:56:44');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -852,4 +839,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-05-06 23:07:20
+-- Dump completed on 2018-05-28  8:38:29

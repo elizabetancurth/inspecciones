@@ -27,13 +27,13 @@
             }
     </script>
 
-    <a href="{{ route('inspecciones_botiquines.index') }}">< Volver a inspección de botiquines</a>
+    <a href="{{ route('inspecciones_botiquines.ver_inspecciones_insumos', $insumo->botiquin->id)}}">< Volver a insumos de botiquín</a>
     <br>
 
     <!--<div class="align-items-end text-right container-fluid input-group mb-3 col-md-4">-->
     <div class="container-fluid input-group mb-3" style="padding: 0px;">
-        <div class="col-md-8"><h2>Inspección Insumos Botiquín</h2></div>
-        <input onkeyup="myFunction()" id="buscar" type="text" class="form-control" placeholder="Buscar Insumo..." aria-label="Buscar" aria-describedby="basic-addon2">
+        <div class="col-md-8"><h2>Inspecciones Insumo Botiquín</h2></div>
+        <input onkeyup="myFunction()" id="buscar" type="text" class="form-control" placeholder="Buscar Fecha..." aria-label="Buscar" aria-describedby="basic-addon2">
         <div class="input-group-append">
             <button class="btn btn-outline-secondary" type="button">
                     <a class="text-muted" href="#"><span class="oi oi-magnifying-glass"></span></a>
@@ -41,39 +41,44 @@
         </div>    
     </div>
     <hr>
-    <div>
-    Insumos a inspeccionar del botiquín código {{$botiquin->codigo}}:
-    <br><br>
-    </div>
 
-    @if(count($insumos) >0)
+    @if(count($inspecciones) >0)
         <table id="tabla" class="table">
             <thead class="thead-light">
             <tr>
+                <th scope="col">Fecha</th>
                 <th scope="col">Insumo</th>
-                <th scope="col">Tipo</th>
+                <th scope="col">Estado</th>
                 <th scope="col"></th>
             </tr>
             </thead>
             <tbody>
-                @foreach($insumos as $insumo)
+                @foreach($inspecciones as $inspeccion)
                     <tr>
-                        <td>{{$insumo->nombre}}</td>
-                        <td>{{$insumo->tipo}}</td>
-                        <td><a class="btn btn-success" href="{{ route('inspecciones_botiquines.ver_inspecciones_insumo', $insumo->id)}}">Ver Inspecciones</span></a></td>
+                    <td>{{$inspeccion->inspeccion->fecha}}</td>
+                        <td>{{$inspeccion->insumo_botiquin->nombre}}</td>
+                        <td>{{$inspeccion->inspeccion->estado_inspeccion}}</td>
+                        <td>
+                            @if($inspeccion->inspeccion->estado_inspeccion === "Pendiente")
+                                <a class="btn btn-success" href="{{ route('inspecciones_botiquines.show', $inspeccion->id) }}">Realizar</span></a>
+                            @endif
+                            @if($inspeccion->inspeccion->estado_inspeccion === "Realizada")
+                                <a class="btn btn-info" href="{{ route('respuestas_inspecciones_botiquines.show', $inspeccion->id) }}">Resultado</span></a>
+                            @endif
+                        </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
     @else
         <div class="alert alert-danger">
-            <strong>¡Atención!</strong> No existen insumos.
+            <strong>¡Atención!</strong> No existen inspecciones.
         </div>
     @endif
 
     <nav aria-label="container-fluid Page navigation example">
         <ul class="pagination justify-content-center">
-            {{ $insumos->links() }}
+            {{ $inspecciones->links() }}
         </ul>
     </nav>
 @endsection

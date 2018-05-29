@@ -15,7 +15,7 @@
             
             // Loop through all table rows, and hide those who don't match the search query
             for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[1];
+                td = tr[i].getElementsByTagName("td")[0];
                 if (td) {
                 if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
                     tr[i].style.display = "";
@@ -48,6 +48,7 @@
             <tr>
                 <th scope="col">Botiquín</th>
                 <th scope="col">Tipo</th>
+                <th scope="col">Ubicación</th>
                 <th scope="col"></th>
             </tr>
             </thead>
@@ -55,15 +56,16 @@
                 @foreach($botiquines as $botiquin)
                     <tr>
                         <td>{{$botiquin->codigo}}</td>
-                        <td>{{$botiquin->tipo_botiquin_id}}</td>
-                        <td><a class="btn btn-success" href="{{ route('inspecciones_botiquines.ver_inspeccion', $botiquin->id)}}">Ver</span></a></td>
+                        <td>{{$botiquin->tipo->nombre}}</td>
+                        <td>{{$botiquin->ubicacion->edificio->nombre}}</td>
+                        <td><a class="btn btn-success" href="{{ route('inspecciones_botiquines.ver_inspecciones_insumos', $botiquin->id)}}">Ver Insumos</span></a></td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
     @else
         <div class="alert alert-danger">
-            <strong>¡Atención!</strong> No existen inspecciones.
+            <strong>¡Atención!</strong> No existen botiquines a inspeccionar.
         </div>
     @endif
 
