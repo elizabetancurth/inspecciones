@@ -88,4 +88,8 @@ Route::group(array('prefix' => 'api'), function()
     Route::get('respuestas_inspecciones/{id}', 'api\RespuestaInspeccionController@listOne');
     Route::post('respuestas_inspecciones', 'api\RespuestaInspeccionController@create');
 
+    Route::get('botiquines', 'api\BotiquinController@listAll');
+    Route::get('botiquines/{id}', 'api\BotiquinController@listOne');
+    Route::post('botiquines', 'api\BotiquinController@create');
+
 });
