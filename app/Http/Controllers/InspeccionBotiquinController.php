@@ -57,7 +57,6 @@ class InspeccionBotiquinController extends Controller
     {
         $insumo = InsumoBotiquin::findOrFail($id);
         $inspecciones = InspeccionBotiquin::where('insumo_botiquin_id', $insumo->id)->paginate(5);
-        
         return view('inspecciones_botiquines.ver_inspecciones_insumo', ['inspecciones' => $inspecciones, 'insumo' => $insumo]);        
     }
 
@@ -192,7 +191,7 @@ class InspeccionBotiquinController extends Controller
         $inspeccion->save();
         $inspeccion_botiquin->save();
 
-        return redirect('/inspecciones_botiquines');
+        return redirect('/ver_inspecciones_insumo/'.$inspeccion_botiquin->insumo_botiquin->id);
 
     }
 

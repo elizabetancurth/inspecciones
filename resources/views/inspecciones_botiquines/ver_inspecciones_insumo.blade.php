@@ -50,6 +50,7 @@
                 <th scope="col">Insumo</th>
                 <th scope="col">Estado</th>
                 <th scope="col"></th>
+                <th scope="col"></th>
             </tr>
             </thead>
             <tbody>
@@ -65,6 +66,19 @@
                             @if($inspeccion->inspeccion->estado_inspeccion === "Realizada")
                                 <a class="btn btn-info" href="{{ route('res_inspecciones_botiquines.show', $inspeccion->id) }}">Resultado</span></a>
                             @endif
+                        </td>
+                        <td>
+                        
+                            {!! Form::open([
+                                'method' => 'DELETE',
+                                'route' => ['inspecciones_botiquines.destroy', $inspeccion->id]
+                            ]) !!}
+                            @if($inspeccion->inspeccion->estado === "Activo" )   
+                                {!! Form::submit('Quitar', ['class' => 'btn btn-danger']) !!}
+                            @else
+                                {!! Form::submit('Activar', ['class' => 'btn btn-danger']) !!}
+                            @endif
+                            {!! Form::close() !!}
                         </td>
                     </tr>
                 @endforeach
