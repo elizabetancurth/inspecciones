@@ -92,4 +92,6 @@ Route::group(array('prefix' => 'api'), function()
     Route::get('botiquines/{id}', 'api\BotiquinController@listOne');
     Route::post('botiquines', 'api\BotiquinController@create');
 
+    Route::get('insumos_botiquin/{id}', 'api\InsumoBotiquinController@listAll');
+
 });

@@ -54,5 +54,4 @@ class BotiquinController extends Controller
 
         return response()->json($response, $statusCode);
     }
-
 }
