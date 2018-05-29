@@ -14,4 +14,8 @@ class InsumoBotiquin extends Model
       return $this->belongsTo('App\Botiquin','botiquin_id','id');
     }
     
+    function inspecciones()
+    {
+      return $this->hasMany('App\InspeccionBotiquin','insumo_botiquin_id','id');
+    }
 }

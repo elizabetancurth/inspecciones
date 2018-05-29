@@ -27,6 +27,7 @@ Route::resource('preguntas', 'PreguntaFormatoController');
 Route::resource('inspecciones', 'InspeccionController');
 Route::resource('inspecciones_extintores', 'InspeccionExtintorController');
 Route::resource('respuestas_inspecciones', 'RespuestaInspeccionController');
+Route::resource('inspecciones_botiquines', 'InspeccionBotiquinController');
 Route::resource('usuarios', 'UsuarioController');
 
 //**---------- Inactivos ---------- **//
@@ -40,6 +41,7 @@ Route::get('inspecciones_extintores_inactivos', [ 'as' => 'inspecciones_extintor
 
 Route::get('crear_insumo/{id}', [ 'as' => 'insumos_botiquines.create_insumo', 'uses' => 'InsumoBotiquinController@create_insumo']);
 Route::get('crear_pregunta/{id}', [ 'as' => 'preguntas.create_pregunta', 'uses' => 'PreguntaFormatoController@create_pregunta']);
+Route::get('ver_inspeccion/{id}', [ 'as' => 'inspecciones_botiquines.ver_inspeccion', 'uses' => 'InspeccionBotiquinController@ver_inspeccion']);
 
 
 //**---------- Rutas Servicio Web REST ---------- **//
