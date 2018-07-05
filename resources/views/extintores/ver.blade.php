@@ -35,11 +35,19 @@
                             </td>
                         </tr>
                         <tr>
+                            <th scope="col">         
+                                Descripción
+                            </th>
+                            <td>
+                                {{$extintor->clasificacion->descripcion }}
+                            </td>
+                        </tr>
+                        <tr>
                             <th scope="col">
                                 Capacidad
                             </th>
                             <td>
-                                {{$extintor->capacidad}}
+                                {{$extintor->capacidad}} libras.
                             </td>
                         </tr>
                     </tbody>
