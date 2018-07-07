@@ -24,10 +24,16 @@ class ExtintorRequest extends FormRequest
     public function rules()
     {
         return [
+            //Extintor
             'codigo'    => 'required | string | min:1 | max:255',
             'clasificacion'  => 'required | numeric ',
             'capacidad'   => 'required | numeric | min:0',
             'altura' => 'required | string | min:1 | max:255',
+
+            //Ubicación
+            'edificio' => 'required | string | min:1 | max:255',
+            'piso' => 'required | numeric | min:1 | max:10',
+            'referencia' => 'required | string | min:1 | max:255',
         ];
     }
 }
