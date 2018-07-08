@@ -112,8 +112,8 @@
                                         </h5>
                                     </div>
                                     <div id="collapseThree" class="collapse hide" aria-labelledby="headingThree" data-parent="#accordion">
-                                        <a href="#" class="list-group-item list-group-item-action">Listar</a>
-                                        <a href="#" class="list-group-item list-group-item-action">Crear</a>
+                                        <a href="{{ route('establecimientos.index') }}" class="list-group-item list-group-item-action">Listar</a>
+                                        <a href="{{ route('establecimientos.create') }}" class="list-group-item list-group-item-action">Crear</a>
                                 </div>
 
                                 <div class="card-header" id="headingFour">

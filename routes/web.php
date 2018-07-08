@@ -22,6 +22,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('extintores', 'ExtintorController');
 Route::resource('botiquines', 'BotiquinController');
 Route::resource('insumos_botiquines', 'InsumoBotiquinController');
+Route::resource('establecimientos', 'EstablecimientoController');
 Route::resource('formatos', 'FormatoController');
 Route::resource('preguntas', 'PreguntaFormatoController');
 Route::resource('inspecciones', 'InspeccionController');
@@ -37,6 +38,7 @@ Route::get('extintores_inactivos', [ 'as' => 'extintores.inactivos', 'uses' => '
 Route::get('botiquines_inactivos', [ 'as' => 'botiquines.inactivos', 'uses' => 'BotiquinController@frm_inactivos']);
 Route::get('formatos_inactivos', [ 'as' => 'formatos.inactivos', 'uses' => 'FormatoController@frm_inactivos']);
 Route::get('inspecciones_extintores_inactivos', [ 'as' => 'inspecciones_extintores.inactivos', 'uses' => 'InspeccionExtintorController@frm_inactivos']);
+Route::get('establecimientos_inactivos', [ 'as' => 'establecimientos.inactivos', 'uses' => 'EstablecimientoController@frm_inactivos']);
 
 //**---------- Rutas específicas ---------- **//
 
