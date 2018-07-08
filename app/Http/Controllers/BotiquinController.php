@@ -54,7 +54,7 @@ class BotiquinController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(BotiquinRequest $request)
     {
         $owner = Auth:: User()->id;
 
@@ -117,7 +117,7 @@ class BotiquinController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(BotiquinRequest $request, $id)
     {
         $owner = Auth:: User()->id;
         

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class BotiquinRequest extends FormRequest
+class InsumoBotiquinRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,14 +24,9 @@ class BotiquinRequest extends FormRequest
     public function rules()
     {
         return [
-            //Botiquín
-            'codigo'    => 'required | string | min:1 | max:10',
-            'tipo_botiquin'  => 'required | numeric',
-
-            //Ubicación
-            'edificio' => 'required | string | min:1 | max:255',
-            'piso' => 'required | numeric | min:1 | max:10',
-            'referencia' => 'required | string | min:1 | max:255',
+            'nombre'    => 'required | string | min:1 | max:255',
+            'tipo'  => 'required | string',
+            'cantidad'  => 'required | numeric | min:0 | max:1000',
         ];
     }
 }

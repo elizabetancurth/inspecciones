@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Session;
 use App\Botiquin;
 use App\InsumoBotiquin;
-use App\Http\Requests\ExtintorRequest;
+use App\Http\Requests\InsumoBotiquinRequest;
 
 class InsumoBotiquinController extends Controller
 {
@@ -45,7 +45,7 @@ class InsumoBotiquinController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(InsumoBotiquinRequest $request)
     {   
         
         function __construct()
@@ -104,7 +104,7 @@ class InsumoBotiquinController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(InsumoBotiquinRequest $request, $id)
     {
         $owner = Auth:: User()->id;
         

@@ -14,7 +14,7 @@
             </tr>
             <tr>
                 <th>
-                    {{ Form::label("tipo_botiquin", "Tipo de botiquón:") }}
+                    {{ Form::label("tipo_botiquin", "Tipo de botiquín:") }}
                 </th>
                 <td>
                     <select id='tipo_botiquin' name='tipo_botiquin'  class="form-control"  >
