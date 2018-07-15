@@ -23,6 +23,6 @@ class Ubicacion extends Model
 
     public function edificio()
     {
-        return $this->belongsTo('App\Edificio');
+        return $this->belongsTo('App\Edificio', 'edificio_id', 'id');
     }
 }

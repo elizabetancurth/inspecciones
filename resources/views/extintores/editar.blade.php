@@ -17,12 +17,103 @@
         </div>
     @endif
 
-    {!! Form::model($extintor, [ 
-        'method' => 'PUT', 
-        'route' => ['extintores.update', $extintor->id]
-    ])!!}
-        
-        @include('extintores.form', ['bthText' => 'Actualizar Extintor']) 
-
+    <div class="container col-md-10">
+        {{ Form::model($extintor, ['route' => ['extintores.update', $extintor], 'method' => 'post']) }}
+            @method('put')
+            
+            <table class="container-fluid">
+                <thead>
+                    <tr colspan='2'><h4>Información General</h4></tr>
+                </thead><hr><br>
+                <tbody>
+                    <tr>
+                        <th>
+                            {{ Form::label("codigo", "Código:") }}</th>
+                        <td>
+                            <input class="form-control" type="text" name="codigo" value="{{$extintor->codigo or old('codigo')}}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ Form::label("clasificacion2", "Clasificación:") }}
+                        </th>
+                        <td>
+                            {{ Form::select('clasificacion', $clasificaciones, $extintor->clasificacion->id, ['required', 'class' => 'form-control']) }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ Form::label("capacidad", "Capacidad (Libras):") }}
+                        </th>
+                        <td>
+                            <input class="form-control" type="number" name="capacidad" value="{{$extintor->capacidad or old('capacidad')}}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ Form::label("fechaRecarga", "Fecha de Recarga:") }}
+                        </th>
+                        <td>
+                            <input class="form-control" type="date" name="fechaRecarga" value="{{$extintor->fecha_ultima_recarga->fecha_recarga or old('fechaRecarga')}}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ Form::label("fechaVencimiento", "Fecha de Vencimiento:") }}
+                        </th>
+                        <td>
+                            <input class="form-control" type="date" name="fechaVencimiento" value="{{$extintor->fecha_ultima_recarga->fecha_vencimiento or old('fechaVencimiento')}}">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <br>
+            <table class="container-fluid">
+                <thead>
+                    <tr colspan='2'><h4>Ubicación</h4></tr>
+                </thead><hr><br>
+                <tbody>
+                    <tr>
+                        <th>
+                            {{ Form::label("bloque", "Bloque:") }}
+                        </th>
+                        <td>
+                            {{ Form::select('edificio', $edificios, $extintor->ubicacion->edificio->id, ['required', 'class' => 'form-control']) }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ Form::label("piso", "Piso:") }}
+                        </th>
+                        <td>
+                            {{ Form::selectRange('piso', 1, 5, $extintor->ubicacion->piso, ['required', 'class' => 'form-control']) }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ Form::label("altura", "Altura (cm):") }}
+                        </th>
+                        <td>
+                            <input class="form-control" type="text" name="altura" value="{{$extintor->altura or old('altura')}}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ Form::label("referencia", "Referencia:") }}
+                        </th>
+                        <td>
+                            <input class="form-control" type="text" name="referencia" value="{{$extintor->ubicacion->referencia or old('referencia')}}">
+                        <br>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <br> 
+            <button type="submit" class="btn btn-primary">
+                <i class="fa fa-pencil form-control-feedback"></i> Actualizar Extintor
+            </button>
+            <a href="{{ route('extintores.index') }}" class="btn btn-secondary">Cerrar</a>
+        {!! Form::close() !!}
+    </div>
 
 @endsection

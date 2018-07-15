@@ -13,7 +13,7 @@ class ClasificacionExtintorSeeder extends Seeder
     {
         DB::table('clasificaciones_extintores')->insert([
             'nombre' => 'ABC Multiproposito',
-            'descripcion' => 'Para fuegos Tipo A: solicos, maderas, telas, papel. Tipo B: liquidos inflamables y combustibles, grasas, pinturas. Tipo C: equipos electrónicos.',
+            'descripcion' => 'Para fuegos Tipo A: solidos, maderas, telas, papel. Tipo B: liquidos inflamables y combustibles, grasas, pinturas. Tipo C: equipos electrónicos.',
             'estado' => 'Activo',
             'user_id_creacion' => 1
         ]);
@@ -27,7 +27,7 @@ class ClasificacionExtintorSeeder extends Seeder
 
         DB::table('clasificaciones_extintores')->insert([
             'nombre' => 'Agua a presión',
-            'descripcion' => 'Para fuegos Tipo A: solicos, maderas, telas, papel.',
+            'descripcion' => 'Para fuegos Tipo A: solidos, maderas, telas, papel.',
             'estado' => 'Activo',
             'user_id_creacion' => 1
         ]);

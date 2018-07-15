@@ -45,8 +45,8 @@ class ExtintorController extends Controller
      */
     public function create()
     {   
-        $edificios = Edificio::all();
-        $clasificaciones_extintores = ClasificacionExtintor::all();
+        $edificios = Edificio::pluck('nombre', 'id');
+        $clasificaciones_extintores = ClasificacionExtintor::pluck('nombre', 'id');
         return view('extintores.crear', ['edificios' => $edificios, 'clasificaciones' => $clasificaciones_extintores]);
     }
 
@@ -115,8 +115,8 @@ class ExtintorController extends Controller
     public function edit(Request $request, $id)
     {   
         $extintor = Extintor::findOrFail($id);
-        $edificios = Edificio::all();
-        $clasificaciones_extintores = ClasificacionExtintor::all();
+        $edificios = Edificio::pluck('nombre', 'id');
+        $clasificaciones_extintores = ClasificacionExtintor::pluck('nombre', 'id');
         return view('extintores.editar', ['extintor' => $extintor, 
                                             'edificios' => $edificios, 
                                                 'clasificaciones' => $clasificaciones_extintores,]);
