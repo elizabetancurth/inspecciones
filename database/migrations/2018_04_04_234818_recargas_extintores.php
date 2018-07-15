@@ -21,7 +21,6 @@ class RecargasExtintores extends Migration
             $table->enum('estado', ['Activo', 'Inactivo']);
             $table->integer('user_id_creacion')->unsigned()->nullable();
             $table->integer('user_id_modificacion')->unsigned()->nullable();
-            $table->rememberToken();
             $table->timestamps();
 
             $table->foreign('extintor_id')->references('id')->on('extintores')

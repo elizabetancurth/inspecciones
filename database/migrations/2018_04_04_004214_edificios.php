@@ -20,7 +20,6 @@ class Edificios extends Migration
             $table->integer('empresa_id')->unsigned()->nullable();
             $table->integer('user_id_creacion')->unsigned()->nullable();
             $table->integer('user_id_modificacion')->unsigned()->nullable();
-            $table->rememberToken();
             $table->timestamps();
 
             $table->foreign('empresa_id')->references('id')->on('empresas')

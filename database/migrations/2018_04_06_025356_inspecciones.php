@@ -22,7 +22,6 @@ class Inspecciones extends Migration
             $table->enum('estado', ['Activo', 'Inactivo']);
             $table->integer('user_id_creacion')->unsigned()->nullable();
             $table->integer('user_id_modificacion')->unsigned()->nullable();
-            $table->rememberToken();
             $table->timestamps();
 
             $table->foreign('inspeccion_clasificacion_id')->references('id')->on('inspecciones_clasificaciones')

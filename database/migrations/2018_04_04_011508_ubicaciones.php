@@ -21,7 +21,6 @@ class Ubicaciones extends Migration
             $table->integer('edificio_id')->unsigned()->nullable();
             $table->integer('user_id_creacion')->unsigned()->nullable();
             $table->integer('user_id_modificacion')->unsigned()->nullable();
-            $table->rememberToken();
             $table->timestamps();
 
             $table->foreign('edificio_id')->references('id')->on('edificios')
