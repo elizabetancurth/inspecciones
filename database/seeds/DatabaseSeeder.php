@@ -24,6 +24,5 @@ class DatabaseSeeder extends Seeder
         $this->call(UbicacionSeeder::class);
         $this->call(ExtintorSeeder::class);
         $this->call(FormatoSeeder::class);
-        $this->call(PreguntaSeeder::class);
     }
 }

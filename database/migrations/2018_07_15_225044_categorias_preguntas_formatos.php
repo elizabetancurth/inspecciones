@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class OpcionesRespuestas extends Migration
+class CategoriasPreguntasFormatos extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,14 @@ class OpcionesRespuestas extends Migration
      */
     public function up()
     {
-        Schema::create('opciones_respuestas', function (Blueprint $table) {
+        Schema::create('categorias_preguntas_formatos', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nombre');
-            $table->integer('tipo_pregunta_id')->unsigned()->nullable();
+            $table->text('nombre');
+            $table->integer('orden')->unsigned()->nullable();
             $table->enum('estado', ['Activo', 'Inactivo']);
             $table->integer('user_id_creacion')->unsigned()->nullable();
             $table->integer('user_id_modificacion')->unsigned()->nullable();
             $table->timestamps();
-
-            $table->foreign('tipo_pregunta_id')->references('id')->on('tipos_preguntas')
-                ->onUpdate('CASCADE')
-                ->onDelete('SET NULL');
 
             $table->foreign('user_id_creacion')->references('id')->on('users')
                 ->onUpdate('CASCADE')
@@ -43,6 +39,6 @@ class OpcionesRespuestas extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('opciones_respuestas');
+        Schema::dropIfExists('categorias_preguntas_formatos');
     }
 }
