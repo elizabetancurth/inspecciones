@@ -43,8 +43,8 @@ class BotiquinController extends Controller
      */
     public function create()
     {
-        $edificios = Edificio::all();
-        $tipos_botiquines = TipoBotiquin::all();
+        $edificios = Edificio::pluck('nombre', 'id');
+        $tipos_botiquines = TipoBotiquin::pluck('nombre', 'id');
         return view('botiquines.crear', ['edificios' => $edificios, 'tipos_botiquines' => $tipos_botiquines]);
     }
 
@@ -103,8 +103,8 @@ class BotiquinController extends Controller
     public function edit($id)
     {
         $botiquin = Botiquin::findOrFail($id);
-        $edificios = Edificio::all();
-        $tipos_botiquines = TipoBotiquin::all();
+        $edificios = Edificio::pluck('nombre', 'id');
+        $tipos_botiquines = TipoBotiquin::pluck('nombre', 'id');
         return view('botiquines.editar', ['botiquin' => $botiquin, 
                                             'edificios' => $edificios, 
                                                 'tipos_botiquines' => $tipos_botiquines,]);
