@@ -13,7 +13,7 @@ class PreguntaRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,9 @@ class PreguntaRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'categoria' => 'required | numeric ',
+            'tipo_pregunta' => 'required | numeric ',
+            'descripcion' => 'required | string | min:1 | max:255',
         ];
     }
 }

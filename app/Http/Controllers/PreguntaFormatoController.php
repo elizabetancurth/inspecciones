@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Formato;
 use App\PreguntaFormato;
 use App\TipoPregunta;
+use App\CategoriaPreguntaFormato;
+use App\Http\Requests\PreguntaRequest;
 use Session;
 
 class PreguntaFormatoController extends Controller
@@ -45,8 +47,11 @@ class PreguntaFormatoController extends Controller
     public function create_pregunta($id)
     {
         $formato = Formato::findOrFail($id);
-        $tipos_preguntas = TipoPregunta::All();
-        return view('formatos.preguntas.crear', ['formato' => $formato, 'tipos_preguntas' => $tipos_preguntas]);
+        $categorias = CategoriaPreguntaFormato::pluck('nombre', 'id');
+        $tipos_preguntas = TipoPregunta::pluck('nombre', 'id');
+        return view('formatos.preguntas.crear', ['formato' => $formato, 
+                                                    'categorias' => $categorias,
+                                                    'tipos_preguntas' => $tipos_preguntas]);
     }
 
     /**
@@ -55,13 +60,14 @@ class PreguntaFormatoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PreguntaRequest $request)
     {
         $owner = Auth:: User()->id;
 
         $input = $request -> all();
 
         $pregunta = new PreguntaFormato();
+        $pregunta -> categoria_pregunta_formato_id = $input['categoria'];
         $pregunta -> descripcion = $input['descripcion'];
         $pregunta -> tipo_pregunta_id = $input['tipo_pregunta'];
         $pregunta -> formato_inspeccion_id = $input['formato_id'];
@@ -95,14 +101,17 @@ class PreguntaFormatoController extends Controller
     {
          try
          {
-             $pregunta = PreguntaFormato::findOrFail($id);
-             $tipos_preguntas = TipoPregunta::All();
-             return view('formatos.preguntas.editar', ['pregunta' => $pregunta, 'tipos_preguntas' => $tipos_preguntas]);
+            $pregunta = PreguntaFormato::findOrFail($id);
+            $categorias = CategoriaPreguntaFormato::pluck('nombre', 'id');
+            $tipos_preguntas = TipoPregunta::pluck('nombre', 'id');
+            return view('formatos.preguntas.editar', ['pregunta' => $pregunta, 
+                                                        'categorias' => $categorias,
+                                                            'tipos_preguntas' => $tipos_preguntas]);
          }
          catch(ModelNotFoundException $e)
          {
-             Session::flash('flash_message', "No se encuentra la pregunta");
-             return redirect()->back();
+            Session::flash('flash_message', "No se encuentra la pregunta");
+            return redirect()->back();
          }
     }
 
@@ -113,7 +122,7 @@ class PreguntaFormatoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PreguntaRequest $request, $id)
     {
         try
         {
@@ -123,6 +132,7 @@ class PreguntaFormatoController extends Controller
 
             $input = $request->all();
             
+            $pregunta -> categoria_pregunta_formato_id = $input['categoria'];
             $pregunta -> descripcion = $input['descripcion'];
             $pregunta -> tipo_pregunta_id = $input['tipo_pregunta'];
             $pregunta -> user_id_modificacion = $owner;
