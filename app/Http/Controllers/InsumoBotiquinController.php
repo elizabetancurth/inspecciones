@@ -13,6 +13,12 @@ use App\Http\Requests\InsumoBotiquinRequest;
 
 class InsumoBotiquinController extends Controller
 {
+    
+    function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -48,11 +54,6 @@ class InsumoBotiquinController extends Controller
     public function store(InsumoBotiquinRequest $request)
     {   
         
-        function __construct()
-        {
-            $this->middleware('auth');
-        }
-
         $owner = Auth:: User()->id;
 
         $input = $request -> all();
