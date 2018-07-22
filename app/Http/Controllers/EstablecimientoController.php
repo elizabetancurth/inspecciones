@@ -11,6 +11,7 @@ use Session;
 use App\Edificio;
 use App\Ubicacion;
 use App\Establecimiento;
+use App\Http\Requests\EstablecimientoRequest;
 
 class EstablecimientoController extends Controller
 {
@@ -42,7 +43,7 @@ class EstablecimientoController extends Controller
      */
     public function create()
     {
-        $edificios = Edificio::all();
+        $edificios = Edificio::pluck('nombre', 'id');
         return view('establecimientos.crear', ['edificios' => $edificios]);
     }
 
@@ -52,7 +53,7 @@ class EstablecimientoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EstablecimientoRequest $request)
     {
         $owner = Auth:: User()->id;
 
@@ -97,7 +98,7 @@ class EstablecimientoController extends Controller
     public function edit($id)
     {
         $establecimiento = Establecimiento::findOrFail($id);
-        $edificios = Edificio::all();
+        $edificios = Edificio::pluck('nombre', 'id');
         return view('establecimientos.editar', ['establecimiento' => $establecimiento, 
                                                     'edificios' => $edificios]);
     }
@@ -109,7 +110,7 @@ class EstablecimientoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(EstablecimientoRequest $request, $id)
     {
         $owner = Auth:: User()->id;
 

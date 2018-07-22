@@ -13,7 +13,7 @@ class EstablecimientoRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,15 @@ class EstablecimientoRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            
+            //Establecimiento
+            'nombre' => 'required | string | min:1 | max:255',
+            
+            //Ubicación
+            'edificio' => 'required | string | min:1 | max:255',
+            'piso' => 'required | numeric | min:0 | max:10',
+            'referencia' => 'required | string | min:1 | max:255',
+
         ];
     }
 }

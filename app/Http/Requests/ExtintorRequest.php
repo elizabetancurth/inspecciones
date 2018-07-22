@@ -32,7 +32,7 @@ class ExtintorRequest extends FormRequest
 
             //Ubicación
             'edificio' => 'required | string | min:1 | max:255',
-            'piso' => 'required | numeric | min:1 | max:10',
+            'piso' => 'required | numeric | min:0 | max:10',
             'referencia' => 'required | string | min:1 | max:255',
         ];
     }
