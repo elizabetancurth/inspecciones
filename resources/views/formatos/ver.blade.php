@@ -13,6 +13,7 @@
         <table class="table">
             <thead class="thead-light">
             <tr>
+                <th scope="col">Categoria</th>
                 <th scope="col">Preguntas</th>
                 <th scope="col"></th>
                 <th scope="col"></th>
@@ -21,6 +22,7 @@
             <tbody>
                 @foreach($formato->preguntas as $pregunta)
                     <tr>
+                        <td>{{$pregunta->categoria->nombre}}</td>
                         <td>{{$pregunta->descripcion}}</td>
                         <td><a class="btn btn-info" href="{{ route('preguntas.edit', $pregunta->id) }}">Editar</span></a></td>
                         <td>
@@ -36,6 +38,7 @@
                 @endforeach
             </tbody>
         </table>
+    
     @else
         <div class="alert alert-danger">
             <strong>¡Atención!</strong> No existen preguntas en el formato.

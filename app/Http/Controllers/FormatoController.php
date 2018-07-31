@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Formato;
 use App\PreguntaFormato;
 use App\TipoPregunta;
+use App\CategoriaPreguntaFormato;
 use Session;
 
 class FormatoController extends Controller
