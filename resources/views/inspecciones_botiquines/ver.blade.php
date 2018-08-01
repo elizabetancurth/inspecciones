@@ -19,13 +19,15 @@
                 <tr>
                     <th scope="col">Pregunta</th>
                     <th scope="col">Respuesta</th>
+                    <th scope="col">Observaciones</th>
                 </tr>
             </thead>
             <tbody>
             @foreach($respuestas as $respuesta)
                     <tr>
                         <td>{{$respuesta->pregunta->descripcion}}</td>
-                        <td> {{$respuesta->respuesta}}</td>
+                        <td>{{$respuesta->respuesta}}</td>
+                        <td>{{$respuesta->observaciones}}</td>
                     </tr>
             @endforeach
             </tbody>

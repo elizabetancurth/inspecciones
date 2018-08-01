@@ -19,6 +19,7 @@
                 <tr>
                     <th scope="col">Pregunta</th>
                     <th scope="col">Respuesta</th>
+                    <th scope="col">Observaciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -31,7 +32,7 @@
                                 <option selected>--Seleccione--</option>
                                 @foreach($opcion_respuesta as $opcion)
                                     @if($pregunta->tipo_pregunta->id === $opcion->tipo_pregunta_id)
-                                    <option value="{{$opcion->valor}}">{{$opcion->nombre}}</option>
+                                    <option value="{{$opcion->id}}">{{$opcion->nombre}}</option>
                                     @endif
                                 @endforeach
                             </select>
@@ -39,17 +40,18 @@
                         <input type="hidden" value="{{$i = $i+1}}">
                         @if($pregunta->tipo_pregunta_id === 3)
                             @if($inspeccion->insumo_botiquin->tipo === 'Fármaco')
-                                <input class="form-control" type="date" name="fecha_vencimiento" value="">
+                                <input class="form-control" type="date" name="fecha" value="">
                             @endif
                             @if($inspeccion->insumo_botiquin->tipo === 'Utencilio')
-                                <input type="hidden" name="fecha_vencimiento" value="0000-00-00">
+                                <input type="hidden" name="fecha" value="0000-00-00">
                                 No aplica
                             @endif
                         @endif
                         @if($pregunta->tipo_pregunta_id === 4)
-                        <textarea class="form-control" name="observaciones"></textarea>
+                        <textarea class="form-control" name="abierta"></textarea>
                         @endif
                     </td>
+                    <td><textarea class="form-control" name="observaciones_{{$i-1}}"></textarea></td>
                 </tr>
                 @endforeach
             </tbody>

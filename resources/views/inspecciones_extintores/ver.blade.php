@@ -19,6 +19,7 @@
                 <tr>
                     <th scope="col">Pregunta</th>
                     <th scope="col">Respuesta</th>
+                    <th scope="col">Observaciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -28,29 +29,32 @@
                     <tr>
                         <td>{{$respuesta->pregunta->descripcion}}</td>
                         <td> {{$respuesta->respuesta}}</td>
+                        <td> {{$respuesta->observaciones}}</td>
                     </tr>
                     @endif
                     @if($respuesta->respuesta === 'Regular')
                     <tr class="warning">
                         <td>{{$respuesta->pregunta->descripcion}}</td>
                         <td> {{$respuesta->respuesta}}</td>
+                        <td> {{$respuesta->observaciones}}</td>
                     </tr>
                     @endif
                     @if($respuesta->respuesta === 'Malo')
                     <tr class="danger">
                         <td>{{$respuesta->pregunta->descripcion}}</td>
                         <td> {{$respuesta->respuesta}}</td>
+                        <td> {{$respuesta->observaciones}}</td>
                     </tr>
                     @endif
                 @else
                     <tr>
                         <td>{{$respuesta->pregunta->descripcion}}</td>
                         <td> {{$respuesta->respuesta}}</td>
+                        <td> {{$respuesta->observaciones}}</td>
                     </tr>
                 @endif
             @endforeach
             </tbody>
         </table>
     </div>
-
 @endsection

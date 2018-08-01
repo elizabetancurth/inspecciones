@@ -55,20 +55,44 @@ class RespuestaInspeccionBotiquinController extends Controller
         {
             $respuesta = new RespuestaInspeccion;
             
-            if($pregunta->tipo_pregunta_id === 2)
+            /**
+             * Si la pregunta es tipo Cumple/NoCumple.
+             */
+            if($pregunta->tipo_pregunta_id === 1)
             {
                 $valor = OpcionRespuesta::findOrFail($input['respuesta_'.$i]);
                 $respuesta -> respuesta = $valor->nombre;
                 $i = $i+1; 
             }
+            
+            /**
+             * Si la pregunta es tipo Estado (Bueno-Regular-Malo).
+             */
+            if($pregunta->tipo_pregunta_id === 2)
+            {
+                $valor = OpcionRespuesta::findOrFail($input['respuesta_'.$i]);
+                $respuesta -> respuesta = $valor->nombre;
+                $respuesta -> observaciones = $input['observaciones_'.$i];
+                $i = $i+1; 
+            }
+
+            /**
+             * Si la pregunta es tipo Fecha
+             */
             if($pregunta->tipo_pregunta_id === 3)
             {
-                $respuesta -> respuesta = $input['fecha_vencimiento'];
+                $respuesta -> respuesta = $input['fecha'];
             }
+
+            /**
+             * Si la pregunta es tipo Abierta.
+            */
             if($pregunta->tipo_pregunta_id === 4)
             {
-                $respuesta -> respuesta = $input['observaciones'];
+                $respuesta -> respuesta = $input['abierta'];
             }
+
+
             $respuesta -> pregunta_formato_id = $pregunta->id;
             $respuesta -> inspeccion_id = $inspeccion_botiquin->inspeccion->id;
             $respuesta -> estado = 'Activo';

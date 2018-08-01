@@ -18,6 +18,7 @@
                 <tr>
                     <th scope="col">Pregunta</th>
                     <th scope="col">Respuesta</th>
+                    <th scope="col">Observaciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -30,19 +31,20 @@
                                 <option selected>--Seleccione--</option>
                                 @foreach($opcion_respuesta as $opcion)
                                     @if($pregunta->tipo_pregunta->id === $opcion->tipo_pregunta_id)
-                                    <option value="{{$opcion->valor}}">{{$opcion->nombre}}</option>
+                                    <option value="{{$opcion->id}}">{{$opcion->nombre}}</option>
                                     @endif
                                 @endforeach
                             </select>
                         @endif
                         <input type="hidden" value="{{$i = $i+1}}">
                         @if($pregunta->tipo_pregunta_id === 3)
-                            <input class="form-control" type="date" name="fecha_recarga" value="">
+                            <input class="form-control" type="date" name="fecha" value="">
                         @endif
                         @if($pregunta->tipo_pregunta_id === 4)
-                        <textarea class="form-control" name="observaciones"></textarea>
+                        <textarea class="form-control" name="abierta"></textarea>
                         @endif
                     </td>
+                    <td><textarea class="form-control" name="observaciones_{{$i-1}}"></textarea></td>
                 </tr>
                 @endforeach
             </tbody>
