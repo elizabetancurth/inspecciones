@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Session;
 use App\RespuestaInspeccion;
-use App\InspeccionExtintor;
+use App\InspeccionEstablecimiento;
 use App\Inspeccion;
 use App\OpcionRespuesta;
 use App\User;
@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Validation\ValidationRequests;
 
-class RespuestaInspeccionController extends Controller
+class RespuestaInspeccionEstablecimientoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -47,12 +47,12 @@ class RespuestaInspeccionController extends Controller
         $owner = Auth:: User()->id;
         $input = $request -> all();
 
-        $inspeccion_extintor = InspeccionExtintor::findOrFail($input['inspeccion_id']);
+        $inspeccion_establecimiento = InspeccionEstablecimiento::findOrFail($input['inspeccion_id']);
         $opcion_respuesta = OpcionRespuesta::all();
 
         $i=0;
 
-        foreach($inspeccion_extintor->inspeccion->formato->preguntas as $pregunta)
+        foreach($inspeccion_establecimiento->inspeccion->formato->preguntas as $pregunta)
         {
             $respuesta = new RespuestaInspeccion;
             
@@ -97,19 +97,19 @@ class RespuestaInspeccionController extends Controller
             }
 
             $respuesta -> pregunta_formato_id = $pregunta->id;
-            $respuesta -> inspeccion_id = $inspeccion_extintor->inspeccion->id;
+            $respuesta -> inspeccion_id = $inspeccion_establecimiento->inspeccion->id;
             $respuesta -> estado = 'Activo';
             $respuesta -> user_id_creacion = $owner;
             $respuesta -> save();
         }
 
-        $inspeccion = Inspeccion::findOrFail($inspeccion_extintor->inspeccion_id);
+        $inspeccion = Inspeccion::findOrFail($inspeccion_establecimiento->inspeccion_id);
         $inspeccion -> estado_inspeccion = 'Realizada';
         $inspeccion -> user_id_modificacion = $owner;
         $inspeccion -> save();
 
         Session::flash('flash_message', 'Respuesta guardada exitosamente');
-        return redirect('/inspecciones_extintores');
+        return redirect('/inspecciones_establecimientos');
     }
 
     /**
@@ -120,11 +120,11 @@ class RespuestaInspeccionController extends Controller
      */
     public function show($id)
     {
-        $inspeccion = InspeccionExtintor::findOrFail($id);
+        $inspeccion = InspeccionEstablecimiento::findOrFail($id);
         $respuestas = RespuestaInspeccion::where('inspeccion_id', $inspeccion->inspeccion->id)->get();
         $user = User::findOrFail($inspeccion->inspeccion->user_id_creacion);
 
-        return view('inspecciones_extintores.ver', ['inspeccion' => $inspeccion, 'respuestas' => $respuestas, 'user' => $user]);
+        return view('inspecciones_establecimientos.ver', ['inspeccion' => $inspeccion, 'respuestas' => $respuestas, 'user' => $user]);
     }
 
     /**
