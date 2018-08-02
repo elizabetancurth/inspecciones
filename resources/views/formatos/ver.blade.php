@@ -10,20 +10,23 @@
 
     <div class="container">
     @if(count($formato->preguntas) >0)
+    @foreach($categorias as $categoria)
+
+    
+
         <table class="table">
             <thead class="thead-light">
             <tr>
-                <th scope="col">Categoria</th>
-                <th scope="col">Preguntas</th>
+                <th scope="col">{{$categoria->nombre}}</th>
                 <th scope="col"></th>
                 <th scope="col"></th>
             </tr>
             </thead>
             <tbody>
                 @foreach($formato->preguntas as $pregunta)
+                @if($pregunta-> categoria_pregunta_formato_id === $categoria->id)
                     <tr>
-                        <td>{{$pregunta->categoria->nombre}}</td>
-                        <td>{{$pregunta->descripcion}}</td>
+                        <td class="col-md-5"> {{$pregunta->descripcion}}</td>
                         <td><a class="btn btn-info" href="{{ route('preguntas.edit', $pregunta->id) }}">Editar</span></a></td>
                         <td>
                             {!! Form::open([
@@ -35,9 +38,11 @@
                             {!! Form::close() !!}
                         </td>
                     </tr>
+                @endif
                 @endforeach
             </tbody>
         </table>
+    @endforeach
     
     @else
         <div class="alert alert-danger">

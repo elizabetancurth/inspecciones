@@ -76,7 +76,9 @@ class FormatoController extends Controller
     public function show($id)
     {
         $formato = Formato::findOrFail($id);
-        return view('formatos.ver', ['formato' => $formato]);
+        $categorias_id = PreguntaFormato::distinct()->select('categoria_pregunta_formato_id')->where('formato_inspeccion_id', $formato->id)->pluck('categoria_pregunta_formato_id');
+        $categorias = CategoriaPreguntaFormato::whereIn('id', $categorias_id)->get();
+        return view('formatos.ver', ['formato' => $formato, 'categorias' => $categorias]);
     }
 
     /**
