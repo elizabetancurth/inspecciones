@@ -30,6 +30,7 @@ Route::resource('inspecciones_extintores', 'InspeccionExtintorController');
 Route::resource('respuestas_inspecciones', 'RespuestaInspeccionController');
 Route::resource('inspecciones_botiquines', 'InspeccionBotiquinController');
 Route::resource('res_inspecciones_botiquines', 'RespuestaInspeccionBotiquinController');
+Route::resource('inspecciones_establecimientos', 'InspeccionEstablecimientoController');
 Route::resource('usuarios', 'UsuarioController');
 
 //**---------- Inactivos ---------- **//
@@ -39,6 +40,8 @@ Route::get('botiquines_inactivos', [ 'as' => 'botiquines.inactivos', 'uses' => '
 Route::get('formatos_inactivos', [ 'as' => 'formatos.inactivos', 'uses' => 'FormatoController@frm_inactivos']);
 Route::get('inspecciones_extintores_inactivos', [ 'as' => 'inspecciones_extintores.inactivos', 'uses' => 'InspeccionExtintorController@frm_inactivos']);
 Route::get('establecimientos_inactivos', [ 'as' => 'establecimientos.inactivos', 'uses' => 'EstablecimientoController@frm_inactivos']);
+Route::get('inspecciones_establecimientos_inactivos', [ 'as' => 'inspecciones_establecimientos.inactivos', 'uses' => 'InspeccionEstablecimientoController@frm_inactivos']);
+
 
 //**---------- Rutas específicas ---------- **//
 
