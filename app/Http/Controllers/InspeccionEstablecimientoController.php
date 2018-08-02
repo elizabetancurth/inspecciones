@@ -3,6 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Foundation\Validation\ValidationRequests;
+
+use Session;
+use App\Inspeccion;
+use App\InspeccionClasificacion;
+use App\InspeccionEstablecimiento;
+use App\Formato;
+use App\Establecimiento;
+use App\OpcionRespuesta;
 
 class InspeccionEstablecimientoController extends Controller
 {
