@@ -65,7 +65,7 @@
                                 <a class="btn btn-success" href="{{ route('inspecciones_establecimientos.show', $inspeccion->id) }}">Realizar</span></a></td>
                             @endif
                             @if($inspeccion->inspeccion->estado_inspeccion === "Realizada")
-                                <a class="btn btn-info" href="{{ route('respuestas_inspecciones.show', $inspeccion->id) }}">Resultado</span></a></td>
+                                <a class="btn btn-info" href="{{ route('res_inspecciones_establecimientos.show', $inspeccion->id) }}">Resultado</span></a></td>
                             @endif
                         <td>
                             {!! Form::open([
@@ -93,6 +93,6 @@
     </nav>
 
     <hr>
-    <a href="{{ route('inspecciones_extintores.inactivos')}}">Ver inspecciones de establecimientos inactivas ></a>
+    <a href="{{ route('inspecciones_establecimientos.inactivos')}}">Ver inspecciones de establecimientos inactivas ></a>
 
 @endsection
