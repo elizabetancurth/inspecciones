@@ -26,7 +26,7 @@ class PreguntaRequest extends FormRequest
         return [
             'categoria' => 'required | numeric ',
             'tipo_pregunta' => 'required | numeric ',
-            'descripcion' => 'required | string | min:1 | max:255',
+            'descripcion' => 'required | string | min:1 | max:300',
         ];
     }
 }
