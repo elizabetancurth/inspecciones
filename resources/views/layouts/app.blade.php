@@ -44,10 +44,6 @@
                     @if (Auth::user())
                         <div class="card text-center">
                             <div class="card-header text-left">Bienvenido</div>
-                            <!-- <div>
-                                <br>
-                                <img class="card-img-top" src="cat.jpeg" alt="User Image">
-                            </div> -->
                             <div class="card-body">
                                 <div class="dropdown container-fluid">
                                     <button class="btn btn-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -56,14 +52,13 @@
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                         <a class="dropdown-item" href="{{ route('usuarios.show', Auth::user()->id) }}">Ver Perfil</a>
                                         <a class="dropdown-item" href="{{ route('logout') }}"
-                                                onclick="event.preventDefault();
-                                                                document.getElementById('logout-form').submit();">
-                                                    Cerrar sesión
-                                                </a>
-
-                                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                                    @csrf
-                                                </form>
+                                            onclick="event.preventDefault();
+                                                            document.getElementById('logout-form').submit();">
+                                                Cerrar sesión
+                                        </a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            @csrf
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -93,64 +88,77 @@
                                 </div>
 
                                 <div class="card-header" id="headingTwo">
-                                        <h5 class="mb-0">
-                                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                                            Botiquines
-                                            </button>
-                                        </h5>
-                                    </div>
-                                    <div id="collapseTwo" class="collapse hide" aria-labelledby="headingTwo" data-parent="#accordion">
-                                        <a href="{{ route('botiquines.index') }}" class="list-group-item list-group-item-action">Listar</a>
-                                        <a href="{{ route('botiquines.create') }}" class="list-group-item list-group-item-action">Crear</a>                               
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                                        Botiquines
+                                        </button>
+                                    </h5>
+                                </div>
+                                <div id="collapseTwo" class="collapse hide" aria-labelledby="headingTwo" data-parent="#accordion">
+                                    <a href="{{ route('botiquines.index') }}" class="list-group-item list-group-item-action">Listar</a>
+                                    <a href="{{ route('botiquines.create') }}" class="list-group-item list-group-item-action">Crear</a>                               
                                 </div>
 
                                 <div class="card-header" id="headingThree">
-                                        <h5 class="mb-0">
-                                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-                                            Establecimientos
-                                            </button>
-                                        </h5>
-                                    </div>
-                                    <div id="collapseThree" class="collapse hide" aria-labelledby="headingThree" data-parent="#accordion">
-                                        <a href="{{ route('establecimientos.index') }}" class="list-group-item list-group-item-action">Listar</a>
-                                        <a href="{{ route('establecimientos.create') }}" class="list-group-item list-group-item-action">Crear</a>
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                                        Establecimientos
+                                        </button>
+                                    </h5>
+                                </div>
+                                <div id="collapseThree" class="collapse hide" aria-labelledby="headingThree" data-parent="#accordion">
+                                    <a href="{{ route('establecimientos.index') }}" class="list-group-item list-group-item-action">Listar</a>
+                                    <a href="{{ route('establecimientos.create') }}" class="list-group-item list-group-item-action">Crear</a>
                                 </div>
 
                                 <div class="card-header" id="headingFour">
-                                        <h5 class="mb-0">
-                                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
-                                            Inspecciones
-                                            </button>
-                                        </h5>
-                                    </div>
-                                    <div id="collapseFour" class="collapse hide" aria-labelledby="headingFour" data-parent="#accordion">
-                                        <a href="{{ route('inspecciones_extintores.index') }}" class="list-group-item list-group-item-action">Extintores</a>
-                                        <a href="{{ route('inspecciones_botiquines.index') }}" class="list-group-item list-group-item-action">Botiquines</a>
-                                        <a href="{{ route('inspecciones_establecimientos.index') }}" class="list-group-item list-group-item-action">Establecimientos</a>
-                                    </div>
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+                                        Inspecciones
+                                        </button>
+                                    </h5>
+                                </div>
+                                <div id="collapseFour" class="collapse hide" aria-labelledby="headingFour" data-parent="#accordion">
+                                    <a href="{{ route('inspecciones_extintores.index') }}" class="list-group-item list-group-item-action">Extintores</a>
+                                    <a href="{{ route('inspecciones_botiquines.index') }}" class="list-group-item list-group-item-action">Botiquines</a>
+                                    <a href="{{ route('inspecciones_establecimientos.index') }}" class="list-group-item list-group-item-action">Establecimientos</a>
+                                </div>
 
                                 <div class="card-header" id="headingFive">
-                                        <h5 class="mb-0">
-                                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
-                                            Formatos
-                                            </button>
-                                        </h5>
-                                    </div>
-                                    <div id="collapseFive" class="collapse hide" aria-labelledby="headingFive" data-parent="#accordion">
-                                        <a href="{{ route('formatos.index') }}" class="list-group-item list-group-item-action">Listar</a>
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
+                                        Reportes
+                                        </button>
+                                    </h5>
+                                </div>
+                                <div id="collapseFive" class="collapse hide" aria-labelledby="headingFive" data-parent="#accordion">
+                                    <a href="#" class="list-group-item list-group-item-action">Extintores</a>
+                                    <a href="#" class="list-group-item list-group-item-action">Botiquines</a>
+                                    <a href="#" class="list-group-item list-group-item-action">Establecimientos</a>
+                                </div>
+
+                                <div class="card-header" id="headingSix">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseSix" aria-expanded="true" aria-controls="collapseSix">
+                                        Formatos
+                                        </button>
+                                    </h5>
+                                </div>
+                                <div id="collapseSix" class="collapse hide" aria-labelledby="headingSix" data-parent="#accordion">
+                                    <a href="{{ route('formatos.index') }}" class="list-group-item list-group-item-action">Listar</a>
                                 </div>
 
                                 @if(Auth::user()->rol=='Administrador')
-                                    <div class="card-header" id="headingSix">
-                                            <h5 class="mb-0">
-                                                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseSix" aria-expanded="true" aria-controls="collapseSix">
-                                                Usuarios
-                                                </button>
-                                            </h5>
-                                        </div>
-                                        <div id="collapseSix" class="collapse hide" aria-labelledby="headingSix" data-parent="#accordion">
-                                            <a href="{{ route('usuarios.index') }}" class="list-group-item list-group-item-action">Listar</a>
-                                            <a href="{{ route('usuarios.create') }}" class="list-group-item list-group-item-action">Crear</a>
+                                    <div class="card-header" id="headingSeven">
+                                        <h5 class="mb-0">
+                                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="true" aria-controls="collapseSeven">
+                                            Usuarios
+                                            </button>
+                                        </h5>
+                                    </div>
+                                    <div id="collapseSeven" class="collapse hide" aria-labelledby="headingSeven" data-parent="#accordion">
+                                        <a href="{{ route('usuarios.index') }}" class="list-group-item list-group-item-action">Listar</a>
+                                        <a href="{{ route('usuarios.create') }}" class="list-group-item list-group-item-action">Crear</a>
                                     </div>
                                 @endif
                             </div>
