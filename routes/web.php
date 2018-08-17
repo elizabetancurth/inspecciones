@@ -50,6 +50,7 @@ Route::get('crear_insumo/{id}', [ 'as' => 'insumos_botiquines.create_insumo', 'u
 Route::get('crear_pregunta/{id}', [ 'as' => 'preguntas.create_pregunta', 'uses' => 'PreguntaFormatoController@create_pregunta']);
 Route::get('ver_inspecciones_insumos/{id}', [ 'as' => 'inspecciones_botiquines.ver_inspecciones_insumos', 'uses' => 'InspeccionBotiquinController@ver_inspecciones_insumos']);
 Route::get('ver_inspecciones_insumo/{id}', [ 'as' => 'inspecciones_botiquines.ver_inspecciones_insumo', 'uses' => 'InspeccionBotiquinController@ver_inspecciones_insumo']);
+Route::get('reporte_extintores', [ 'as' => 'reporte_inspecciones.extintores', 'uses' => 'ReportesController@reporte_extintores']);
 
 //**---------- Rutas Servicio Web REST ---------- **//
 

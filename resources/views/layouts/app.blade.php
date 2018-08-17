@@ -132,7 +132,7 @@
                                     </h5>
                                 </div>
                                 <div id="collapseFive" class="collapse hide" aria-labelledby="headingFive" data-parent="#accordion">
-                                    <a href="#" class="list-group-item list-group-item-action">Extintores</a>
+                                    <a href="{{ route('reporte_inspecciones.extintores') }}" class="list-group-item list-group-item-action">Extintores</a>
                                     <a href="#" class="list-group-item list-group-item-action">Botiquines</a>
                                     <a href="#" class="list-group-item list-group-item-action">Establecimientos</a>
                                 </div>
