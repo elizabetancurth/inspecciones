@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\api;
 
+use App\Formato;
 use App\PreguntaFormato;
 
 use Illuminate\Http\Request;
@@ -10,14 +11,16 @@ use App\Http\Controllers\Controller;
 class PreguntaFormatoController extends Controller
 {
     /*
-    * Devuevle el listado de todos los preguntas de un formato que se encuentran 'Activos' en el sistema.
+    * Devuevle el listado de todas las preguntas de un formato específico.
+    * $id es el identificador del formato al que se quiere consultar las preguntas 
     */
-   public function listAll(Request $request)
+   public function listAll(Request $request, $id)
    {
        try
        {
-           $response = PreguntaFormato::where('estado','Activo')->get();
-           $statusCode = 200; // OK
+            $formato = Formato::findOrFail($id);
+            $response = PreguntaFormato::where('formato_inspeccion_id',$formato->id)->get();
+            $statusCode = 200; // OK
        }
        catch (ModelNotFoundException $e)
        {
@@ -28,22 +31,4 @@ class PreguntaFormatoController extends Controller
        return response()->json($response, $statusCode);
    }
 
-   /**
-    * Muestra toda la información relacionada con una pregunta específica.
-    */
-   public function listOne(Request $request, $id)
-   {
-       try
-       {
-           $response = PreguntaFormato::findOrFail($id);
-           $statusCode = 200;  // OK
-       }
-       catch (ModelNotFoundException $e)
-       {
-           $response = null;
-           $statusCode = 404;  // Not Found
-       }
-
-       return response()->json($response, $statusCode);
-   }
 }
