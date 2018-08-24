@@ -105,4 +105,7 @@ Route::group(array('prefix' => 'api'), function()
 
     Route::get('insumos_botiquin/{id}', 'api\InsumoBotiquinController@listAll');
 
+    Route::get('establecimientos', 'api\EstablecimientoController@listAll');
+    Route::get('establecimientos/{id}', 'api\EstablecimientoController@listOne');
+
 });
