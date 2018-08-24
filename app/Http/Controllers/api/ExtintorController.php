@@ -69,13 +69,29 @@ class ExtintorController extends Controller
             $input = $request -> all();
 
             $owner = $input['id_usuario'];
-
-            dd($input);
             
+            $ubicacion = new Ubicacion();
+            $ubicacion -> piso = $input['piso'];
+            $ubicacion -> referencia = $input['referencia'];
+            $ubicacion -> estado = 'Activo';
+            $ubicacion -> edificio_id = $input['edificio'];
+            $ubicacion -> user_id_creacion = $owner;
+            $ubicacion->save();
+            
+            $extintor = new Extintor;
+            $extintor -> codigo = $input['codigo'];
+            $extintor -> clasificacion_extintor_id = $input['clasificacion'];
+            $extintor -> capacidad = $input['capacidad'];
+            $extintor -> altura = $input['altura'];
+            $extintor -> estado = 'Activo';
+            $extintor -> ubicacion_id = $ubicacion->id;
+            $extintor -> user_id_creacion = $owner;
+            $extintor->save();
+
             $fechas = new RecargaExtintor;
             $fechas -> fecha_recarga = $input['fechaRecarga'];
             $fechas -> fecha_vencimiento = $input['fechaVencimiento'];
-            $fechas -> extintor_id = $input['extintor_id'];
+            $fechas -> extintor_id = $extintor->id;
             $fechas -> estado = 'Activo';
             $fechas -> user_id_creacion = $owner;
             $fechas -> save();
