@@ -12,6 +12,7 @@ class InsumoBotiquinController extends Controller
 {
     /**
      * Devuelve el listado de todos los insumos de un botiquín que se encuentran 'Activos' en el sistema.
+     * $id, es el identidicador del botiquín a consultar
      */
     public function listAll(Request $request, $id)
     {

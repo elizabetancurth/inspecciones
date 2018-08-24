@@ -77,14 +77,14 @@ Route::group(array('prefix' => 'api'), function()
     Route::get('recargas_extintores', 'api\FechaRecargasController@listAll');
     Route::get('recargas_extintores/{id}', 'api\FechaRecargasController@listOne');
 
-    Route::get('inspecciones', 'api\InspeccionController@listAll');
-    Route::get('inspecciones/{id}', 'api\InspeccionController@listOne');
+    Route::get('botiquines', 'api\BotiquinController@listAll');
+    Route::get('botiquines/{id}', 'api\BotiquinController@listOne');
+    Route::post('botiquines', 'api\BotiquinController@create');
 
-    Route::get('inspecciones_extintores', 'api\InspeccionExtintorController@listAll');
-    Route::get('inspecciones_extintores/{id}', 'api\InspeccionExtintorController@listOne');
+    Route::get('insumos_botiquin/{id}', 'api\InsumoBotiquinController@listAll');
 
-    Route::get('inspecciones_insumos_botiquines', 'api\InspeccionBotiquinController@listAll');
-    Route::get('inspecciones_insumos_botiquines/{id}', 'api\InspeccionBotiquinController@listOne');
+    Route::get('establecimientos', 'api\EstablecimientoController@listAll');
+    Route::get('establecimientos/{id}', 'api\EstablecimientoController@listOne');
 
     Route::get('formatos_inspecciones', 'api\FormatoInspeccionController@listAll');
     Route::get('formatos_inspecciones/{id}', 'api\FormatoInspeccionController@listOne');
@@ -95,17 +95,17 @@ Route::group(array('prefix' => 'api'), function()
     Route::get('opciones_respuestas', 'api\OpcionRespuestaController@listAll');
     Route::get('opciones_respuestas/{id}', 'api\OpcionRespuestaController@listOne');
 
+    Route::get('inspecciones', 'api\InspeccionController@listAll');
+    Route::get('inspecciones/{id}', 'api\InspeccionController@listOne');
+
+    Route::get('inspecciones_extintores', 'api\InspeccionExtintorController@listAll');
+    Route::get('inspecciones_extintores/{id}', 'api\InspeccionExtintorController@listOne');
+
+    Route::get('inspecciones_insumos_botiquines', 'api\InspeccionBotiquinController@listAll');
+    Route::get('inspecciones_insumos_botiquines/{id}', 'api\InspeccionBotiquinController@listOne');
+
     Route::get('respuestas_inspecciones', 'api\RespuestaInspeccionController@listAll');
     Route::get('respuestas_inspecciones/{id}', 'api\RespuestaInspeccionController@listOne');
     Route::post('respuestas_inspecciones', 'api\RespuestaInspeccionController@create');
-
-    Route::get('botiquines', 'api\BotiquinController@listAll');
-    Route::get('botiquines/{id}', 'api\BotiquinController@listOne');
-    Route::post('botiquines', 'api\BotiquinController@create');
-
-    Route::get('insumos_botiquin/{id}', 'api\InsumoBotiquinController@listAll');
-
-    Route::get('establecimientos', 'api\EstablecimientoController@listAll');
-    Route::get('establecimientos/{id}', 'api\EstablecimientoController@listOne');
 
 });
