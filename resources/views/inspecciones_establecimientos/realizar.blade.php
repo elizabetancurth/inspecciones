@@ -13,19 +13,24 @@
 
     {!! Form::open(['route' => 'res_inspecciones_establecimientos.store']) !!}
     
-        <table class="table">
-            <thead class="thead-light">
-                <tr>
-                    <th scope="col">Pregunta</th>
-                    <th scope="col">Respuesta</th>
-                    <th scope="col">Observaciones</th>
-                </tr>
-            </thead>
+    @foreach($categorias as $categoria)
+        <br>
+        <div class="table table-light">
+            <div class="thead-light">
+                <div class="row">
+                    <h4 class="col col-md-6">{{$categoria->nombre}}</h4>
+                    <h4 class="col ">Respuesta</h4>
+                    <h4 class="col ">Observaciones</h4>
+                </div>
+                <hr>
+            </div>
             <tbody>
+
                 @foreach($inspeccion->inspeccion->formato->preguntas as $pregunta)
-                <tr>
-                    <td>{{$pregunta -> descripcion}}</td>
-                    <td>
+                @if($pregunta-> categoria_pregunta_formato_id === $categoria->id)
+                <div class="row">
+                    <div class="col col-md-6">{{$pregunta -> descripcion}}</div>
+                    <div class="col">
                         @if($pregunta->tipo_pregunta_id === 1 || $pregunta->tipo_pregunta_id === 2)
                             <select class="custom-select container-fluid" id="opcion_respuesta" name="respuesta_{{$i}}">
                                 <option selected>--Seleccione--</option>
@@ -43,12 +48,16 @@
                         @if($pregunta->tipo_pregunta_id === 4)
                         <textarea class="form-control" name="abierta"></textarea>
                         @endif
-                    </td>
-                    <td><textarea class="form-control" name="observaciones_{{$i-1}}"></textarea></td>
-                </tr>
+                    </div>
+                    <div class="col"><textarea class="form-control" name="observaciones_{{$i-1}}"></textarea></div>
+                </div>
+                <hr>
+                @endif
                 @endforeach
             </tbody>
-        </table>
+        </div>
+    @endforeach
+
         <input type="hidden" name="inspeccion_id" value="{{$inspeccion->id}}">
         <div>
             <a role="button" class="btn btn-secondary" href="/inspecciones_establecimientos">Cerrar</a>
@@ -56,7 +65,6 @@
         </div>
     
         {!! Form::close() !!}
-
     </div>
 
 @endsection

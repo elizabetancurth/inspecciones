@@ -12,6 +12,8 @@ use App\Inspeccion;
 use App\InspeccionClasificacion;
 use App\InspeccionEstablecimiento;
 use App\Formato;
+use App\PreguntaFormato;
+use App\CategoriaPreguntaFormato;
 use App\Establecimiento;
 use App\OpcionRespuesta;
 
@@ -93,12 +95,15 @@ class InspeccionEstablecimientoController extends Controller
     public function show($id)
     {
         $inspeccion = InspeccionEstablecimiento::findOrFail($id);
+        $formato = $inspeccion->inspeccion->formato;
+        $categorias_id = PreguntaFormato::distinct()->select('categoria_pregunta_formato_id')->where('formato_inspeccion_id', $formato->id)->pluck('categoria_pregunta_formato_id');
+        $categorias = CategoriaPreguntaFormato::whereIn('id', $categorias_id)->get();
         $opcion_respuesta = OpcionRespuesta::all();
         $i = 0;
 
         if($inspeccion->inspeccion->estado_inspeccion === "Pendiente")
         {
-            return view('inspecciones_establecimientos.realizar', ['inspeccion' => $inspeccion, 'opcion_respuesta' => $opcion_respuesta, 'i' => $i]);
+            return view('inspecciones_establecimientos.realizar', ['inspeccion' => $inspeccion, 'categorias' => $categorias, 'opcion_respuesta' => $opcion_respuesta, 'i' => $i]);
         }
 
         if($inspeccion->inspeccion->estado_inspeccion === "Cancelada")
