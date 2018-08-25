@@ -7,6 +7,9 @@ use App\RespuestaInspeccion;
 use App\InspeccionEstablecimiento;
 use App\Inspeccion;
 use App\OpcionRespuesta;
+use App\PreguntaFormato;
+use App\CategoriaPreguntaFormato;
+use App\Formato;
 use App\User;
 
 use Illuminate\Http\Request;
@@ -123,8 +126,11 @@ class RespuestaInspeccionEstablecimientoController extends Controller
         $inspeccion = InspeccionEstablecimiento::findOrFail($id);
         $respuestas = RespuestaInspeccion::where('inspeccion_id', $inspeccion->inspeccion->id)->get();
         $user = User::findOrFail($inspeccion->inspeccion->user_id_creacion);
+        $formato = $inspeccion->inspeccion->formato;
+        $categorias_id = PreguntaFormato::distinct()->select('categoria_pregunta_formato_id')->where('formato_inspeccion_id', $formato->id)->pluck('categoria_pregunta_formato_id');
+        $categorias = CategoriaPreguntaFormato::whereIn('id', $categorias_id)->get();
 
-        return view('inspecciones_establecimientos.ver', ['inspeccion' => $inspeccion, 'respuestas' => $respuestas, 'user' => $user]);
+        return view('inspecciones_establecimientos.ver', ['inspeccion' => $inspeccion, 'respuestas' => $respuestas, 'user' => $user, 'categorias' => $categorias,]);
     }
 
     /**

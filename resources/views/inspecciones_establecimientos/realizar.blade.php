@@ -19,8 +19,8 @@
             <div class="thead-light">
                 <div class="row">
                     <h4 class="col col-md-6">{{$categoria->nombre}}</h4>
-                    <h4 class="col ">Respuesta</h4>
-                    <h4 class="col ">Observaciones</h4>
+                    <h4 class="col">Respuesta</h4>
+                    <h4 class="col">Observaciones</h4>
                 </div>
                 <hr>
             </div>

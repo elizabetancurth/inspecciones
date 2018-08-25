@@ -14,23 +14,32 @@
     <br>
 
     <div class="container">
-        <table class="table">
-            <thead class="thead-light">
-                <tr>
-                    <th scope="col">Pregunta</th>
-                    <th scope="col">Respuesta</th>
-                    <th scope="col">Observaciones</th>
+
+    @foreach($categorias as $categoria)
+        <div class="table table-light">
+            <div class="thead-light">
+                <div class="row">
+                    <h4 class="col col-md-6">{{$categoria->nombre}}</h4>
+                    <h4 class="col text-center">Respuesta</h4>
+                    <h4 class="col">Observaciones</h4>
                 </tr>
-            </thead>
+                <hr>
+            </div>
+            <hr>
             <tbody>
             @foreach($respuestas as $respuesta)
-                    <tr>
-                        <td>{{$respuesta->pregunta->descripcion}}</td>
-                        <td>{{$respuesta->respuesta}}</td>
-                        <td>{{$respuesta->observaciones}}</td>
-                    </tr>
+            @if($respuesta->pregunta-> categoria_pregunta_formato_id === $categoria->id)
+            <div class="row">
+                <div class="col col-md-6">{{$respuesta->pregunta->descripcion}}</div>
+                <div class="col text-center">{{$respuesta->respuesta}}</div>
+                <div class="col">{{$respuesta->observaciones}}</div>
+            </div>
+            <hr>
+            @endif
             @endforeach
             </tbody>
-        </table>
+        </div>
+        <br>
+    @endforeach
     </div>
 @endsection
