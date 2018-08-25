@@ -115,6 +115,6 @@ Route::group(array('prefix' => 'api'), function()
     Route::post('respuestas_inspecciones_extintores', 'api\RespuestaInspeccionController@create');
 
     //** Respuesta Inspección Establecimientos */
-    Route::post('respuestas_inspecciones_establecimientos/{id}', 'api\RespuestaInspeccionEstablecimientoController@create');
+    Route::post('respuestas_inspecciones_establecimientos', 'api\RespuestaInspeccionEstablecimientoController@create');
 
 });
