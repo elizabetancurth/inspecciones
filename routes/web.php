@@ -52,6 +52,8 @@ Route::get('ver_inspecciones_insumos/{id}', [ 'as' => 'inspecciones_botiquines.v
 Route::get('ver_inspecciones_insumo/{id}', [ 'as' => 'inspecciones_botiquines.ver_inspecciones_insumo', 'uses' => 'InspeccionBotiquinController@ver_inspecciones_insumo']);
 Route::get('reporte_extintores', [ 'as' => 'reporte_inspecciones.extintores', 'uses' => 'ReportesController@reporte_extintores']);
 
+
+
 //**---------- Rutas Servicio Web REST ---------- **//
 
 Route::group(['middleware' => 'cors'], function()
@@ -103,8 +105,16 @@ Route::group(array('prefix' => 'api'), function()
     Route::get('inspecciones_insumos_botiquines', 'api\InspeccionBotiquinController@listAll');
     Route::get('inspecciones_insumos_botiquines/{id}', 'api\InspeccionBotiquinController@listOne');
 
+    Route::get('inspecciones_establecimientos', 'api\InspeccionEstablecimientoController@listAll');
+    Route::get('inspecciones_establecimientos/{id}', 'api\InspeccionEstablecimientoController@listOne');
+
     Route::get('respuestas_inspecciones', 'api\RespuestaInspeccionController@listAll');
     Route::get('respuestas_inspecciones/{id}', 'api\RespuestaInspeccionController@listOne');
-    Route::post('respuestas_inspecciones', 'api\RespuestaInspeccionController@create');
+
+    //** Respuesta Inspección Extintores */
+    Route::post('respuestas_inspecciones_extintores', 'api\RespuestaInspeccionController@create');
+
+    //** Respuesta Inspección Establecimientos */
+    Route::post('respuestas_inspecciones_establecimientos/{id}', 'api\RespuestaInspeccionEstablecimientoController@create');
 
 });
