@@ -51,6 +51,7 @@ Route::get('crear_pregunta/{id}', [ 'as' => 'preguntas.create_pregunta', 'uses' 
 Route::get('ver_inspecciones_insumos/{id}', [ 'as' => 'inspecciones_botiquines.ver_inspecciones_insumos', 'uses' => 'InspeccionBotiquinController@ver_inspecciones_insumos']);
 Route::get('ver_inspecciones_insumo/{id}', [ 'as' => 'inspecciones_botiquines.ver_inspecciones_insumo', 'uses' => 'InspeccionBotiquinController@ver_inspecciones_insumo']);
 Route::get('reporte_extintores', [ 'as' => 'reporte_inspecciones.extintores', 'uses' => 'ReportesController@reporte_extintores']);
+Route::post('generar_reporte_extintores', [ 'as' => 'generar_reporte_inspecciones.extintores', 'uses' => 'ReportesController@generar_reporte_extintor']);
 
 
 

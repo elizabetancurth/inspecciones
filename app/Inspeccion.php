@@ -19,5 +19,9 @@ class Inspeccion extends Model
       return $this->belongsTo('App\Formato','formato_inspeccion_id','id');
     }
 
-    
+    function respuesta()
+    {
+      return $this->belongsTo('App\RespuestaInspeccion','inspeccion_id','id');
+    }
+
 }

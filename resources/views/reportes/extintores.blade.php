@@ -1,4 +1,4 @@
-@extends("layouts.reportes")
+@extends("layouts.app")
 
 @section("headerTitle", "Reporte Inspección de Extintores")
 
@@ -10,6 +10,7 @@
 <hr>
 <div class="table table-light">
     <div class="thead-light">
+    {!! Form::open(['route' => 'generar_reporte_inspecciones.extintores']) !!}
         <div class="row"> 
             <div class="col col-md-3"> 
                 {{ Form::label('desde', 'Desde: ') }} 
@@ -20,28 +21,18 @@
                 {{ Form::date('fecha_hasta', \Carbon\Carbon::now(), ['class' => 'form-control']) }}
             </div>
         </div>
+        <hr>
+        <div class="row">
+            <div class="col"> 
+                <button type="submit" class="btn btn-info">
+                        <i class="fa fa-plus form-control-feedback"></i> Generar Reporte
+                </button>
+            </div>
+        </div>
+    {!! Form::close() !!}
     </div>
 </div>
 <hr>
 
-<table class="table">
-    <thead class="thead-light">
-        <tr>
-            <th scope="col">Extintor</th>
-            @foreach($formato->preguntas as $pregunta)
-                <th scope="col">{{$pregunta -> descripcion}}</th>
-            @endforeach
-        </tr>
-    </thead>
-    <tbody>
-    @foreach($extintores as $extintor)
-        <tr>
-            <td>{{$extintor->codigo}} </td>
-            <td></td>
-            <td></td>
-        </tr>
-    @endforeach
-    </tbody>
-</table>
 
 @endsection
