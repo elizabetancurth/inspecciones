@@ -26,8 +26,7 @@ class UsuarioController extends Controller
     public function index()
     {
         $usuarios = User::where('estado', 'Activo')->paginate(5);
-
-        return view('auth.consultar', ['usuarios' => $usuarios]);
+        return view('usuarios.consultar', ['usuarios' => $usuarios]);
     }
 
     /**
@@ -71,7 +70,7 @@ class UsuarioController extends Controller
     public function show($id)
     {
         $user = User::findOrFail($id);
-        return view('auth.perfil', ['user' => $user]);
+        return view('usuarios.perfil', ['user' => $user]);
     }
 
     /**
@@ -82,7 +81,8 @@ class UsuarioController extends Controller
      */
     public function edit($id)
     {
-        //
+        $usuario = User::findOrFail($id);
+        return view('usuarios.editar', ['usuario' => $usuario]);
     }
 
     /**
@@ -94,7 +94,18 @@ class UsuarioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+
+        $usuario = User::findOrFail($id);
+        $usuario -> name = $data['name'];
+        $usuario -> lastname = $data['lastname'];
+        $usuario -> email = $data['email'];
+        $usuario -> password = Hash::make($data['password']);
+        $usuario -> rol = $data['rol'];
+        $usuario -> estado = $data['estado'];
+        $usuario -> save();
+
+        return redirect('/usuarios');
     }
 
     /**
@@ -106,5 +117,11 @@ class UsuarioController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function frm_inactivos()
+    {
+        $usuarios = User::where('estado', 'Inactivo')->paginate(5);
+        return view('usuarios.inactivos', ['usuarios' => $usuarios]);
     }
 }

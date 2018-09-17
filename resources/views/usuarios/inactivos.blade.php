@@ -29,12 +29,9 @@
     </script>
     <!-- Fin de código para campo buscar -->
 
-    <a class="btn btn-info container-fluid" href="{{ route('usuarios.create')}}" role="button">Crear</a>
-    <hr>
-
     <!--<div class="align-items-end text-right container-fluid input-group mb-3 col-md-4">-->
     <div class="container-fluid input-group mb-3" style="padding: 0px;">
-        <div class="col-md-8"><h2>Listado General de Usuarios</h2></div>
+        <div class="col-md-8"><h2>Listado de Usuarios Inactivos</h2></div>
         <input onkeyup="myFunction()" id="buscar" type="text" class="form-control" placeholder="Buscar Nombre..." aria-label="Buscar" aria-describedby="basic-addon2">
         <div class="input-group-append">
             <button class="btn btn-outline-secondary" type="button">
@@ -53,6 +50,7 @@
                 <th scope="col">Apellidos</th>
                 <th scope="col">Rol</th>
                 <th scope="col"></th>
+                <th scope="col"></th>
             </tr>
             </thead>
             <tbody>
@@ -63,6 +61,7 @@
                         <td>{{$usuario->lastname}}</td>
                         <td>{{$usuario->rol}}</td>
                         <td><a class="btn btn-success" href="{{ route('usuarios.show', $usuario->id) }}">Ver</span></a></td>
+                        <td><a class="btn btn-info" href="{{ route('usuarios.edit', $usuario->id) }}">Editar</span></a></td>
                     </tr>
                 @endforeach
             </tbody>

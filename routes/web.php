@@ -42,6 +42,7 @@ Route::get('formatos_inactivos', [ 'as' => 'formatos.inactivos', 'uses' => 'Form
 Route::get('inspecciones_extintores_inactivos', [ 'as' => 'inspecciones_extintores.inactivos', 'uses' => 'InspeccionExtintorController@frm_inactivos']);
 Route::get('establecimientos_inactivos', [ 'as' => 'establecimientos.inactivos', 'uses' => 'EstablecimientoController@frm_inactivos']);
 Route::get('inspecciones_establecimientos_inactivos', [ 'as' => 'inspecciones_establecimientos.inactivos', 'uses' => 'InspeccionEstablecimientoController@frm_inactivos']);
+Route::get('usuarios_inactivos', [ 'as' => 'usuarios.inactivos', 'uses' => 'UsuarioController@frm_inactivos']);
 
 
 //**---------- Rutas específicas ---------- **//
