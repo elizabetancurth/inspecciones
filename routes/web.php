@@ -54,6 +54,9 @@ Route::get('ver_inspecciones_insumo/{id}', [ 'as' => 'inspecciones_botiquines.ve
 Route::get('reporte_extintores', [ 'as' => 'reporte_inspecciones.extintores', 'uses' => 'ReportesController@reporte_extintores']);
 Route::post('generar_reporte_extintores', [ 'as' => 'generar_reporte_inspecciones.extintores', 'uses' => 'ReportesController@generar_reporte_extintor']);
 
+Route::get('mi_perfil/{id}', [ 'as' => 'usuarios.ver_perfil', 'uses' => 'UsuarioController@ver_perfil']);
+Route::get('editar_perfil/{id}', [ 'as' => 'usuarios.editar_perfil', 'uses' => 'UsuarioController@editar_perfil']);
+Route::put('editar_perfil/{id}', [ 'as' => 'usuarios.frm_editar_perfil', 'uses' => 'UsuarioController@frm_editar_perfil']);
 
 
 //**---------- Rutas Servicio Web REST ---------- **//

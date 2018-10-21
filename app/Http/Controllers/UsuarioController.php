@@ -7,6 +7,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 
 class UsuarioController extends Controller
 {
@@ -47,6 +48,7 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
+        $owner = Auth:: User()->id;
         $data = $request->all();
 
         $usuario = new User;
@@ -56,6 +58,7 @@ class UsuarioController extends Controller
         $usuario -> password = Hash::make($data['password']);
         $usuario -> rol = $data['rol'];
         $usuario -> estado = 'Activo';
+        $usuario -> user_id_creacion = $owner;
         $usuario -> save();
 
         return redirect('/usuarios');
@@ -70,7 +73,7 @@ class UsuarioController extends Controller
     public function show($id)
     {
         $user = User::findOrFail($id);
-        return view('usuarios.perfil', ['user' => $user]);
+        return view('usuarios.ver', ['user' => $user]);
     }
 
     /**
@@ -94,6 +97,7 @@ class UsuarioController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $owner = Auth:: User()->id;
         $data = $request->all();
 
         $usuario = User::findOrFail($id);
@@ -103,6 +107,7 @@ class UsuarioController extends Controller
         $usuario -> password = Hash::make($data['password']);
         $usuario -> rol = $data['rol'];
         $usuario -> estado = $data['estado'];
+        $usuario -> user_id_modificacion = $owner;
         $usuario -> save();
 
         return redirect('/usuarios');
@@ -123,5 +128,34 @@ class UsuarioController extends Controller
     {
         $usuarios = User::where('estado', 'Inactivo')->paginate(5);
         return view('usuarios.inactivos', ['usuarios' => $usuarios]);
+    }
+
+
+    public function ver_perfil($id)
+    {
+        $user = User::findOrFail($id);
+        return view('usuarios.perfil', ['user' => $user]);
+    }
+
+    public function editar_perfil($id)
+    {
+        $usuario = User::findOrFail($id);
+        return view('usuarios.editar_perfil', ['usuario' => $usuario]);
+    }
+
+    public function frm_editar_perfil(Request $request, $id)
+    {
+        $owner = Auth:: User()->id;
+        $data = $request->all();
+
+        $usuario = User::findOrFail($id);
+        $usuario -> name = $data['name'];
+        $usuario -> lastname = $data['lastname'];
+        $usuario -> email = $data['email'];
+        $usuario -> password = Hash::make($data['password']);
+        $usuario -> user_id_modificacion = $owner;
+        $usuario -> save();
+
+        return ('/mi_permil/'. Auth:: User()->id);
     }
 }

@@ -21,8 +21,18 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->enum('rol', ['Administrador', 'APH']);
             $table->enum('estado', ['Activo', 'Inactivo']);
+            $table->integer('user_id_creacion')->unsigned()->nullable();
+            $table->integer('user_id_modificacion')->unsigned()->nullable();
             $table->rememberToken();
             $table->timestamps();
+
+            $table->foreign('user_id_creacion')->references('id')->on('users')
+                ->onUpdate('CASCADE')
+                ->onDelete('SET NULL');
+
+            $table->foreign('user_id_modificacion')->references('id')->on('users')
+                ->onUpdate('CASCADE')
+                ->onDelete('SET NULL');
         });
     }
 

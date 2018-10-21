@@ -1,6 +1,6 @@
 @extends("layouts.app")
 
-@section("headerTitle", "Perfil de Usuario")
+@section("headerTitle", "Información del Usuario")
 
 @section("content")
 
@@ -8,12 +8,11 @@
         <div class="row">
             <div class="col col-md-7" >
                     <h2>Perfil de {{$user->name}}</h2>
-                    
+                    <br>
             </div>
         </div>        
     </div>
-
-    <a href="/">< Volver al inicio</a>
+    <a href="{{ route('usuarios.index') }}">< Volver a usuarios</a>
     <br><br>
     
     <div class="container">
@@ -45,13 +44,15 @@
                             <td>{{$user->rol}}
                             </td>
                         </tr>
+
+                        <tr>
+                            <th scope="col">
+                                Estado
+                            </th>
+                            <td>{{$user->estado}}
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
-
-                <div class="form-group row mb-0">
-                    <div class="col-md-6 offset-md-4">
-                        <a class="btn btn-info" href="{{ route('usuarios.editar_perfil', $user->id) }}">Editar Mi Perfil</span></a>
-                    </div>
-                </div>
     </div>
 @endsection
